@@ -4,13 +4,13 @@ type Item = {
   unit?: string;
 };
 
-type Order = {
+export type Order = {
   id: number;
   userId: number;
   items: Item[];
 };
 
-type user = {
+type User = {
   id: number;
   name: string;
   address: string;
@@ -18,7 +18,7 @@ type user = {
 
 // data
 
-export const USERS: user[] = [
+export const USERS: User[] = [
   {
     name: "Adam Bagerski",
     id: 56789876,

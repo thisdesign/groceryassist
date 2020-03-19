@@ -1,33 +1,13 @@
-import { ORDERS, USERS } from "../constants";
+import { ORDERS, USERS, Order } from "../constants";
+import { OrderDetail } from "../components";
 
 const Home = () => (
   <>
     <h1>Orders</h1>
     <div>
-      {ORDERS.map(({ items, userId }) => {
-        const user = USERS.filter(user => user.id === userId)[0];
-
-        return (
-          <div>
-            <br />
-            <div>
-              <h2>{user.name}</h2>
-              <h4>{items.length} items</h4>
-              <p>{user.address}</p>
-            </div>
-
-            <hr />
-            {items.map(item => (
-              <div>
-                <h3>
-                  {item.name} · {item.count} {item.unit ? item.unit : "count"}
-                  <hr />
-                </h3>
-              </div>
-            ))}
-          </div>
-        );
-      })}
+      {ORDERS.map(order => (
+        <OrderDetail data={order} key={order.id} />
+      ))}
     </div>
 
     <br />
