@@ -28,6 +28,11 @@ export const USERS: User[] = [
     name: "Maya Massad",
     id: 56789877,
     address: "4231 n interstate ave portland or 97217"
+  },
+  {
+    name: "Kevin Evans",
+    id: 56789878,
+    address: "4231 n interstate ave portland or 97217"
   }
 ];
 
@@ -47,6 +52,31 @@ export const ORDERS: Order[] = [
       }
     ]
   },
+
+  {
+    id: 124531,
+    userId: 56789878,
+    items: [
+      {
+        name: "toilet paper",
+        count: 3,
+        unit: "pack"
+      },
+      {
+        name: "onion",
+        count: 3
+      },
+      {
+        name: "Tomato sauce",
+        count: 1
+      },
+      {
+        name: "Mustard",
+        count: 1
+      }
+    ]
+  },
+
   {
     userId: 56789877,
     id: 23434534,
