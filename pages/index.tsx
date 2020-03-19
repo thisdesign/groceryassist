@@ -1,5 +1,6 @@
 import { ORDERS } from "../constants";
 import { LineItem } from "../components";
+import Link from "next/link";
 
 const Home = () => (
   <>
@@ -12,18 +13,13 @@ const Home = () => (
         <LineItem data={order} key={order.id} />
       ))}
     </div>
-
     <br />
     <br />
-
-    {/* <div>
-      <h1>Add Item</h1>
-      <input type="field" placeholder="item name"></input>
-      <input type="number" placeholder="qty"></input>
-      <button type="button">+ Add unit</button>
-      <br />
-      <button type="submit">Add Item</button>
-    </div> */}
+    <h1>
+      <Link href="/create">
+        <a>I'd like someone to pick up my groceries→</a>
+      </Link>
+    </h1>
   </>
 );
 
