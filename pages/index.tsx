@@ -70,15 +70,6 @@ const Home = () => (
       <br />
       <button type="submit">Add Item</button>
     </div>
-
-    <style scoped jsx>{`
-      div {
-        border: 1px solid blue;
-        border-radius: 6px;
-        padding: 0.25rem;
-        margin-bottom: 1rem;
-      }
-    `}</style>
   </>
 );
 
