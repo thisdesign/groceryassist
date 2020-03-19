@@ -12,7 +12,6 @@ const OrderDetail = ({ data }) => {
         <p>{user.address}</p>
         <br />
       </div>
-
       <hr />
       {items.map(item => (
         <div key={item.name}>

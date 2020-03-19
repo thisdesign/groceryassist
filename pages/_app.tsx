@@ -1,10 +1,15 @@
 import React from "react";
-
+import Link from "next/link";
 const App = ({ pageProps, Component }) => {
   return (
     <div>
+      <Link href="/">
+        <a>GROCERY APP</a>
+      </Link>
+      <hr />
+      <br />
+      <br />
       <Component {...pageProps} />
-
       <style global jsx>
         {`
           html,
