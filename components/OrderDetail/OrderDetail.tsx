@@ -21,6 +21,12 @@ const OrderDetail = ({ data }) => {
           </h3>
         </div>
       ))}
+      <br />
+      <br />
+
+      <h2>
+        <a href={`/fulfill/${data.id}`}>Fulfill this order→</a>
+      </h2>
     </div>
   );
 };
