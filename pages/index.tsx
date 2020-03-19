@@ -16,14 +16,14 @@ const Home = () => (
     <br />
     <br />
 
-    <div>
+    {/* <div>
       <h1>Add Item</h1>
       <input type="field" placeholder="item name"></input>
       <input type="number" placeholder="qty"></input>
       <button type="button">+ Add unit</button>
       <br />
       <button type="submit">Add Item</button>
-    </div>
+    </div> */}
   </>
 );
 
