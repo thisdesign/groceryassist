@@ -2,11 +2,11 @@ import React from "react";
 import { NextPage } from "next";
 import Error from "next/error";
 import { ORDERS, Order } from "../../constants";
-import { LineItem } from "../../components";
+import { OrderDetail } from "../../components";
 
 const OrderPage: NextPage<{ orderData: Order }> = ({ orderData }) => {
   if (orderData) {
-    return <LineItem data={orderData} />;
+    return <OrderDetail data={orderData} />;
   }
   return <Error statusCode={404} />;
 };
