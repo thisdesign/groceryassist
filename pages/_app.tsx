@@ -43,6 +43,11 @@ const App = ({ pageProps, Component }) => {
             border: 0;
             border-bottom: 1px dashed black;
           }
+
+          a {
+            color: black;
+            text-decoration: none;
+          }
         `}
       </style>
     </div>

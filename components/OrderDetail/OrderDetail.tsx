@@ -6,11 +6,11 @@ const OrderDetail = ({ data }) => {
 
   return (
     <div>
-      <br />
       <div>
-        <h2>{user.name}</h2>
-        <h4>{items.length} items</h4>
+        <h1>Order for {user.name}</h1>
+        <h2>{items.length} items</h2>
         <p>{user.address}</p>
+        <br />
       </div>
 
       <hr />

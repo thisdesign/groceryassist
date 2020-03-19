@@ -1,12 +1,12 @@
-import { ORDERS, USERS, Order } from "../constants";
-import { OrderDetail } from "../components";
+import { ORDERS } from "../constants";
+import { LineItem } from "../components";
 
 const Home = () => (
   <>
     <h1>Orders</h1>
     <div>
       {ORDERS.map(order => (
-        <OrderDetail data={order} key={order.id} />
+        <LineItem data={order} key={order.id} />
       ))}
     </div>
 
