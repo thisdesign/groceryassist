@@ -4,7 +4,7 @@ const next = require("next");
 require("dotenv").config({});
 const { OrderSchema } = require("./schemas.js");
 
-const port = parseInt(process.env.PORT, 10) || 3000;
+const port = process.env.PORT || 3000;
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handle = app.getRequestHandler();
@@ -27,13 +27,13 @@ const Order = mongoose.model("orders", OrderSchema);
 app.prepare().then(() => {
   const server = express();
 
-  server.get("/api/getListings", (req, res) => {
-    Order.find({})
-      .then(data => {
-        return res.json(data);
-      })
-      .catch(err => console.error(err));
-  });
+  // server.get("/api/getListings", (req, res) => {
+  //   Order.find({})
+  //     .then(data => {
+  //       return res.json(data);
+  //     })
+  //     .catch(err => console.error("TM:", err));
+  // });
 
   server.all("*", (req, res) => {
     return handle(req, res);
