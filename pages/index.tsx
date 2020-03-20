@@ -1,45 +1,20 @@
-import { ORDERS } from "../constants";
-import { LineItem } from "../components";
 import Link from "next/link";
 
 const Home = () => (
   <>
     <h1>
+      <Link href="/listings">
+        <a>I'd like to pick up groceries for someone→</a>
+      </Link>
+    </h1>
+    <hr />
+    <h1>
       <Link href="/create">
         <a>I'd like someone to pick up my groceries→</a>
       </Link>
     </h1>
-    <br />
-    <br />
-    <hr />
-    <h1>{ORDERS.length} Open Orders</h1>
-    <hr />
-    <div className="split">
-      <div
-        dangerouslySetInnerHTML={{
-          __html: `
-        <div class="mapouter"><div class="gmap_canvas"><iframe width="100%" height="900px" id="gmap_canvas" src="https://maps.google.com/maps?q=portland%20oregon&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://www.embedgooglemap.net"></a></div><style>.mapouter{position:relative;text-align:right;height:100%;width:100%;}.gmap_canvas {overflow:hidden;background:none!important;height:100%;width:100%;}</style></div>`
-        }}
-      ></div>
-      <div>
-        {ORDERS.map(order => (
-          <LineItem data={order} key={order.id} />
-        ))}
-      </div>
-    </div>
-    <br />
-    <br />
-    <style jsx scoped>{`
-      .split {
-        display: flex;
-        grid-gap: 1rem;
-        flex-direction: row-reverse;
-      }
 
-      .split > div {
-        width: 50%;
-      }
-    `}</style>
+    <hr />
   </>
 );
 
