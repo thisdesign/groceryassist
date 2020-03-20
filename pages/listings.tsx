@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from "react";
-import { ORDERS } from "../constants";
-import { LineItem } from "../components";
 import { NextPage } from "next";
 import GoogleMapReact from "google-map-react";
+import { ORDERS } from "../constants";
+import { LineItem } from "../components";
 
 const GOOGLE_MAP_API_KEY = "AIzaSyBUPahFeC6Bucs95Ucc5Hf-QMO1S24nxfk";
 
@@ -11,16 +11,18 @@ const CENTER = { lat: 45.52796, lng: -122.6964283 };
 const Marker: React.FC<{ lat: any; lng: any }> = ({ lat, lng }) => (
   <>
     <div />
-    <style jsx scoped>{`
-      div {
-        width: 1rem;
-        height: 1rem;
-        background: green;
-        border-radius: 50%;
-        border: 2px solid white;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-      }
-    `}</style>
+    <style jsx scoped>
+      {`
+        div {
+          width: 1rem;
+          height: 1rem;
+          background: green;
+          border-radius: 50%;
+          border: 2px solid white;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+      `}
+    </style>
   </>
 );
 
@@ -48,17 +50,19 @@ const Listings: NextPage = () => {
         </div>
       </div>
 
-      <style jsx scoped>{`
-        .split {
-          display: flex;
-          grid-gap: 1rem;
-          flex-direction: row-reverse;
-        }
+      <style jsx scoped>
+        {`
+          .split {
+            display: flex;
+            grid-gap: 1rem;
+            flex-direction: row-reverse;
+          }
 
-        .split > div {
-          width: 50%;
-        }
-      `}</style>
+          .split > div {
+            width: 50%;
+          }
+        `}
+      </style>
     </div>
   );
 };
