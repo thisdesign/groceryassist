@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { ORDERS } from "../constants";
 import { LineItem } from "../components";
 import { NextPage } from "next";
@@ -11,20 +11,16 @@ const Listings: NextPage = () => {
       <br />
       <hr />
       <div className="split">
-        <div
-          dangerouslySetInnerHTML={{
-            __html: `
-        <div class="mapouter"><div class="gmap_canvas"><iframe width="100%" height="900px" id="gmap_canvas" src="https://maps.google.com/maps?q=portland%20oregon&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://www.embedgooglemap.net"></a></div><style>.mapouter{position:relative;text-align:right;height:100%;width:100%;}.gmap_canvas {overflow:hidden;background:none!important;height:100%;width:100%;}</style></div>`
-          }}
-        ></div>
+        <div>
+          <Map />
+        </div>
         <div>
           {ORDERS.map(order => (
             <LineItem data={order} key={order.id} />
           ))}
         </div>
       </div>
-      <br />
-      <br />
+
       <style jsx scoped>{`
         .split {
           display: flex;
@@ -36,8 +32,35 @@ const Listings: NextPage = () => {
           width: 50%;
         }
       `}</style>
+
+      <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUPahFeC6Bucs95Ucc5Hf-QMO1S24nxfk"
+        async
+        defer
+      ></script>
     </div>
   );
 };
 
+const Map = () => {
+  useEffect(() => {
+    const map = new (window as any).google.maps.Map(
+      document.getElementById("map"),
+      {
+        center: { lat: 45.52796, lng: -122.6964283 },
+        zoom: 12
+      }
+    );
+  }, []);
+
+  return (
+    <>
+      <div id="map">asdfasdf</div>
+      <style>{`
+        #map {
+          height: calc(100vh - 12rem);
+        }`}</style>
+    </>
+  );
+};
 export default Listings;
