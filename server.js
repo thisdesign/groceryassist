@@ -1,14 +1,18 @@
 // server.js
-const { MongoClient } = require("mongodb");
 const { createServer } = require("http");
 const { parse } = require("url");
 const next = require("next");
 const mongoose = require("mongoose");
 require("dotenv").config({});
+const { OrderSchema } = require("./schemas.tsx");
 
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handle = app.getRequestHandler();
+
+/**
+ * Database
+ */
 
 const PASSWORD = process.env.MONGODB_PASSWORD;
 const MONGODB_URI = `mongodb+srv://tylermcrobert:${PASSWORD}@covid-grocery-zg6ac.mongodb.net/covid-delivery?retryWrites=true&w=majority`;
@@ -16,34 +20,21 @@ const MONGODB_URI = `mongodb+srv://tylermcrobert:${PASSWORD}@covid-grocery-zg6ac
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 mongoose.connection.on("connected", () => {
-  console.log("connected");
+  console.log("Successfully connected to database");
 });
 
-const Schema = mongoose.Schema;
-const OrderSchema = new Schema({
-  name: String,
-  address: String,
-  date: {
-    type: String,
-    default: Date.now()
-  }
+const Order = mongoose.model("orders", OrderSchema);
+
+app.get("/api/getOrders", (req, res) => {
+  Order.find({})
+    .then(data => {
+      res.json(data);
+    })
+    .catch(err => {
+      console.log(err);
+    });
 });
 
-const submitOrder = () => {
-  const Order = mongoose.model("orders", OrderSchema);
-
-  const newOrder = new Order({
-    name: "Adam Bagerski",
-    address: "724 NE Sumner St, Portland, OR 97211"
-  });
-
-  newOrder.save(err => {
-    if (err) {
-      console.error(err);
-    }
-    console.log("success");
-  });
-};
 
 app.prepare().then(() => {
   createServer((req, res) => {
