@@ -3,12 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "node server.js",
     "build": "next build",
-    "start": "next start"
+    "start": "NODE_ENV=production node server.js"
   },
   "dependencies": {
+    "@types/mongoose": "^5.7.7",
     "google-map-react": "^1.1.7",
+    "mongodb": "^3.5.5",
+    "mongoose": "^5.9.5",
     "next": "9.3.1",
     "react": "16.13.1",
     "react-dom": "16.13.1"
