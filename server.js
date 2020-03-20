@@ -1,11 +1,10 @@
-// server.js
-const { createServer } = require("http");
-const { parse } = require("url");
-const next = require("next");
+const express = require("express");
 const mongoose = require("mongoose");
+const next = require("next");
 require("dotenv").config({});
-const { OrderSchema } = require("./schemas.tsx");
+const { OrderSchema } = require("./schemas.js");
 
+const port = parseInt(process.env.PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handle = app.getRequestHandler();
@@ -25,33 +24,23 @@ mongoose.connection.on("connected", () => {
 
 const Order = mongoose.model("orders", OrderSchema);
 
-app.get("/api/getOrders", (req, res) => {
-  Order.find({})
-    .then(data => {
-      res.json(data);
-    })
-    .catch(err => {
-      console.log(err);
-    });
-});
-
-
 app.prepare().then(() => {
-  createServer((req, res) => {
-    // Be sure to pass `true` as the second argument to `url.parse`.
-    // This tells it to parse the query portion of the URL.
-    const parsedUrl = parse(req.url, true);
-    const { pathname, query } = parsedUrl;
+  const server = express();
 
-    if (pathname === "/a") {
-      app.render(req, res, "/b", query);
-    } else if (pathname === "/b") {
-      app.render(req, res, "/a", query);
-    } else {
-      handle(req, res, parsedUrl);
-    }
-  }).listen(3000, err => {
+  server.get("/api/getListings", (req, res) => {
+    Order.find({})
+      .then(data => {
+        return res.json(data);
+      })
+      .catch(err => console.error(err));
+  });
+
+  server.all("*", (req, res) => {
+    return handle(req, res);
+  });
+
+  server.listen(port, err => {
     if (err) throw err;
-    console.log("> Ready on http://localhost:3000");
+    console.log(`> Ready on http://localhost:${port}`);
   });
 });
