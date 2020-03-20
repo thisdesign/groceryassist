@@ -24,7 +24,7 @@ const Home: NextPage<{ data: any }> = ({ data }) => {
 };
 
 Home.getInitialProps = async () => {
-  const data = await fetch("http://localhost:3000/api/getListings").then(res =>
+  const data = await fetch("http://localhost:3000/api/test").then(res =>
     res.json()
   );
 

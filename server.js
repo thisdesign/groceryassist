@@ -22,18 +22,10 @@ mongoose.connection.on("connected", () => {
   console.log("Successfully connected to database");
 });
 
-const Order = mongoose.model("orders", OrderSchema);
+mongoose.model("orders", OrderSchema);
 
 app.prepare().then(() => {
   const server = express();
-
-  // server.get("/api/getListings", (req, res) => {
-  //   Order.find({})
-  //     .then(data => {
-  //       return res.json(data);
-  //     })
-  //     .catch(err => console.error("TM:", err));
-  // });
 
   server.all("*", (req, res) => {
     return handle(req, res);
