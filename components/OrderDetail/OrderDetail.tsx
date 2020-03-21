@@ -32,7 +32,7 @@ const OrderDetail: React.FC<{ data: OrderDb }> = ({ data }) => {
           <GoogleMapReact
             bootstrapURLKeys={{ key: GOOGLE_MAP_API_KEY }}
             defaultCenter={{ lat: data.location.lat, lng: data.location.lng }}
-            defaultZoom={12}
+            defaultZoom={15}
           >
             <Marker lat={data.location.lat} lng={data.location.lng} />
           </GoogleMapReact>
