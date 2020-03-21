@@ -29,6 +29,8 @@ const Marker: React.FC<{ lat: any; lng: any }> = ({ lat, lng }) => (
 const Listings: NextPage<{ data: OrderRes }> = ({ data }) => {
   return (
     <div>
+      <br />
+      <br />
       <h1>{data.length} Open Orders</h1>
       <br />
       <br />
