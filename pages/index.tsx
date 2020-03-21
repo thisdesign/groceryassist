@@ -1,9 +1,8 @@
 import Link from "next/link";
-import mongoose from "mongoose";
 import "isomorphic-unfetch";
 import { NextPage } from "next";
 
-const Home: NextPage<{ data: any }> = ({ data }) => {
+const Home: NextPage = () => {
   return (
     <>
       <h1>
@@ -14,7 +13,7 @@ const Home: NextPage<{ data: any }> = ({ data }) => {
       <hr />
       <h1>
         <Link href="/create">
-          <a>I'd like someone to pick up my groceries→</a>
+          <a>I&apos;d like someone to pick up my groceries→</a>
         </Link>
       </h1>
 
@@ -23,11 +22,4 @@ const Home: NextPage<{ data: any }> = ({ data }) => {
   );
 };
 
-Home.getInitialProps = async () => {
-  const data = await fetch("http://localhost:3000/api/orders").then(res =>
-    res.json()
-  );
-
-  return { data };
-};
 export default Home;
