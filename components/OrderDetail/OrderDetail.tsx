@@ -1,5 +1,26 @@
+import GoogleMapReact from "google-map-react";
 import { USERS } from "../../constants";
 import { OrderDb } from "../../types";
+
+const GOOGLE_MAP_API_KEY = "AIzaSyBUPahFeC6Bucs95Ucc5Hf-QMO1S24nxfk";
+
+const Marker: React.FC<{ lat: any; lng: any }> = ({ lat, lng }) => (
+  <>
+    <div />
+    <style jsx scoped>
+      {`
+        div {
+          width: 1rem;
+          height: 1rem;
+          background: green;
+          border-radius: 50%;
+          border: 2px solid white;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+      `}
+    </style>
+  </>
+);
 
 const OrderDetail: React.FC<{ data: OrderDb }> = ({ data }) => {
   const { name, location, items } = data;
@@ -7,6 +28,17 @@ const OrderDetail: React.FC<{ data: OrderDb }> = ({ data }) => {
   return (
     <div>
       <div>
+        <div className="map">
+          <GoogleMapReact
+            bootstrapURLKeys={{ key: GOOGLE_MAP_API_KEY }}
+            defaultCenter={{ lat: data.location.lat, lng: data.location.lng }}
+            defaultZoom={12}
+          >
+            <Marker lat={data.location.lat} lng={data.location.lng} />
+          </GoogleMapReact>
+        </div>
+        <br />
+        <br />
         <h1>Order for {name}</h1>
         <h3>
           {location.address}
@@ -31,6 +63,13 @@ const OrderDetail: React.FC<{ data: OrderDb }> = ({ data }) => {
       <h2>
         <a href={`/fulfill/${data._id}`}>Fulfill this order→</a>
       </h2>
+      <style jsx scoped>
+        {`
+          .map {
+            height: 500px;
+          }
+        `}
+      </style>
     </div>
   );
 };
