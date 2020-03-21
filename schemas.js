@@ -19,11 +19,33 @@ const OrderSchema = new Schema({
     type: String,
     required: true
   },
-  address: String,
+
+  location: {
+    address: {
+      type: String,
+      required: true
+    },
+
+    city: {
+      type: String,
+      required: true
+    },
+
+    state: {
+      type: String,
+      required: true
+    },
+    zip: {
+      type: Number,
+      required: true
+    }
+  },
+
   date: {
     type: String,
     default: Date.now()
   },
+
   items: [ItemSchema]
 });
 
