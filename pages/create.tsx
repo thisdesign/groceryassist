@@ -1,77 +1,93 @@
 import React from "react";
-import { ORDERS } from "../constants";
+import { useForm } from "react-hook-form";
+import { Order } from "../types";
 
-const Create = () => {
-  const data = {
-    name: "Maya Massad",
-    location: {
-      address: "417 SW 13th Ave",
-      city: "portland",
-      state: "OR",
-      zip: 97205
-    },
-    items: [
-      {
-        name: "Pasta Sauce",
-        quantity: 1
-      },
-      {
-        name: "Crackers",
-        quantity: 1
-      },
-      {
-        name: "Spinich",
-        quantity: 1
-      },
-      // {
-      //   name: "Lentil Soup",
-      //   quantity: 1
-      // },
-      {
-        name: "cauliflower",
-        quantity: 1
-      }
-    ]
-  };
-
-  const addProduct = () => {
-    console.log("add prod");
-
-    fetch("http://localhost:3000/api/createOrder", {
-      method: "POST",
-      body: JSON.stringify(data)
-    })
-      .then(res => {
-        console.log(res);
+export default function App() {
+  const { register, handleSubmit } = useForm();
+  const onSubmit = data => {
+    const addOrder = (order: Order) => {
+      fetch("http://localhost:3000/api/createOrder", {
+        method: "POST",
+        body: JSON.stringify(order)
       })
-      .catch(err => {
-        console.log(err);
-      });
-  };
-  return (
-    <div>
-      <h1>Add Item</h1>
-      <input type="field" placeholder="Item name" />
-      <input type="number" placeholder="qty" />
-      <button type="button">+ Add unit</button>
-      <br />
-      <button type="submit">Add Item</button>
-      <hr />
-      <br />
-      <br />
-      <br />
-      {ORDERS[1].items.map(item => (
-        <div>
-          <h2>{item.name}</h2> - {item.count} + &nbsp;&nbsp;remove &nbsp;&nbsp;
-          + add description
-          <hr />
-        </div>
-      ))}
-      <h1>
-        <div onClick={addProduct}>Submit</div>
-      </h1>
-    </div>
-  );
-};
+        .then(res => {
+          console.log(res);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    };
 
-export default Create;
+    addOrder({
+      name: `${data.first} ${data.last}`,
+      location: {
+        address: data.address,
+        city: data.city,
+        state: data.state,
+        zip: data.zip
+      },
+      items: [
+        {
+          name: "Pasta Sauce",
+          qty: 1
+        },
+        {
+          name: "Crackers",
+          qty: 1
+        },
+        {
+          name: "Spinich",
+          qty: 1
+        },
+
+        {
+          name: "cauliflower",
+          qty: 1
+        }
+      ]
+    });
+  };
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <input
+        type="text"
+        placeholder="First name"
+        name="first"
+        ref={register({ required: true, maxLength: 80 })}
+      />
+      <input
+        type="text"
+        placeholder="Last name"
+        name="last"
+        ref={register({ required: true, maxLength: 100 })}
+      />
+      <input
+        type="text"
+        placeholder="Address"
+        name="address"
+        ref={register({ required: true })}
+      />
+      <input
+        type="text"
+        placeholder="State"
+        name="state"
+        ref={register({ required: true })}
+      />
+      <input
+        type="text"
+        placeholder="City"
+        name="city"
+        ref={register({ required: true })}
+      />
+      <input
+        type="number"
+        placeholder="Zip"
+        name="zip"
+        ref={register({ required: true, min: 4 })}
+      />
+
+      <input type="submit" />
+    </form>
+  );
+}

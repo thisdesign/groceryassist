@@ -2,9 +2,9 @@ import React from "react";
 import { NextPage } from "next";
 import Link from "next/link";
 import { USERS } from "../../constants";
-import { Order } from "../../types";
+import { OrderRes, OrderDb } from "../../types";
 
-const LineItem: NextPage<{ data: Order }> = ({ data }) => {
+const LineItem: NextPage<{ data: OrderDb }> = ({ data }) => {
   return (
     <Link as={`/orders/${data._id}`} href="/orders/[orderId]">
       <a>

@@ -1,23 +1,30 @@
 export type Item = {
-  qty: string;
+  qty: number;
   name: string;
 };
 
 export type Location = {
-  lat: number;
-  lng: number;
   address: string;
   city: string;
   state: string;
   zip: number;
 };
 
+export type LocationRes = {
+  lat: number;
+  lng: number;
+} & Location;
+
 export type Order = {
-  _id: string;
-  date: string;
+  date?: string;
   name: string;
+  items: Item[];
   location: Location;
-  items: [];
 };
 
-export type OrderRes = Order[];
+export type OrderDb = Order & {
+  _id: string;
+  location: LocationRes;
+};
+
+export type OrderRes = OrderDb[];
