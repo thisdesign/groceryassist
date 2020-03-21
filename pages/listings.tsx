@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { NextPage } from "next";
 import GoogleMapReact from "google-map-react";
-import { ORDERS } from "../constants";
 import { LineItem } from "../components";
 import { OrderRes } from "../types";
 
@@ -30,7 +29,7 @@ const Marker: React.FC<{ lat: any; lng: any }> = ({ lat, lng }) => (
 const Listings: NextPage<{ data: OrderRes }> = ({ data }) => {
   return (
     <div>
-      <h1>{ORDERS.length} Open Orders</h1>
+      <h1>{data.length} Open Orders</h1>
       <br />
       <br />
       <hr />
@@ -39,13 +38,13 @@ const Listings: NextPage<{ data: OrderRes }> = ({ data }) => {
           <GoogleMapReact
             bootstrapURLKeys={{ key: GOOGLE_MAP_API_KEY }}
             defaultCenter={CENTER}
-            defaultZoom={10}
+            defaultZoom={12}
           >
             {data.map(item => (
               <Marker
                 lat={item.location.lat}
                 lng={item.location.lng}
-                key={item.date}
+                key={item._id}
               />
             ))}
           </GoogleMapReact>
@@ -63,6 +62,7 @@ const Listings: NextPage<{ data: OrderRes }> = ({ data }) => {
             display: flex;
             grid-gap: 1rem;
             flex-direction: row-reverse;
+            height: calc(100vh - 9rem);
           }
 
           .split > div {

@@ -3,24 +3,32 @@ import { ORDERS } from "../constants";
 
 const Create = () => {
   const data = {
-    name: "Bridget Baker",
+    name: "Maya Massad",
     location: {
-      address: "975 SE 11th Ave",
+      address: "417 SW 13th Ave",
       city: "portland",
       state: "OR",
-      zip: 97214
+      zip: 97205
     },
     items: [
       {
-        name: "Salt",
+        name: "Pasta Sauce",
         quantity: 1
       },
       {
-        name: "Almonds",
+        name: "Crackers",
         quantity: 1
       },
       {
         name: "Spinich",
+        quantity: 1
+      },
+      // {
+      //   name: "Lentil Soup",
+      //   quantity: 1
+      // },
+      {
+        name: "cauliflower",
         quantity: 1
       }
     ]
