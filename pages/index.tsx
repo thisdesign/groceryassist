@@ -8,7 +8,7 @@ const Home: NextPage<{ data: any }> = ({ data }) => {
     <>
       <h1>
         <Link href="/listings">
-          <a>I'd like to pick up groceries for someone→</a>
+          <a>I&apos;d like to pick up groceries for someone→</a>
         </Link>
       </h1>
       <hr />

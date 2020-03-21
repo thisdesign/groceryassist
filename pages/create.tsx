@@ -3,17 +3,25 @@ import { ORDERS } from "../constants";
 
 const Create = () => {
   const data = {
-    name: "tyler mcrobert",
+    name: "Bridget Baker",
     location: {
-      address: "4022 n albina ave",
+      address: "975 SE 11th Ave",
       city: "portland",
       state: "OR",
-      zip: 97227
+      zip: 97214
     },
     items: [
       {
-        name: "carrots",
-        quantity: 4
+        name: "Salt",
+        quantity: 1
+      },
+      {
+        name: "Almonds",
+        quantity: 1
+      },
+      {
+        name: "Spinich",
+        quantity: 1
       }
     ]
   };

@@ -3,6 +3,7 @@ import { NextPage } from "next";
 import GoogleMapReact from "google-map-react";
 import { ORDERS } from "../constants";
 import { LineItem } from "../components";
+import { OrderRes } from "../types";
 
 const GOOGLE_MAP_API_KEY = "AIzaSyBUPahFeC6Bucs95Ucc5Hf-QMO1S24nxfk";
 
@@ -26,9 +27,7 @@ const Marker: React.FC<{ lat: any; lng: any }> = ({ lat, lng }) => (
   </>
 );
 
-const Listings: NextPage<{ data: any }> = ({ data }) => {
-  console.log(data);
-
+const Listings: NextPage<{ data: OrderRes }> = ({ data }) => {
   return (
     <div>
       <h1>{ORDERS.length} Open Orders</h1>
@@ -40,14 +39,20 @@ const Listings: NextPage<{ data: any }> = ({ data }) => {
           <GoogleMapReact
             bootstrapURLKeys={{ key: GOOGLE_MAP_API_KEY }}
             defaultCenter={CENTER}
-            defaultZoom={8}
+            defaultZoom={10}
           >
-            <Marker lat={CENTER.lat} lng={CENTER.lng} />
+            {data.map(item => (
+              <Marker
+                lat={item.location.lat}
+                lng={item.location.lng}
+                key={item.date}
+              />
+            ))}
           </GoogleMapReact>
         </div>
         <div>
-          {ORDERS.map(order => (
-            <LineItem data={order} key={order.id} />
+          {data.map(order => (
+            <LineItem data={order} key={order._id} />
           ))}
         </div>
       </div>
