@@ -26,7 +26,9 @@ const Marker: React.FC<{ lat: any; lng: any }> = ({ lat, lng }) => (
   </>
 );
 
-const Listings: NextPage = () => {
+const Listings: NextPage<{ data: any }> = ({ data }) => {
+  console.log(data);
+
   return (
     <div>
       <h1>{ORDERS.length} Open Orders</h1>
@@ -67,4 +69,10 @@ const Listings: NextPage = () => {
   );
 };
 
+Listings.getInitialProps = async () => {
+  const data = await fetch("http://localhost:3000/api/orders").then(res =>
+    res.json()
+  );
+  return { data };
+};
 export default Listings;

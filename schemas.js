@@ -21,6 +21,14 @@ const OrderSchema = new Schema({
   },
 
   location: {
+    lat: {
+      type: Number,
+      required: true
+    },
+    lng: {
+      type: Number,
+      required: true
+    },
     address: {
       type: String,
       required: true
