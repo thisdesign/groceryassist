@@ -9,7 +9,7 @@ const ITEMS = [
   },
   {
     name: "Crackers",
-    qty: 1
+    qty: 2
   },
   {
     name: "Spinich",
@@ -17,7 +17,7 @@ const ITEMS = [
   },
 
   {
-    name: "cauliflower",
+    name: "Cauliflower",
     qty: 1
   }
 ];
@@ -59,14 +59,32 @@ export default function App() {
 
   return (
     <div>
+      <br />
+      <br />
       <h2>Choose your items</h2>
+      <br />
+      <br />
+      <hr />
+      {ITEMS.map(item => (
+        <div>
+          <h3>
+            {item.name} ( - {item.qty} + )
+          </h3>
+          <hr />
+        </div>
+      ))}
+      <br />
       <form onSubmit={handleNewItem}>
         <input type="text" />
         <button type="submit">Add Item</button>
       </form>
+      <br />
       <hr />
+      <br />
+      <br />
       <h2>Where should we deliver?</h2>
       <p>Your information will remain private</p>
+      <br />
       <br />
       <form onSubmit={handleSubmit(onSubmit)}>
         <input
@@ -112,13 +130,10 @@ export default function App() {
 
         <br />
 
+        <br />
         <hr />
-        {items.map(item => (
-          <div>
-            {item.name} ( - {item.qty} + )
-            <hr />
-          </div>
-        ))}
+        <br />
+        <br />
 
         <input type="submit" />
       </form>
