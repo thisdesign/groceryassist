@@ -3,22 +3,23 @@ import { NextPage } from "next";
 import Error from "next/error";
 import { ORDERS, USERS, Order } from "../../constants";
 import { OrderDetail } from "../../components";
+import { OrderDb } from "../../types";
 
-const OrderPage: NextPage<{ orderData: Order }> = ({ orderData }) => {
-  if (orderData) {
-    const user = USERS.filter(user => user.id === orderData.userId)[0];
-
+const OrderPage: NextPage<{ data: OrderDb }> = ({ data }) => {
+  if (data) {
     return (
       <div>
-        <h1>0 / {orderData.items.length}</h1>
-        <h2>items fulfilled for {user.name}</h2>
+        <br />
+        <br />
+        <h1>0 / {data.items.length}</h1>
+        <h2>items fulfilled for {data.name}</h2>
         <br />
         <br />
         <hr />
-        {orderData.items.map(item => (
+        {data.items.map(item => (
           <div>
             <h2>
-              [{<>&nbsp;&nbsp;</>}] {item.name}
+              [<>&nbsp;&nbsp;</>] {item.name}
             </h2>
             <hr />
           </div>
@@ -30,10 +31,10 @@ const OrderPage: NextPage<{ orderData: Order }> = ({ orderData }) => {
 };
 
 OrderPage.getInitialProps = async ({ query }) => {
-  const orderData = ORDERS.filter(
-    item => item.id.toString() === query.orderId
-  )[0];
+  const data: OrderDb = await fetch(
+    `http://localhost:3000/api/order?id=${query.orderId}`
+  ).then(res => res.json());
 
-  return { orderData };
+  return { data };
 };
 export default OrderPage;
