@@ -4,6 +4,7 @@ import Error from "next/error";
 
 import { OrderDetail } from "../../components";
 import { OrderDb } from "../../types";
+import { getOrderById } from "../../middleware";
 
 const OrderPage: NextPage<{ data: OrderDb }> = ({ data }) => {
   if (data) {
@@ -13,10 +14,8 @@ const OrderPage: NextPage<{ data: OrderDb }> = ({ data }) => {
 };
 
 OrderPage.getInitialProps = async ({ query }) => {
-  const data: OrderDb = await fetch(
-    `http://localhost:3000/api/order?id=${query.orderId}`
-  ).then(res => res.json());
-
+  const orderId = query.orderId.toString();
+  const data: OrderDb = await getOrderById(orderId);
   return { data };
 };
 export default OrderPage;

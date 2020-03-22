@@ -3,6 +3,7 @@ import GoogleMapReact from "google-map-react";
 import { LineItem } from "../components";
 import { OrderRes } from "../types";
 import "isomorphic-unfetch";
+import { getOrders } from "../middleware";
 
 const GOOGLE_MAP_API_KEY = "AIzaSyBUPahFeC6Bucs95Ucc5Hf-QMO1S24nxfk";
 
@@ -77,9 +78,7 @@ const Listings: NextPage<{ data: OrderRes }> = ({ data }) => {
 };
 
 Listings.getInitialProps = async () => {
-  const data = await fetch("http://localhost:3000/api/orders").then(res =>
-    res.json()
-  );
+  const data = await getOrders();
   return { data };
 };
 export default Listings;

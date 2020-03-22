@@ -1,8 +1,7 @@
 import React from "react";
 import { NextPage } from "next";
 import Link from "next/link";
-import { USERS } from "../../constants";
-import { OrderRes, OrderDb } from "../../types";
+import { OrderDb } from "../../types";
 
 const LineItem: NextPage<{ data: OrderDb }> = ({ data }) => {
   return (

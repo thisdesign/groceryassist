@@ -1,9 +1,8 @@
 import React from "react";
 import { NextPage } from "next";
 import Error from "next/error";
-import { ORDERS, USERS, Order } from "../../constants";
-import { OrderDetail } from "../../components";
 import { OrderDb } from "../../types";
+import { getOrderById } from "../../middleware";
 
 const OrderPage: NextPage<{ data: OrderDb }> = ({ data }) => {
   if (data) {
@@ -17,7 +16,7 @@ const OrderPage: NextPage<{ data: OrderDb }> = ({ data }) => {
         <br />
         <hr />
         {data.items.map(item => (
-          <div>
+          <div key={item.name}>
             <h2>
               [<>&nbsp;&nbsp;</>] {item.name}
             </h2>
@@ -31,10 +30,7 @@ const OrderPage: NextPage<{ data: OrderDb }> = ({ data }) => {
 };
 
 OrderPage.getInitialProps = async ({ query }) => {
-  const data: OrderDb = await fetch(
-    `http://localhost:3000/api/order?id=${query.orderId}`
-  ).then(res => res.json());
-
+  const data: OrderDb = await getOrderById(query.orderId.toString());
   return { data };
 };
 export default OrderPage;

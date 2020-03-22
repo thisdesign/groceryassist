@@ -1,5 +1,4 @@
 import GoogleMapReact from "google-map-react";
-import { USERS } from "../../constants";
 import { OrderDb } from "../../types";
 
 const GOOGLE_MAP_API_KEY = "AIzaSyBUPahFeC6Bucs95Ucc5Hf-QMO1S24nxfk";

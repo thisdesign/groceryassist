@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Order, Item } from "../types";
+import { addOrder } from "../middleware";
 
 const ITEMS = [
   {
@@ -27,21 +28,8 @@ export default function App() {
   const [items, setItems] = useState<Item[]>([]);
 
   const onSubmit = data => {
-    const addOrder = (order: Order) => {
-      fetch("http://localhost:3000/api/createOrder", {
-        method: "POST",
-        body: JSON.stringify(order)
-      })
-        .then(res => {
-          console.log(res);
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    };
-
     addOrder({
-      name: `${data.first} ${data.last}`,
+      name: `asdfasdf`,
       location: {
         address: data.address,
         city: data.city,
