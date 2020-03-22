@@ -2,6 +2,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const next = require("next");
 
+const indexRoutes = require("./routes/index");
+
 require("dotenv").config({});
 
 const port = process.env.PORT || 3000;
@@ -27,6 +29,8 @@ const db = mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 app.prepare().then(() => {
   const server = express();
+
+  server.use("/api/orders", indexRoutes);
 
   server.all("*", (req, res) => {
     return handle(req, res);
