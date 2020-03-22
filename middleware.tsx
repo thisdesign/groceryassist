@@ -13,7 +13,7 @@ export const getOrders = (): Promise<OrderRes> =>
   fetch(`${apiRoute}/orders`).then(res => res.json());
 
 export const addOrder = (order: Order) => {
-  fetch(`${apiRoute}/createOrder`, {
+  fetch(`${apiRoute}/orders`, {
     method: "POST",
     body: JSON.stringify(order)
   });
