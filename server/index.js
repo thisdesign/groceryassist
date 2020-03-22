@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const next = require("next");
 
-const indexRoutes = require("./routes/index");
+const orderRoutes = require("./routes/order");
 
 require("dotenv").config({});
 
@@ -30,7 +30,7 @@ const db = mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 app.prepare().then(() => {
   const server = express();
 
-  server.use("/api/orders", indexRoutes);
+  server.use("/api/orders", orderRoutes);
 
   server.all("*", (req, res) => {
     return handle(req, res);
