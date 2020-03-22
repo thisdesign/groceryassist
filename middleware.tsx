@@ -7,7 +7,7 @@ const apiRoute = isDev
   : "https://covid-delivery.now.sh/api/";
 
 export const getOrderById = async (id: string): Promise<OrderDb> =>
-  fetch(`${apiRoute}/order?id=${id}`).then(res => res.json());
+  fetch(`${apiRoute}/orders/${id}`).then(res => res.json());
 
 export const getOrders = (): Promise<OrderRes> =>
   fetch(`${apiRoute}/orders`).then(res => res.json());

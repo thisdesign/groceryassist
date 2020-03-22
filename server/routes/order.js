@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get("/", async (req, res) => {
   const orders = await Order.find({});
-  res.json({ orders });
+  res.json(orders);
 });
 
 router.get("/:id", async (req, res) => {
@@ -13,7 +13,7 @@ router.get("/:id", async (req, res) => {
     res.json({ err });
   });
 
-  res.json({ order });
+  res.json(order);
 });
 
 module.exports = router;
