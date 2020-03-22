@@ -2,7 +2,6 @@ const express = require("express");
 const mongoose = require("mongoose");
 const next = require("next");
 require("dotenv").config({});
-const { OrderSchema } = require("./schemas.js");
 
 const port = process.env.PORT || 3000;
 const dev = process.env.NODE_ENV !== "production";
@@ -21,8 +20,6 @@ mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 mongoose.connection.on("connected", () => {
   console.log("Successfully connected to database");
 });
-
-mongoose.model("orders", OrderSchema);
 
 app.prepare().then(() => {
   const server = express();
