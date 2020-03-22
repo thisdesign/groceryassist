@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
-// import mongoose from "mongoose";
+import mongoose from "mongoose";
+import next from "next";
 
-const next = require("next");
 require("dotenv").config({});
 
 const port = process.env.PORT || 3000;
@@ -36,3 +36,6 @@ app.prepare().then(() => {
     console.log(`> Ready on http://localhost:${port}`);
   });
 });
+
+// https://dev.to/aurelkurtula/introduction-to-nextjs---adding-express-and-mongo-to-the-project-2d38
+// https://levelup.gitconnected.com/set-up-next-js-with-a-custom-express-server-typescript-9096d819da1c
