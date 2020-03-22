@@ -12,30 +12,52 @@ export default function App() {
 
   return (
     <div>
-      <div>
-        <br />
-        <br />
-        <h2>Choose your items</h2>
-        <br />
-        <br />
-        <hr />
-      </div>
-      {items.map(item => (
+      <div className="split">
         <div>
-          {item.name} • {item.qty}
-        </div>
-      ))}
+          <div>
+            <br />
+            <br />
+            <h1>Choose your items</h1>
+            <br />
+            <br />
+            <hr />
+          </div>
+          {items.map(item => (
+            <div>
+              <br />
+              <h2 key={item.name}>
+                {item.name} • {item.qty}
+              </h2>
+              <br />
+              <hr />
+            </div>
+          ))}
 
-      <AddItemForm addItem={addItem} />
-      <br />
-      <hr />
-      <br />
-      <br />
-      <h2>Where should we deliver?</h2>
-      <p>Your location information will only be provided to your provider.</p>
-      <ContactForm items={items} />
-      <br />
-      <br />
+          <AddItemForm addItem={addItem} />
+        </div>
+        <div>
+          <br />
+          <br />
+          <h1>Where should we deliver?</h1>
+          <p>
+            Your location information will only be provided to your provider.
+          </p>
+          <br />
+          <br />
+          <hr />
+          <br />
+          <ContactForm items={items} />
+        </div>
+      </div>
+      <style jsx>
+        {`
+          .split {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            grid-gap: 1rem;
+          }
+        `}
+      </style>
     </div>
   );
 }
@@ -153,6 +175,9 @@ const AddItemForm: React.FC<{ addItem: (item: Item) => void }> = ({
       <button type="submit" onClick={handleSubmit}>
         Add Item
       </button>
+      <br />
+      <br />
+      <hr />
     </>
   );
 };
