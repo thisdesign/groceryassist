@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "ts-node --project tsconfig.server.json server/index.ts",
+    "dev": "node server/index.js",
     "build": "next build",
-    "start": "NODE_ENV=production node server.ts"
+    "start": "NODE_ENV=production node server.js"
   },
   "dependencies": {
     "dotenv": "^8.2.0",

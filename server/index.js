@@ -1,6 +1,6 @@
-import express, { Request, Response } from "express";
-import mongoose from "mongoose";
-import next from "next";
+const express = require("express");
+const mongoose = require("mongoose");
+const next = require("next");
 
 require("dotenv").config({});
 
@@ -8,16 +8,17 @@ const port = process.env.PORT || 3000;
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handle = app.getRequestHandler();
+const router = express.Router();
 
 // /**
 //  * Database
 //  */
 
-// const initDb = () => {
-//   const PASSWORD = process.env.MONGODB_PASSWORD;
-//   const MONGODB_URI = `mongodb+srv://tylermcrobert:${PASSWORD}@covid-grocery-zg6ac.mongodb.net/covid-delivery?retryWrites=true&w=majority`;
+const PASSWORD = process.env.MONGODB_PASSWORD;
+const MONGODB_URI = `mongodb+srv://tylermcrobert:${PASSWORD}@covid-grocery-zg6ac.mongodb.net/covid-delivery?retryWrites=true&w=majority`;
+const db = mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
-//   mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
+// const initDb = () => {
 
 //   mongoose.connection.on("connected", () => {
 //     console.log("Successfully connected to database");
@@ -27,11 +28,11 @@ const handle = app.getRequestHandler();
 app.prepare().then(() => {
   const server = express();
 
-  server.all("*", (req: Request, res: Response) => {
+  server.all("*", (req, res) => {
     return handle(req, res);
   });
 
-  server.listen(port, (err?: any) => {
+  server.listen(port, err => {
     if (err) throw err;
     console.log(`> Ready on http://localhost:${port}`);
   });
