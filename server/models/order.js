@@ -15,6 +15,11 @@ const ItemSchema = new Schema({
 });
 
 const OrderSchema = new Schema({
+  _version: {
+    type: Number,
+    default: 0.1
+  },
+
   name: {
     type: String,
     required: true
