@@ -55,8 +55,8 @@ const OrderSchema = new Schema({
   },
 
   date: {
-    type: String,
-    default: Date.now()
+    type: Date,
+    default: new Date()
   },
 
   items: [

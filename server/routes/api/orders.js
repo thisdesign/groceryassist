@@ -5,7 +5,7 @@ const getAddressData = require("../../util/getAddressData");
 
 const router = express.Router();
 
-const CURRENT_VERSION = "0.2.3";
+const CURRENT_VERSION = "0.2.4";
 
 /**
  * @route     GET api/orders
