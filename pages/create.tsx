@@ -104,14 +104,14 @@ const ContactForm: React.FC<{ items: Item[] }> = ({ items }) => {
 
       <input
         type="text"
-        placeholder="State"
-        name="state"
+        placeholder="City"
+        name="city"
         ref={register({ required: true })}
       />
       <input
         type="text"
-        placeholder="City"
-        name="city"
+        placeholder="State"
+        name="state"
         ref={register({ required: true })}
       />
       <input

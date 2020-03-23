@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const next = require("next");
-
+const bodyParser = require("body-parser");
 const orderRoutes = require("./routes/order");
 
 require("dotenv").config({});
@@ -29,6 +29,9 @@ const db = mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 app.prepare().then(() => {
   const server = express();
+
+  server.use(bodyParser.json());
+  server.use(bodyParser.urlencoded({ extended: true }));
 
   server.use("/api/orders", orderRoutes);
 

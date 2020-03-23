@@ -8,7 +8,7 @@ const ItemSchema = new Schema({
     required: true
   },
   qty: {
-    type: String,
+    type: Number,
     required: false,
     default: 1
   }
@@ -17,7 +17,7 @@ const ItemSchema = new Schema({
 const OrderSchema = new Schema({
   _version: {
     type: Number,
-    default: 0.1
+    required: true
   },
 
   name: {
