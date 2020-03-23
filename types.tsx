@@ -17,7 +17,8 @@ export type LocationRes = {
 
 export type Order = {
   date?: string;
-  name: string;
+  first: string;
+  last: string;
   items: Item[];
   location: Location;
 };

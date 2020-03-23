@@ -5,8 +5,10 @@ const getAddressData = require("../../util/getAddressData");
 
 const router = express.Router();
 
+const CURRENT_VERSION = "0.2.1";
+
 router.get("/", async (req, res) => {
-  const orders = await Order.find({});
+  const orders = await Order.find({ _version: CURRENT_VERSION });
   res.json(orders);
 });
 
@@ -18,7 +20,7 @@ router.post("/", async (req, res) => {
   const data = {
     ...req.body,
     location,
-    _version: 0.1
+    _version: CURRENT_VERSION
   };
 
   const order = new Order(data);

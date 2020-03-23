@@ -4,11 +4,21 @@ const { Schema } = mongoose;
 
 const OrderSchema = new Schema({
   _version: {
-    type: Number,
+    type: String,
     required: true
   },
 
-  name: {
+  phone: {
+    type: String,
+    required: true
+  },
+
+  last: {
+    type: String,
+    required: true
+  },
+
+  first: {
     type: String,
     required: true
   },
