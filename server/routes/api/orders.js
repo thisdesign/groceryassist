@@ -7,11 +7,34 @@ const router = express.Router();
 
 const CURRENT_VERSION = "0.2.1";
 
+/**
+ * @route     GET api/orders
+ * @desc      List all orders
+ * @access    Public
+ */
 router.get("/", async (req, res) => {
   const orders = await Order.find({ _version: CURRENT_VERSION });
   res.json(orders);
 });
 
+/**
+ * @route     GET api/orders/:id
+ * @desc      Get order by id
+ * @access    Public
+ */
+router.get("/:id", async (req, res) => {
+  const order = await Order.findById(req.params.id).catch(err => {
+    res.json({ err });
+  });
+
+  res.json(order);
+});
+
+/**
+ * @route     POST api/orders
+ * @desc      Ceate an order
+ * @access    Public
+ */
 router.post("/", async (req, res) => {
   const { address, city, state, zip } = req.body.location;
 
@@ -27,14 +50,6 @@ router.post("/", async (req, res) => {
   order.save(err => {
     res.json(err || data);
   });
-});
-
-router.get("/:id", async (req, res) => {
-  const order = await Order.findById(req.params.id).catch(err => {
-    res.json({ err });
-  });
-
-  res.json(order);
 });
 
 module.exports = router;
