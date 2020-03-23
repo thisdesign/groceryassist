@@ -2,27 +2,27 @@ const mongoose = require("mongoose");
 
 const { Schema } = mongoose;
 
-const ItemSchema = new Schema({
-  name: {
-    type: String,
-    required: true
-  },
-  qty: {
-    type: Number,
-    required: false,
-    default: 1
-  }
-});
-
 const OrderSchema = new Schema({
   _version: {
-    type: Number,
+    type: String,
     required: true
   },
 
-  name: {
-    type: String,
-    required: true
+  user: {
+    phone: {
+      type: String,
+      required: true
+    },
+
+    last: {
+      type: String,
+      required: true
+    },
+
+    first: {
+      type: String,
+      required: true
+    }
   },
 
   location: {
@@ -55,11 +55,31 @@ const OrderSchema = new Schema({
   },
 
   date: {
-    type: String,
-    default: Date.now()
+    type: Date,
+    default: new Date()
   },
 
-  items: [ItemSchema]
+  items: [
+    {
+      name: {
+        type: String,
+        required: true
+      },
+      qty: {
+        type: Number,
+        required: false,
+        default: 1
+      },
+
+      unit: {
+        type: String,
+        required: false,
+        default: "ea"
+      },
+
+      notes: String
+    }
+  ]
 });
 
-module.exports = mongoose.model("Order", OrderSchema);
+module.exports = mongoose.model("order", OrderSchema);

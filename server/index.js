@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const next = require("next");
 const bodyParser = require("body-parser");
-const orderRoutes = require("./routes/order");
+const orderRoutes = require("./routes/api/orders");
 
 require("dotenv").config({});
 
@@ -10,22 +10,18 @@ const port = process.env.PORT || 3000;
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handle = app.getRequestHandler();
-const router = express.Router();
-
-// /**
-//  * Database
-//  */
 
 const PASSWORD = process.env.MONGODB_PASSWORD;
 const MONGODB_URI = `mongodb+srv://tylermcrobert:${PASSWORD}@covid-grocery-zg6ac.mongodb.net/covid-delivery?retryWrites=true&w=majority`;
-const db = mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
-// const initDb = () => {
-
-//   mongoose.connection.on("connected", () => {
-//     console.log("Successfully connected to database");
-//   });
-// };
+// connect to database
+mongoose
+  .connect(MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
+  .then(() => console.log("MongoDB connected..."))
+  .catch(err => console.error({ err }));
 
 app.prepare().then(() => {
   const server = express();
