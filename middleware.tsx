@@ -4,7 +4,9 @@ import { OrderDb, OrderRes, Order } from "./types";
 const isDev = process.env.NODE_ENV !== "production";
 const apiRoute = isDev
   ? "http://localhost:3000/api"
-  : "https://covid-delivery.now.sh/api/";
+  : "https://covid-grocery.herokuapp.com/api/";
+
+console.log(process.env);
 
 export const getOrderById = async (id: string): Promise<OrderDb> =>
   fetch(`${apiRoute}/orders/${id}`).then(res => res.json());
