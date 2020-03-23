@@ -13,9 +13,13 @@ const CURRENT_VERSION = "0.2.4";
  * @access    Public
  */
 router.get("/", (req, res) => {
-  Order.find({ _version: CURRENT_VERSION }).then(orders => {
-    res.json(orders);
-  });
+  Order.find({ _version: CURRENT_VERSION })
+    .then(orders => {
+      res.json(orders);
+    })
+    .catch(err => {
+      res.json(err);
+    });
 });
 
 /**
