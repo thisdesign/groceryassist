@@ -1,6 +1,6 @@
 const express = require("express");
 require("isomorphic-unfetch");
-const Order = require("../../models/Order");
+const Order = require("../../models/Order.js");
 const getAddressData = require("../../util/getAddressData");
 
 const router = express.Router();
@@ -13,8 +13,6 @@ const CURRENT_VERSION = "0.2.4";
  * @access    Public
  */
 router.get("/", (req, res) => {
-  console.log("asdf;lkjasdf");
-
   Order.find({ _version: CURRENT_VERSION })
     .then(orders => {
       res.json(orders);
