@@ -1,6 +1,6 @@
 const express = require("express");
 require("isomorphic-unfetch");
-const Order = require("../../models/Order.js");
+const Order = require("../../models/order.js");
 const getAddressData = require("../../util/getAddressData");
 
 const router = express.Router();
