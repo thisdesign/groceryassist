@@ -8,19 +8,21 @@ const OrderSchema = new Schema({
     required: true
   },
 
-  phone: {
-    type: String,
-    required: true
-  },
+  user: {
+    phone: {
+      type: String,
+      required: true
+    },
 
-  last: {
-    type: String,
-    required: true
-  },
+    last: {
+      type: String,
+      required: true
+    },
 
-  first: {
-    type: String,
-    required: true
+    first: {
+      type: String,
+      required: true
+    }
   },
 
   location: {
@@ -67,7 +69,15 @@ const OrderSchema = new Schema({
         type: Number,
         required: false,
         default: 1
-      }
+      },
+
+      unit: {
+        type: String,
+        required: false,
+        default: "ea"
+      },
+
+      notes: String
     }
   ]
 });

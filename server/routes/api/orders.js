@@ -5,7 +5,7 @@ const getAddressData = require("../../util/getAddressData");
 
 const router = express.Router();
 
-const CURRENT_VERSION = "0.2.1";
+const CURRENT_VERSION = "0.2.3";
 
 /**
  * @route     GET api/orders
@@ -47,8 +47,20 @@ router.post("/", async (req, res) => {
   };
 
   const order = new Order(data);
-  order.save(err => {
-    res.json(err || data);
+  order.save((err, doc) => {
+    if (err) {
+      res.json({
+        success: false,
+        msg: "Could not create order.",
+        data: err
+      });
+    } else {
+      res.json({
+        success: true,
+        msg: "Order successfuly created",
+        data: doc
+      });
+    }
   });
 });
 
