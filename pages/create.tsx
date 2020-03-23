@@ -67,7 +67,11 @@ const ContactForm: React.FC<{ items: Item[] }> = ({ items }) => {
 
   const onSubmit = data => {
     addOrder({
-      name: `${data.first} ${data.last}`,
+      user: {
+        first: data.first,
+        last: data.last,
+        phone: "+1 (123) 456 7890"
+      },
       location: {
         address: data.address,
         city: data.city,
