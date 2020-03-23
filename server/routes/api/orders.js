@@ -13,8 +13,8 @@ const CURRENT_VERSION = "0.2.4";
  * @access    Public
  */
 router.get("/", async (req, res) => {
-  const orders = await Order.find({ _version: CURRENT_VERSION });
-  res.json(orders);
+  // const orders = await Order.find({ _version: CURRENT_VERSION });
+  res.json({});
 });
 
 /**
