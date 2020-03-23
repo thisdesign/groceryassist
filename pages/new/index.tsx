@@ -40,9 +40,7 @@ export default function App() {
           <br />
           <br />
           <h1>Where should we deliver?</h1>
-          <p>
-            Your location information will only be provided to your provider.
-          </p>
+
           <br />
           <br />
           <hr />
