@@ -1,7 +1,7 @@
 const express = require("express");
 require("isomorphic-unfetch");
-const Order = require("../../models/order");
-const getAddressData = require("../util/getAddressData");
+const Order = require("../../models/Order");
+const getAddressData = require("../../util/getAddressData");
 
 const router = express.Router();
 
@@ -11,8 +11,6 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  console.log(req.body);
-
   const { address, city, state, zip } = req.body.location;
 
   const location = await getAddressData(`${address}, ${city}, ${state} ${zip}`);
