@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "nodemon server/index.js",
-    "build": "next build",
+    "build": "NODE_ENV=production node server/index.js",
     "start": "NODE_ENV=production node server/index.js"
   },
   "dependencies": {
