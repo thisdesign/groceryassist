@@ -11,7 +11,7 @@ const OrderPage: NextPage<{ data: OrderDb }> = ({ data }) => {
         <br />
         <br />
         <h1>0 / {data.items.length}</h1>
-        <h2>items fulfilled for {data.name}</h2>
+        <h2>items fulfilled for {data.user.first}</h2>
         <br />
         <br />
         <hr />

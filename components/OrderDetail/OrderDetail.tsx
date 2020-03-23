@@ -22,7 +22,7 @@ const Marker: React.FC<{ lat: any; lng: any }> = ({ lat, lng }) => (
 );
 
 const OrderDetail: React.FC<{ data: OrderDb }> = ({ data }) => {
-  const { name, location, items } = data;
+  const { user, location, items } = data;
 
   return (
     <div>
@@ -38,7 +38,7 @@ const OrderDetail: React.FC<{ data: OrderDb }> = ({ data }) => {
         </div>
         <br />
         <br />
-        <h1>Order for {name}</h1>
+        <h1>Order for {user.first}</h1>
         <h3>
           {location.address}
           <br />

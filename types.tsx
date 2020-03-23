@@ -15,9 +15,15 @@ export type LocationRes = {
   lng: number;
 } & Location;
 
+export type OrderUser = {
+  first: string;
+  last: string;
+  phone: string;
+};
+
 export type Order = {
-  date?: string;
-  name: string;
+  date?: strings;
+  user: OrderUser;
   items: Item[];
   location: Location;
 };
