@@ -82,11 +82,7 @@ const ContactForm: React.FC<{ items: Item[] }> = ({ items }) => {
       items
     })
       .then(res => {
-        if (res.success) {
-          Router.push("/new/success");
-        } else {
-          console.log(res);
-        }
+        Router.push("/new/success");
       })
       .catch(err => console.error(err));
   };

@@ -13,12 +13,21 @@ export const getOrders = (): Promise<OrderRes> =>
   fetch(`${apiRoute}/orders`).then(res => res.json());
 
 export const addOrder = async (order: Order) => {
-  return fetch(`${apiRoute}/orders`, {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(order)
-  }).then(res => res.json());
+  return new Promise((resolve, reject) => {
+    return fetch(`${apiRoute}/orders`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(order)
+    })
+      .then(res => res.json())
+      .then(res => {
+        if (res.success) {
+          resolve(res);
+        }
+        reject(res);
+      });
+  });
 };
