@@ -6,7 +6,7 @@ const Home: NextPage = () => {
   return (
     <>
       <h1>
-        <Link href="/listings">
+        <Link href="/orders">
           <a>I&apos;d like to pick up groceries for someone→</a>
         </Link>
       </h1>

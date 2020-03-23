@@ -1,9 +1,9 @@
 import { NextPage } from "next";
 import GoogleMapReact from "google-map-react";
-import { LineItem } from "../components";
-import { OrderRes } from "../types";
+import { LineItem } from "../../components";
+import { OrderRes } from "../../types";
 import "isomorphic-unfetch";
-import { getOrders } from "../middleware";
+import { getOrders } from "../../middleware";
 
 const GOOGLE_MAP_API_KEY = "AIzaSyBUPahFeC6Bucs95Ucc5Hf-QMO1S24nxfk";
 
