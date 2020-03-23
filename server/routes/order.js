@@ -5,6 +5,7 @@ const getAddressData = require("../util/getAddressData");
 
 const router = express.Router();
 
+//
 router.get("/", async (req, res) => {
   const orders = await Order.find({});
   res.json(orders);
