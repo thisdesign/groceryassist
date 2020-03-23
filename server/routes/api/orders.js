@@ -27,12 +27,14 @@ router.get("/", (req, res) => {
  * @desc      Get order by id
  * @access    Public
  */
-router.get("/:id", async (req, res) => {
-  const order = await Order.findById(req.params.id).catch(err => {
-    res.json({ err });
-  });
-
-  res.json(order);
+router.get("/:id", (req, res) => {
+  Order.findById(req.params.id)
+    .then(order => {
+      res.json(order);
+    })
+    .catch(err => {
+      res.json({ err });
+    });
 });
 
 /**
@@ -40,32 +42,32 @@ router.get("/:id", async (req, res) => {
  * @desc      Ceate an order
  * @access    Public
  */
-router.post("/", async (req, res) => {
+router.post("/", (req, res) => {
   const { address, city, state, zip } = req.body.location;
 
-  const location = await getAddressData(`${address}, ${city}, ${state} ${zip}`);
+  getAddressData(`${address}, ${city}, ${state} ${zip}`).then(location => {
+    const data = {
+      ...req.body,
+      location,
+      _version: CURRENT_VERSION
+    };
 
-  const data = {
-    ...req.body,
-    location,
-    _version: CURRENT_VERSION
-  };
-
-  const order = new Order(data);
-  order.save((err, doc) => {
-    if (err) {
-      res.json({
-        success: false,
-        msg: "Could not create order.",
-        data: err
-      });
-    } else {
-      res.json({
-        success: true,
-        msg: "Order successfuly created",
-        data: doc
-      });
-    }
+    const order = new Order(data);
+    order.save((err, doc) => {
+      if (err) {
+        res.json({
+          success: false,
+          msg: "Could not create order.",
+          data: err
+        });
+      } else {
+        res.json({
+          success: true,
+          msg: "Order successfuly created",
+          data: doc
+        });
+      }
+    });
   });
 });
 
