@@ -45,30 +45,38 @@ router.get("/:id", (req, res) => {
 router.post("/", (req, res) => {
   const { address, city, state, zip } = req.body.location;
 
-  getAddressData(`${address}, ${city}, ${state} ${zip}`).then(location => {
-    const data = {
-      ...req.body,
-      location,
-      _version: CURRENT_VERSION
-    };
+  getAddressData(`${address}, ${city}, ${state} ${zip}`)
+    .then(location => {
+      const data = {
+        ...req.body,
+        location,
+        _version: CURRENT_VERSION
+      };
 
-    const order = new Order(data);
-    order.save((err, doc) => {
-      if (err) {
-        res.json({
-          success: false,
-          msg: "Could not create order.",
-          data: err
-        });
-      } else {
-        res.json({
-          success: true,
-          msg: "Order successfuly created",
-          data: doc
-        });
-      }
+      const order = new Order(data);
+      order.save((err, doc) => {
+        if (err) {
+          res.json({
+            success: false,
+            msg: "Could not create order.",
+            data: err
+          });
+        } else {
+          res.json({
+            success: true,
+            msg: "Order successfuly created",
+            data: doc
+          });
+        }
+      });
+    })
+    .catch(err => {
+      res.json({
+        success: false,
+        msg: "Invalid address.",
+        data: err
+      });
     });
-  });
 });
 
 module.exports = router;

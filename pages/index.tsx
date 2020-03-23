@@ -12,7 +12,7 @@ const Home: NextPage = () => {
       </h1>
       <hr />
       <h1>
-        <Link href="/create">
+        <Link href="/new">
           <a>I&apos;d like someone to pick up my groceries→</a>
         </Link>
       </h1>

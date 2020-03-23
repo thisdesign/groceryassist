@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Item } from "../types";
-import { addOrder } from "../middleware";
+import Router from "next/router";
+import { Item } from "../../types";
+import { addOrder } from "../../middleware";
 
 export default function App() {
   const [items, setItems] = useState<Item[]>([]);
@@ -79,7 +80,15 @@ const ContactForm: React.FC<{ items: Item[] }> = ({ items }) => {
         zip: data.zip
       },
       items
-    });
+    })
+      .then(res => {
+        if (res.success) {
+          Router.push("/new/success");
+        } else {
+          console.log(res);
+        }
+      })
+      .catch(err => console.error(err));
   };
 
   return (
