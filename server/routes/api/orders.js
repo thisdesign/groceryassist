@@ -12,9 +12,10 @@ const CURRENT_VERSION = "0.2.4";
  * @desc      List all orders
  * @access    Public
  */
-router.get("/", async (req, res) => {
-  // const orders = await Order.find({ _version: CURRENT_VERSION });
-  res.json({});
+router.get("/", (req, res) => {
+  Order.find({ _version: CURRENT_VERSION }).then(orders => {
+    res.json(orders);
+  });
 });
 
 /**
