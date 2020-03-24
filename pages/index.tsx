@@ -6,18 +6,40 @@ const Home: NextPage = () => {
   return (
     <>
       <h1>
-        <Link href="/orders">
-          <a>I&apos;d like to pick up groceries for someone→</a>
-        </Link>
+        [App name] is a volunteer delivery service to help those vulnerable to
+        COVID-19
       </h1>
-      <hr />
-      <h1>
-        <Link href="/new">
-          <a>I&apos;d like someone to pick up my groceries→</a>
-        </Link>
-      </h1>
+      <div className="wrapper">
+        <h2>
+          <Link href="/orders">
+            <a>I&apos;d like to pick up groceries for someone→</a>
+          </Link>
+        </h2>
+        <h2>
+          <Link href="/new">
+            <a>I&apos;d like someone to pick up my groceries→</a>
+          </Link>
+        </h2>
+      </div>
 
       <hr />
+      <style jsx>
+        {`
+          h1 {
+            font-size: 4rem;
+            max-width: 15em;
+            text-align: center;
+            margin: 2em auto;
+          }
+
+          .wrapper {
+            justify-content: space-around;
+            display: grid;
+            grid-template-columns: 20rem 20rem;
+            text-align: center;
+          }
+        `}
+      </style>
     </>
   );
 };
