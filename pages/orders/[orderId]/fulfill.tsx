@@ -1,8 +1,8 @@
 import React from "react";
 import { NextPage } from "next";
 import Error from "next/error";
-import { OrderDb } from "../../types";
-import { getOrderById } from "../../middleware";
+import { OrderDb } from "../../../types";
+import { getOrderById } from "../../../middleware";
 
 const OrderPage: NextPage<{ data: OrderDb }> = ({ data }) => {
   if (data) {
@@ -10,8 +10,19 @@ const OrderPage: NextPage<{ data: OrderDb }> = ({ data }) => {
       <div>
         <br />
         <br />
-        <h1>0 / {data.items.length}</h1>
-        <h2>items fulfilled for {data.user.first}</h2>
+        <h2>
+          Call <a href={`tel:${data.user.phone}`}>{data.user.phone}</a> to
+          arrange your pickup and payment.
+        </h2>
+        <br />
+        <br />
+        <hr />
+        <br />
+        <br />
+        <h1>
+          0 / {data.items.length} items fulfilled for {data.user.first}{" "}
+          {data.user.last}
+        </h1>
         <br />
         <br />
         <hr />

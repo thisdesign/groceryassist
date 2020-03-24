@@ -2,9 +2,9 @@ import React from "react";
 import { NextPage } from "next";
 import Error from "next/error";
 
-import { OrderDetail } from "../../components";
-import { OrderDb } from "../../types";
-import { getOrderById } from "../../middleware";
+import { OrderDetail } from "../../../components";
+import { OrderDb } from "../../../types";
+import { getOrderById } from "../../../middleware";
 
 const OrderPage: NextPage<{ data: OrderDb }> = ({ data }) => {
   if (data) {
