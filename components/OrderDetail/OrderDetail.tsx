@@ -60,7 +60,7 @@ const OrderDetail: React.FC<{ data: OrderDb }> = ({ data }) => {
       <br />
 
       <h2>
-        <a href={`/fulfill/${data._id}`}>Fulfill this order→</a>
+        <a href={`/orders/${data._id}/fulfill`}>Fulfill this order→</a>
       </h2>
       <style jsx scoped>
         {`
