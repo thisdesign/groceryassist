@@ -1,20 +1,21 @@
 import React from "react"
 import { NextPage } from "next"
 import Link from "next/link"
-import { OrderDb } from "../../types"
+import { OrderDb, Coords } from "../../types"
 import S from "./LineItem.Styled"
 import getTimeSince from "../../util/getTimeSince"
+import getDistBetweenCoords from "../../util/getDistBetweenCords"
 
 const LineItem: NextPage<{
   data: OrderDb
   setHoveredId: React.Dispatch<React.SetStateAction<string>>
   isHovered: boolean
-}> = ({ data, setHoveredId, isHovered }) => {
+  distance: number
+}> = ({ data, setHoveredId, isHovered, distance }) => {
   const itemCount = data.items.length
   const isPlural = data.items.length > 1
   const { last, first } = data.user
   const { lat, lng } = data.location
-  console.log(lat, lng)
 
   return (
     <Link as={`/orders/${data._id}`} href="/orders/[orderId]">
@@ -31,12 +32,11 @@ const LineItem: NextPage<{
               {first} {last.charAt(0).toUpperCase()}.
             </h2>
             <h3>
-              {itemCount} {isPlural ? "Items" : "item"} ·{" "}
-              {getTimeSince(new Date(data.date))}
+              {distance} mi · {itemCount} {isPlural ? "Items" : "item"}
             </h3>
           </div>
           <div>
-            <h3>4 mi</h3>
+            <h3>{getTimeSince(new Date(data.date))}</h3>
           </div>
         </S.LineItem>
       </a>

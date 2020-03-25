@@ -3,6 +3,7 @@ import GoogleMapReact from "google-map-react"
 import { LineItem, MapMarker, ResultsHeader, Map } from ".."
 import { OrderRes, Coords } from "../../types"
 import S from "./OrderList.Styled"
+import getDistBetweenCoords from "../../util/getDistBetweenCords"
 
 const OrderList: React.FC<{
   orders: OrderRes
@@ -34,6 +35,10 @@ const OrderList: React.FC<{
             data={order}
             key={order._id}
             setHoveredId={setHoveredId}
+            distance={getDistBetweenCoords(
+              [order.location.lat, order.location.lat],
+              coords
+            )}
           />
         ))}
       </div>
