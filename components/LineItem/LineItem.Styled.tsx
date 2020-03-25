@@ -8,8 +8,8 @@ const LineItem = styled.div`
   align-items: center;
 
   h2 {
-    font-size: var(--size-6);
-    margin-bottom: 0.25rem;
+    font-size: var(--size-5);
+    margin-bottom: 0.2rem;
   }
 
   h3 {
