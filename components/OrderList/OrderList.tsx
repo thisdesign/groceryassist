@@ -1,15 +1,16 @@
 import React, { useState } from "react"
-import GoogleMapReact from "google-map-react"
+
 import { LineItem, MapMarker, ResultsHeader, Map } from ".."
-import { OrderRes, Coords } from "../../types"
+import { OrderRes, Coords, LocationRes } from "../../types"
 import S from "./OrderList.Styled"
 import getDistBetweenCoords from "../../util/getDistBetweenCords"
 
 const OrderList: React.FC<{
   orders: OrderRes
-  coords: Coords
-}> = ({ orders, coords }) => {
+  location: LocationRes
+}> = ({ orders, location }) => {
   const [hoveredId, setHoveredId] = useState<string>(null)
+  const coords: Coords = [location.lat, location.lng]
 
   return (
     <S.OrderList>
@@ -28,7 +29,7 @@ const OrderList: React.FC<{
         </Map>
       </div>
       <div>
-        <ResultsHeader data={orders} />
+        <ResultsHeader data={orders} location={location} />
         {orders.map(order => (
           <LineItem
             isHovered={order._id === hoveredId}

@@ -1,9 +1,13 @@
+require("dotenv").config({})
+
+const apiKey = process.env.GEOCODE_API_KEY
+
 const getAddressData = async address => {
   const data = await fetch(
-    `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=AIzaSyBUPahFeC6Bucs95Ucc5Hf-QMO1S24nxfk`
-  ).then(response => response.json());
+    `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${apiKey}`
+  ).then(response => response.json())
 
-  const firstResult = data.results[0];
+  const firstResult = data.results[0]
 
   if (firstResult) {
     const [
@@ -15,7 +19,7 @@ const getAddressData = async address => {
       state,
       country,
       zip
-    ] = firstResult.address_components;
+    ] = firstResult.address_components
 
     return {
       ...data.results[0].geometry.location,
@@ -23,10 +27,10 @@ const getAddressData = async address => {
       city: city.short_name,
       state: state.short_name,
       zip: zip.short_name
-    };
+    }
   }
 
-  throw new Error("Request to geocode failed.");
-};
+  throw new Error("Request to geocode failed.")
+}
 
-module.exports = getAddressData;
+module.exports = getAddressData

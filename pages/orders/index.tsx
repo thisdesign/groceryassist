@@ -1,17 +1,17 @@
 import { NextPage, GetServerSideProps } from "next"
 import { OrderList } from "../../components"
-import { OrderRes, Coords } from "../../types"
+import { OrderRes, Coords, LocationRes } from "../../types"
 import "isomorphic-unfetch"
-import { getOrders } from "../../middleware"
+import { getOrders, geocode } from "../../middleware"
 import { DEFAULT_CORDS } from "../../constants"
 
-const Listings: NextPage<{ data: OrderRes; coords: Coords }> = ({
+const Listings: NextPage<{ data: OrderRes; location: LocationRes }> = ({
   data,
-  coords
+  location
 }) => {
   return (
     <>
-      <OrderList orders={data} coords={coords} />
+      <OrderList orders={data} location={location} />
     </>
   )
 }
@@ -19,14 +19,16 @@ const Listings: NextPage<{ data: OrderRes; coords: Coords }> = ({
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const data = await getOrders()
 
-  const coords = query.l
-    ? query.l
+  const coords: Coords = query.l
+    ? ((query.l
         .toString()
         .split(",")
-        .map(str => parseFloat(str))
+        .map(str => parseFloat(str)) as unknown) as Coords)
     : DEFAULT_CORDS
 
-  return { props: { data, coords } }
+  const location = await geocode(coords)
+
+  return { props: { data, location } }
 }
 
 export default Listings

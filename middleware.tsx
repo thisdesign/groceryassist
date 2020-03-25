@@ -32,5 +32,7 @@ export const addOrder = async (order: Order) => {
   })
 }
 
-export const geocode = async (coords: Coords): Promise<LocationRes> =>
-  fetch(`${apiRoute}?latlng=${coords.join(",")}`).then(res => res.json())
+export const geocode = async (coords: Coords): Promise<LocationRes> => {
+  const url = ` ${apiRoute}/location/?latlng=${coords.join(",")}`
+  return fetch(url).then(res => res.json())
+}
