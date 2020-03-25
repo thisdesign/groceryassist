@@ -23,34 +23,32 @@ router.get("/", (req, res) => {
     .then(data => {
       if (data.error_message) {
         res.json(data)
-      }
+      } else {
+        const firstResult = data.results[0]
 
-      const firstResult = data.results[0]
+        if (firstResult) {
+          const [
+            number,
+            street,
+            region,
+            city,
+            cty,
+            state,
+            country,
+            zip
+          ] = firstResult.address_components
 
-      if (firstResult) {
-        const [
-          number,
-          street,
-          region,
-          city,
-          cty,
-          state,
-          country,
-          zip
-        ] = firstResult.address_components
+          const parsed = {
+            ...data.results[0].geometry.location,
+            address: `${number.short_name} ${street.short_name}`,
+            city: city.short_name,
+            state: state.short_name,
+            zip: zip.short_name
+          }
 
-        const parsed = {
-          ...data.results[0].geometry.location,
-          address: `${number.short_name} ${street.short_name}`,
-          city: city.short_name,
-          state: state.short_name,
-          zip: zip.short_name
+          res.json(parsed)
         }
-
-        res.json(parsed)
       }
-
-      res.json(data)
     })
 })
 
