@@ -4,7 +4,7 @@ import modularScale from "./modularScale";
 import { mq } from "./index";
 
 const scale: number[] = modularScale({
-  scale: 1.333,
+  scale: 1.2,
   stepsDown: 2,
   length: 15
 });
@@ -13,8 +13,9 @@ const style = css`
   :root {
     --bg-color: white;
     --color-primary: #101011;
-    --color-grey-1: #8f9398
-      ${scale.map((item, i) => `--size-${i}: ${item}rem`).join(";\n")};
+    --color-grey-1: #8f9398;
+    --color-grey-2: #d7d7d7;
+    ${scale.map((item, i) => `--size-${i}: ${item}rem`).join(";\n")};
     --spacing-standard: var(--size-0);
   }
 

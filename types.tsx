@@ -22,7 +22,7 @@ export type OrderUser = {
 };
 
 export type Order = {
-  date?: string;
+  date: string;
   user: OrderUser;
   items: Item[];
   location: Location;
