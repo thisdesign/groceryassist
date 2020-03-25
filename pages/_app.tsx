@@ -1,9 +1,9 @@
-import React from "react";
-import Link from "next/link";
-import { ThemeProvider } from "styled-components";
-import GlobalStyle from "../style/GlobalStyle";
-import theme from "../style/theme";
-import { UIBox } from "../components";
+import React from "react"
+import Link from "next/link"
+import { ThemeProvider } from "styled-components"
+import GlobalStyle from "../style/GlobalStyle"
+import theme from "../style/theme"
+import { UIBox } from "../components"
 
 const App = ({ pageProps, Component }) => {
   return (
@@ -16,9 +16,16 @@ const App = ({ pageProps, Component }) => {
           </Link>
         </UIBox>
         <Component {...pageProps} />
+        <style jsx>
+          {`
+            a {
+              letter-spacing: -0.035em;
+            }
+          `}
+        </style>
       </>
     </ThemeProvider>
-  );
-};
+  )
+}
 
-export default App;
+export default App

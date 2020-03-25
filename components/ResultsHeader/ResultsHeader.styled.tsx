@@ -8,7 +8,7 @@ const LocationBox = styled.div`
 `
 
 const Title = styled.div`
-  margin-top: var(--size-8);
+  margin-top: var(--size-6);
 `
 
 export default {
