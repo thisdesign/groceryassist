@@ -5,13 +5,10 @@ import { OrderRes, latLng } from "../../types"
 import "isomorphic-unfetch"
 import { getOrders } from "../../middleware"
 
-const Listings: NextPage<{ data: OrderRes; location: latLng }> = ({
-  data,
-  location
-}) => {
+const Listings: NextPage<{ data: OrderRes }> = ({ data }) => {
   return (
     <>
-      <OrderList orders={data} location={location} />
+      <OrderList orders={data} />
     </>
   )
 }
@@ -19,13 +16,6 @@ const Listings: NextPage<{ data: OrderRes; location: latLng }> = ({
 Listings.getInitialProps = async () => {
   const data = await getOrders()
 
-  const location: latLng = await fetch("http://gd.geobytes.com/GetCityDetails")
-    .then(res => res.json())
-    .then(({ geobyteslatitude, geobyteslongitude }) => ({
-      lat: parseFloat(geobyteslatitude),
-      lng: parseFloat(geobyteslongitude)
-    }))
-
-  return { data, location }
+  return { data }
 }
 export default Listings

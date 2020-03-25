@@ -5,19 +5,16 @@ import { OrderRes, latLng } from "../../types"
 import S from "./OrderList.Styled"
 
 const GOOGLE_MAP_API_KEY = "AIzaSyBUPahFeC6Bucs95Ucc5Hf-QMO1S24nxfk"
-const CENTER = { lat: 45.52796, lng: -122.6964283 }
+const CENTER = { lat: 45.515369, lng: -122.654716 }
 
-const OrderList: React.FC<{ orders: OrderRes; location: latLng }> = ({
-  orders,
-  location
-}) => {
+const OrderList: React.FC<{ orders: OrderRes }> = ({ orders }) => {
   return (
     <S.OrderList>
       <div>
         <GoogleMapReact
           bootstrapURLKeys={{ key: GOOGLE_MAP_API_KEY }}
-          defaultCenter={location}
-          defaultZoom={12}
+          defaultCenter={CENTER}
+          defaultZoom={14}
         >
           {orders.map(item => (
             <MapMarker
