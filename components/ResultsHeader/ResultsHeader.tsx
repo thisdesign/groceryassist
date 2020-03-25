@@ -50,6 +50,7 @@ const ResultsHeader: React.FC<{ data: OrderRes }> = ({ data }) => {
           {"  "}
           Portland, OR
         </S.LocationBox>
+
         <S.Title>{data.length} open orders</S.Title>
       </UIBox>
     </div>

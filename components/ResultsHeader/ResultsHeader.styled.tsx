@@ -8,10 +8,7 @@ const LocationBox = styled.div`
 `
 
 const Title = styled.div`
-  font-size: var(--size-0);
-  color: var(--color-grey-1);
-  margin-top: 0.5rem;
-  font-weight: 300;
+  margin-top: var(--size-8);
 `
 
 export default {

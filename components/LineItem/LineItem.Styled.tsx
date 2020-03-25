@@ -2,7 +2,7 @@ import styled from "styled-components"
 import UIBox from "../UIBox/UIBox"
 
 const LineItem = styled(UIBox)`
-  padding: var(--size-1) var(--size-1);
+  padding: var(--size-3) var(--size-1);
   display: grid;
   grid-template-columns: 1fr auto;
   align-items: center;
