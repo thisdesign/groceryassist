@@ -1,6 +1,6 @@
 import React from "react";
 import GoogleMapReact from "google-map-react";
-import { LineItem, MapMarker } from "..";
+import { LineItem, MapMarker, ResultsHeader } from "..";
 import { OrderRes } from "../../types";
 import S from "./OrderList.Styled";
 
@@ -26,6 +26,7 @@ const OrderList: React.FC<{ orders: OrderRes }> = ({ orders }) => {
         </GoogleMapReact>
       </div>
       <div>
+        <ResultsHeader data={orders} />
         {orders.map(order => (
           <LineItem data={order} key={order._id} />
         ))}

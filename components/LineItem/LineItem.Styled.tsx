@@ -1,7 +1,7 @@
 import styled from "styled-components";
+import UIBox from "../UIBox/UIBox";
 
-const LineItem = styled.div`
-  border-bottom: 1px solid var(--color-grey-2);
+const LineItem = styled(UIBox)`
   padding: var(--size-5) var(--size-1);
   display: grid;
   grid-template-columns: 1fr auto;

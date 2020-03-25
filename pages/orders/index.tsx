@@ -8,7 +8,6 @@ import { getOrders } from "../../middleware";
 const Listings: NextPage<{ data: OrderRes }> = ({ data }) => {
   return (
     <>
-      <h1>{data.length} Open Orders</h1>
       <OrderList orders={data} />
     </>
   );
