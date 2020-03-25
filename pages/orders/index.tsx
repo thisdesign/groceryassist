@@ -3,6 +3,7 @@ import { OrderList } from "../../components"
 import { OrderRes, Coords } from "../../types"
 import "isomorphic-unfetch"
 import { getOrders } from "../../middleware"
+import { DEFAULT_CORDS } from "../../constants"
 
 const Listings: NextPage<{ data: OrderRes; coords: Coords }> = ({
   data,
@@ -23,7 +24,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
         .toString()
         .split(",")
         .map(str => parseFloat(str))
-    : [45.515369, -122.654716]
+    : DEFAULT_CORDS
 
   return { props: { data, coords } }
 }

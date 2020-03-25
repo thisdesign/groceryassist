@@ -1,6 +1,7 @@
 import Link from "next/link"
 import "isomorphic-unfetch"
 import { NextPage } from "next"
+import { DEFAULT_CORDS } from "../constants"
 
 const Home: NextPage = () => {
   return (
@@ -11,7 +12,7 @@ const Home: NextPage = () => {
       </h1>
       <div className="wrapper">
         <h2>
-          <Link href="/orders?l=45.515369,-122.654716">
+          <Link href={`/orders?l=${DEFAULT_CORDS.join(",")}`}>
             <a>I&apos;d like to pick up groceries for someone→</a>
           </Link>
         </h2>
