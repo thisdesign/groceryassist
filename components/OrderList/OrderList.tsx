@@ -1,19 +1,22 @@
-import React from "react";
-import GoogleMapReact from "google-map-react";
-import { LineItem, MapMarker, ResultsHeader } from "..";
-import { OrderRes } from "../../types";
-import S from "./OrderList.Styled";
+import React from "react"
+import GoogleMapReact from "google-map-react"
+import { LineItem, MapMarker, ResultsHeader } from ".."
+import { OrderRes, latLng } from "../../types"
+import S from "./OrderList.Styled"
 
-const GOOGLE_MAP_API_KEY = "AIzaSyBUPahFeC6Bucs95Ucc5Hf-QMO1S24nxfk";
-const CENTER = { lat: 45.52796, lng: -122.6964283 };
+const GOOGLE_MAP_API_KEY = "AIzaSyBUPahFeC6Bucs95Ucc5Hf-QMO1S24nxfk"
+const CENTER = { lat: 45.52796, lng: -122.6964283 }
 
-const OrderList: React.FC<{ orders: OrderRes }> = ({ orders }) => {
+const OrderList: React.FC<{ orders: OrderRes; location: latLng }> = ({
+  orders,
+  location
+}) => {
   return (
     <S.OrderList>
       <div>
         <GoogleMapReact
           bootstrapURLKeys={{ key: GOOGLE_MAP_API_KEY }}
-          defaultCenter={CENTER}
+          defaultCenter={location}
           defaultZoom={12}
         >
           {orders.map(item => (
@@ -33,7 +36,7 @@ const OrderList: React.FC<{ orders: OrderRes }> = ({ orders }) => {
         ))}
       </div>
     </S.OrderList>
-  );
-};
+  )
+}
 
-export default OrderList;
+export default OrderList

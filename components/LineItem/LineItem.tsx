@@ -1,14 +1,14 @@
-import React from "react";
-import { NextPage } from "next";
-import Link from "next/link";
-import { OrderDb } from "../../types";
-import S from "./LineItem.Styled";
-import getTimeSince from "../../util/getTimeSince";
+import React from "react"
+import { NextPage } from "next"
+import Link from "next/link"
+import { OrderDb } from "../../types"
+import S from "./LineItem.Styled"
+import getTimeSince from "../../util/getTimeSince"
 
 const LineItem: NextPage<{ data: OrderDb }> = ({ data }) => {
-  const itemCount = data.items.length;
-  const isPlural = data.items.length > 1;
-  const { last, first } = data.user;
+  const itemCount = data.items.length
+  const isPlural = data.items.length > 1
+  const { last, first } = data.user
 
   return (
     <Link as={`/orders/${data._id}`} href="/orders/[orderId]">
@@ -29,7 +29,7 @@ const LineItem: NextPage<{ data: OrderDb }> = ({ data }) => {
         </S.LineItem>
       </a>
     </Link>
-  );
-};
+  )
+}
 
-export default LineItem;
+export default LineItem
