@@ -20,7 +20,7 @@ const style = css`
     ${scale.map((item, i) => `--size-${i}: ${item}rem`).join(";\n")};
 
     --spacing-standard: var(--size-0);
-    --nav-height: var(--size-8);
+    --nav-height: var(--size-9);
   }
 
   @font-face {
