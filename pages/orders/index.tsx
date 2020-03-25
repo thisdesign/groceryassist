@@ -1,9 +1,9 @@
+import Error from "next/error"
 import { NextPage, GetServerSideProps } from "next"
 import { OrderList } from "../../components"
-import { OrderRes, Coords, LocationRes } from "../../types"
+import { OrderRes, LocationRes } from "../../types"
 import "isomorphic-unfetch"
-import { getOrders, geocode } from "../../middleware"
-import { DEFAULT_CORDS } from "../../constants"
+import { getOrders, getLocationByAddress } from "../../middleware"
 
 const Listings: NextPage<{ data: OrderRes; location: LocationRes }> = ({
   data,
@@ -11,7 +11,11 @@ const Listings: NextPage<{ data: OrderRes; location: LocationRes }> = ({
 }) => {
   return (
     <>
-      <OrderList orders={data} location={location} />
+      {location ? (
+        <OrderList orders={data} location={location} />
+      ) : (
+        <Error statusCode={404} />
+      )}
     </>
   )
 }
@@ -19,16 +23,13 @@ const Listings: NextPage<{ data: OrderRes; location: LocationRes }> = ({
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const data = await getOrders()
 
-  const coords: Coords = query.l
-    ? ((query.l
-        .toString()
-        .split(",")
-        .map(str => parseFloat(str)) as unknown) as Coords)
-    : DEFAULT_CORDS
+  if (query.a) {
+    const qddress = query.a.toString()
+    const location = await getLocationByAddress(qddress)
+    return { props: { data, location } }
+  }
 
-  const location = await geocode(coords)
-
-  return { props: { data, location } }
+  return { props: {} }
 }
 
 export default Listings

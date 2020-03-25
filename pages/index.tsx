@@ -12,7 +12,7 @@ const Home: NextPage = () => {
       </h1>
       <div className="wrapper">
         <h2>
-          <Link href={`/orders?l=${DEFAULT_CORDS.join(",")}`}>
+          <Link href="/orders?a=4231+n+interstate+ave,+Portland,+OR,+97217">
             <a>I&apos;d like to pick up groceries for someone→</a>
           </Link>
         </h2>
