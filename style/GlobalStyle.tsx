@@ -52,18 +52,13 @@ const style = css`
     letter-spacing: 0.02em;
     color: var(--color-primary);
     background: var(--bg-color);
-    font-size: 18px;
+    font-size: 20px;
     overscroll-behavior-y: none;
 
     @media ${mq.xs} {
-      font-size: 19px;
-    }
-    @media ${mq.sm} {
-      font-size: 20px;
-    }
-    @media ${mq.md} {
       font-size: 21px;
     }
+
     @media ${mq.lg} {
       font-size: 1.3vw;
     }
