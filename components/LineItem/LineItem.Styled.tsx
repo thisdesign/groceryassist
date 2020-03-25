@@ -6,10 +6,7 @@ const LineItem = styled(UIBox)`
   display: grid;
   grid-template-columns: 1fr auto;
   align-items: center;
-
-  &:hover {
-    background: var(--color-grey-3);
-  }
+  user-select: none;
 
   h2 {
     font-size: var(--size-3);
