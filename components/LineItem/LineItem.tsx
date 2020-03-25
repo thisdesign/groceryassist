@@ -16,7 +16,7 @@ const LineItem: NextPage<{ data: OrderDb }> = ({ data }) => {
         <S.LineItem>
           <div>
             <h2>
-              {first} {last.charAt(0).toUpperCase()}
+              {first} {last.charAt(0).toUpperCase()}.
             </h2>
             <h3>
               {itemCount} {isPlural ? "Items" : "item"} ·{" "}

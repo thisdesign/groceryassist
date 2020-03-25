@@ -13,7 +13,7 @@ const LineItem = styled(UIBox)`
   }
 
   h3 {
-    font-size: var(--size-1);
+    font-size: var(--size-0);
     color: var(--color-grey-1);
     font-weight: 300;
   }
