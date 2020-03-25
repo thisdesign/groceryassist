@@ -1,14 +1,16 @@
 import React, { useState } from "react"
 import GoogleMapReact from "google-map-react"
-import Link from "next/link"
 import { LineItem, MapMarker, ResultsHeader } from ".."
-import { OrderRes, latLng } from "../../types"
+import { OrderRes, Coords } from "../../types"
 import S from "./OrderList.Styled"
 
 const GOOGLE_MAP_API_KEY = "AIzaSyBUPahFeC6Bucs95Ucc5Hf-QMO1S24nxfk"
 const CENTER = { lat: 45.515369, lng: -122.654716 }
 
-const OrderList: React.FC<{ orders: OrderRes }> = ({ orders }) => {
+const OrderList: React.FC<{
+  orders: OrderRes
+  coords: Coords
+}> = ({ orders, coords }) => {
   const [hoveredId, setHoveredId] = useState<string>(null)
 
   return (
@@ -16,7 +18,7 @@ const OrderList: React.FC<{ orders: OrderRes }> = ({ orders }) => {
       <div>
         <GoogleMapReact
           bootstrapURLKeys={{ key: GOOGLE_MAP_API_KEY }}
-          defaultCenter={CENTER}
+          defaultCenter={{ lat: coords[0], lng: coords[1] }}
           defaultZoom={14}
         >
           {orders.map(item => (

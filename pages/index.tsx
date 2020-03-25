@@ -1,6 +1,6 @@
-import Link from "next/link";
-import "isomorphic-unfetch";
-import { NextPage } from "next";
+import Link from "next/link"
+import "isomorphic-unfetch"
+import { NextPage } from "next"
 
 const Home: NextPage = () => {
   return (
@@ -11,7 +11,7 @@ const Home: NextPage = () => {
       </h1>
       <div className="wrapper">
         <h2>
-          <Link href="/orders">
+          <Link href="/orders?l=45.515369,-122.654716">
             <a>I&apos;d like to pick up groceries for someone→</a>
           </Link>
         </h2>
@@ -41,7 +41,7 @@ const Home: NextPage = () => {
         `}
       </style>
     </>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home
