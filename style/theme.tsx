@@ -2,7 +2,7 @@ import { DefaultTheme } from "styled-components"
 import modularScale from "./modularScale"
 
 const scale: number[] = modularScale({
-  scale: 1.333,
+  scale: 1,
   stepsDown: 2,
   length: 15
 })

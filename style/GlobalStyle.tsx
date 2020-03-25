@@ -12,7 +12,7 @@ const scale: number[] = modularScale({
 const style = css`
   :root {
     --bg-color: white;
-    --color-primary: #101011;
+    --color-primary: #3e3e4a;
     --color-grey-1: #8f9398;
     --color-grey-2: #d7d7d7;
     --color-grey-3: #f9f9f9;
@@ -49,7 +49,6 @@ const style = css`
   html {
     line-height: ${props => props.theme.lineHeights.body};
     font-family: ${props => props.theme.fontFamilies.sansSerif};
-    letter-spacing: 0.02em;
     color: var(--color-primary);
     background: var(--bg-color);
     font-size: 20px;
@@ -59,8 +58,12 @@ const style = css`
       font-size: 21px;
     }
 
+    @media ${mq.sm} {
+      font-size: 22px;
+    }
+
     @media ${mq.lg} {
-      font-size: 1.3vw;
+      font-size: 23px;
     }
   }
 

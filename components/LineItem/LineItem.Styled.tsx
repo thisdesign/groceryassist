@@ -12,7 +12,7 @@ const LineItem = styled(UIBox)`
   }
 
   h2 {
-    font-size: var(--size-2);
+    font-size: var(--size-3);
     margin-bottom: 0.2rem;
   }
 
