@@ -20,14 +20,12 @@ const Home: NextPage = () => {
       </h1>
       <div className="wrapper">
         <div>
-          <form>
-            <input
-              type="text"
-              onChange={handleChange}
-              value={address}
-              placeholder="Enter address"
-            />
-          </form>
+          <input
+            type="text"
+            onChange={handleChange}
+            value={address}
+            placeholder="Enter address"
+          />
         </div>
 
         <Link href={`/new?a=${urlAddress}`}>

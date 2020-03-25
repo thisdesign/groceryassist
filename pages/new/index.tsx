@@ -1,15 +1,20 @@
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
-import Router from "next/router";
-import { Item } from "../../types";
-import { addOrder } from "../../middleware";
+import React, { useState } from "react"
+import { useForm } from "react-hook-form"
+import Router from "next/router"
+import { GetServerSideProps, NextPage } from "next"
+import { Item, LocationRes } from "../../types"
+import { addOrder, getLocationByAddress } from "../../middleware"
 
-export default function App() {
-  const [items, setItems] = useState<Item[]>([]);
+const App: NextPage<{ location: LocationRes }> = ({ location }) => {
+  const [items, setItems] = useState<Item[]>([])
 
   const addItem = (item: Item) => {
-    setItems([...items, item]);
-  };
+    setItems([...items, item])
+  }
+
+  if (!location) {
+    return <div>Invalid location</div>
+  }
 
   return (
     <div>
@@ -45,7 +50,8 @@ export default function App() {
           <br />
           <hr />
           <br />
-          <ContactForm items={items} />
+
+          <ContactForm items={items} location={location} />
         </div>
       </div>
       <style jsx>
@@ -58,11 +64,25 @@ export default function App() {
         `}
       </style>
     </div>
-  );
+  )
 }
 
-const ContactForm: React.FC<{ items: Item[] }> = ({ items }) => {
-  const { register, handleSubmit } = useForm();
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  if (query.a) {
+    const address = query.a.toString()
+    const location = await getLocationByAddress(address)
+    return { props: { location } }
+  }
+  return { props: {} }
+}
+
+const ContactForm: React.FC<{ items: Item[]; location: LocationRes }> = ({
+  items,
+  location
+}) => {
+  const { register, handleSubmit } = useForm()
+
+  const { address, city, state, zip } = location
 
   const onSubmit = data => {
     addOrder({
@@ -72,27 +92,33 @@ const ContactForm: React.FC<{ items: Item[] }> = ({ items }) => {
         phone: "+1 (123) 456 7890"
       },
       location: {
-        address: data.address,
-        city: data.city,
-        state: data.state,
-        zip: data.zip
+        address,
+        city,
+        state,
+        zip
       },
       items
     })
       .then(res => {
-        Router.push("/new/success");
+        Router.push("/new/success")
       })
-      .catch(err => console.error(err));
-  };
+      .catch(err => console.error(err))
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
+      {address}
+      <br />
+      {city}, {state} {zip}
+      <br />
+      <br />
       <input
         type="text"
         placeholder="First name"
         name="first"
         ref={register({ required: true, maxLength: 80 })}
       />
+      <br />
       <input
         type="text"
         placeholder="Last name"
@@ -101,66 +127,42 @@ const ContactForm: React.FC<{ items: Item[] }> = ({ items }) => {
       />
       <br />
       <input
-        type="text"
-        placeholder="Address"
-        name="address"
-        ref={register({ required: true })}
-      />
-
-      <br />
-
-      <input
-        type="text"
-        placeholder="City"
-        name="city"
-        ref={register({ required: true })}
-      />
-      <input
-        type="text"
-        placeholder="State"
-        name="state"
-        ref={register({ required: true })}
-      />
-      <input
         type="number"
         placeholder="Zip"
         name="zip"
         ref={register({ required: true, min: 4 })}
       />
-
       <br />
-
       <br />
       <hr />
       <br />
       <br />
-
       <input type="submit" />
     </form>
-  );
-};
+  )
+}
 
 const DEFAULT = {
   name: "",
   qty: 1
-};
+}
 
 const AddItemForm: React.FC<{ addItem: (item: Item) => void }> = ({
   addItem
 }) => {
-  const [formData, setFormData] = useState<Item>(DEFAULT);
+  const [formData, setFormData] = useState<Item>(DEFAULT)
 
   const handleChange = (
     key: "name" | "qty",
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
-    setFormData({ ...formData, [key]: e.target.value });
-  };
+    setFormData({ ...formData, [key]: e.target.value })
+  }
 
   const handleSubmit = () => {
-    addItem(formData);
-    setFormData(DEFAULT);
-  };
+    addItem(formData)
+    setFormData(DEFAULT)
+  }
 
   return (
     <>
@@ -186,5 +188,7 @@ const AddItemForm: React.FC<{ addItem: (item: Item) => void }> = ({
       <br />
       <hr />
     </>
-  );
-};
+  )
+}
+
+export default App
