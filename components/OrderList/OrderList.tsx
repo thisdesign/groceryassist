@@ -36,7 +36,7 @@ const OrderList: React.FC<{
             key={order._id}
             setHoveredId={setHoveredId}
             distance={getDistBetweenCoords(
-              [order.location.lat, order.location.lat],
+              [order.location.lat, order.location.lng],
               coords
             )}
           />
