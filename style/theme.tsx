@@ -1,13 +1,13 @@
-import { DefaultTheme } from "styled-components";
-import modularScale from "./modularScale";
+import { DefaultTheme } from "styled-components"
+import modularScale from "./modularScale"
 
 const scale: number[] = modularScale({
   scale: 1.333,
   stepsDown: 2,
   length: 15
-});
+})
 
-const remScale: string[] = scale.map(item => `${item}rem`);
+const remScale: string[] = scale.map(item => `${item}rem`)
 
 const theme: DefaultTheme = {
   scale,
@@ -39,6 +39,6 @@ const theme: DefaultTheme = {
     sm: 768,
     xs: 576
   }
-};
+}
 
-export default theme;
+export default theme
