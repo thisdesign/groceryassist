@@ -1,13 +1,13 @@
-import { createGlobalStyle, css } from "styled-components";
-import reset from "styled-reset";
-import modularScale from "./modularScale";
-import { mq } from "./index";
+import { createGlobalStyle, css } from "styled-components"
+import reset from "styled-reset"
+import modularScale from "./modularScale"
+import { mq } from "./index"
 
 const scale: number[] = modularScale({
   scale: 1.2,
   stepsDown: 2,
   length: 15
-});
+})
 
 const style = css`
   :root {
@@ -22,6 +22,13 @@ const style = css`
   @font-face {
     font-family: "Basis Grotesque";
     src: url("/fonts/basis-grotesque-medium.otf");
+    font-weight: 400;
+  }
+
+  @font-face {
+    font-family: "Basis Grotesque";
+    src: url("/fonts/basis-grotesque-regular.otf");
+    font-weight: 300;
   }
 
   * {
@@ -83,10 +90,10 @@ const style = css`
     display: block;
     width: 100%;
   }
-`;
+`
 const GlobalStyle = createGlobalStyle`
   ${reset}
   ${style}
-`;
+`
 
-export default GlobalStyle;
+export default GlobalStyle
