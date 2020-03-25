@@ -31,6 +31,12 @@ const style = css`
   }
 
   body,
+  html,
+  #__next {
+    height: 100%;
+  }
+
+  body,
   html {
     line-height: ${props => props.theme.lineHeights.body};
     font-family: ${props => props.theme.fontFamilies.sansSerif};

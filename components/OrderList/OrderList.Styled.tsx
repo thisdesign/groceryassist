@@ -3,7 +3,7 @@ import styled from "styled-components";
 const OrderList = styled.div`
   display: flex;
   flex-direction: row-reverse;
-  height: calc(100vh - 9rem);
+  height: 100%;
 
   & > div {
     width: 50%;

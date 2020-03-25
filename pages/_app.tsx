@@ -8,12 +8,12 @@ const App = ({ pageProps, Component }) => {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <div>
+      <>
         <Link href="/">
           <a>Grocery App</a>
         </Link>
         <Component {...pageProps} />
-      </div>
+      </>
     </ThemeProvider>
   );
 };
