@@ -22,13 +22,13 @@ export type OrderUser = {
 };
 
 export type Order = {
-  date: string;
   user: OrderUser;
   items: Item[];
   location: Location;
 };
 
 export type OrderDb = Order & {
+  date: string;
   _id: string;
   location: LocationRes;
 };
