@@ -13,6 +13,9 @@ const style = css`
   :root {
     --bg-color: white;
     --color-primary: #2c2c33;
+
+    --color-blue: #0072ff;
+
     --color-grey-1: #8f9398;
     --color-grey-2: #eaeaea;
     --color-grey-3: #f9f9f9;

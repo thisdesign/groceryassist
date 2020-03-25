@@ -7,6 +7,7 @@ import PinIcon from "./PinIcon/PinIcon"
 import Nav from "./Nav/Nav"
 import UIBox from "./UIBox/UIBox"
 import Map from "./Map/Map"
+import CurrentLocation from "./CurrentLocation/CurrentLocation"
 
 export {
   OrderDetail,
@@ -17,5 +18,6 @@ export {
   UIBox,
   PinIcon,
   Nav,
-  Map
+  Map,
+  CurrentLocation
 }

@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 
-import { LineItem, MapMarker, ResultsHeader, Map } from ".."
+import { LineItem, MapMarker, ResultsHeader, Map, CurrentLocation } from ".."
 import { OrderRes, Coords, LocationRes } from "../../types"
 import S from "./OrderList.Styled"
 import getDistBetweenCoords from "../../util/getDistBetweenCords"
@@ -16,6 +16,7 @@ const OrderList: React.FC<{
     <S.OrderList>
       <div>
         <Map center={{ lat: coords[0], lng: coords[1] }}>
+          <CurrentLocation lat={coords[0]} lng={coords[1]} />
           {orders.map(item => (
             <MapMarker
               key={item._id}
