@@ -1,11 +1,11 @@
-const express = require("express");
-require("isomorphic-unfetch");
-const Order = require("../../models/order.js");
-const getAddressData = require("../../util/getAddressData");
+const express = require("express")
+require("isomorphic-unfetch")
+const Order = require("../../models/order.js")
+const getAddressData = require("../../util/getAddressData")
 
-const router = express.Router();
+const router = express.Router()
 
-const CURRENT_VERSION = "0.2.4";
+const CURRENT_VERSION = "0.2.4"
 
 /**
  * @route     GET api/orders
@@ -15,12 +15,12 @@ const CURRENT_VERSION = "0.2.4";
 router.get("/", (req, res) => {
   Order.find({ _version: CURRENT_VERSION })
     .then(orders => {
-      res.json(orders);
+      res.json(orders)
     })
     .catch(err => {
-      res.json(err);
-    });
-});
+      res.json(err)
+    })
+})
 
 /**
  * @route     GET api/orders/:id
@@ -30,12 +30,12 @@ router.get("/", (req, res) => {
 router.get("/:id", (req, res) => {
   Order.findById(req.params.id)
     .then(order => {
-      res.json(order);
+      res.json(order)
     })
     .catch(err => {
-      res.json({ err });
-    });
-});
+      res.json({ err })
+    })
+})
 
 /**
  * @route     POST api/orders
@@ -43,7 +43,7 @@ router.get("/:id", (req, res) => {
  * @access    Public
  */
 router.post("/", (req, res) => {
-  const { address, city, state, zip } = req.body.location;
+  const { address, city, state, zip } = req.body.location
 
   getAddressData(`${address}, ${city}, ${state} ${zip}`)
     .then(location => {
@@ -51,32 +51,32 @@ router.post("/", (req, res) => {
         ...req.body,
         location,
         _version: CURRENT_VERSION
-      };
+      }
 
-      const order = new Order(data);
+      const order = new Order(data)
       order.save((err, doc) => {
         if (err) {
           res.json({
             success: false,
             msg: "Could not create order.",
             data: err
-          });
+          })
         } else {
           res.json({
             success: true,
             msg: "Order successfuly created",
             data: doc
-          });
+          })
         }
-      });
+      })
     })
     .catch(err => {
       res.json({
         success: false,
         msg: "Invalid address.",
         data: err
-      });
-    });
-});
+      })
+    })
+})
 
-module.exports = router;
+module.exports = router
