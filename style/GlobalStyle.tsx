@@ -15,6 +15,8 @@ const style = css`
     --color-primary: #101011;
     --color-grey-1: #8f9398;
     --color-grey-2: #d7d7d7;
+    --color-grey-3: #f9f9f9;
+
     ${scale.map((item, i) => `--size-${i}: ${item}rem`).join(";\n")};
     --spacing-standard: var(--size-0);
   }

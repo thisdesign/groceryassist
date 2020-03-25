@@ -2,13 +2,17 @@ import styled from "styled-components"
 import UIBox from "../UIBox/UIBox"
 
 const LineItem = styled(UIBox)`
-  padding: var(--size-3) var(--size-1);
+  padding: var(--size-2) var(--size-4);
   display: grid;
   grid-template-columns: 1fr auto;
   align-items: center;
 
+  &:hover {
+    background: var(--color-grey-3);
+  }
+
   h2 {
-    font-size: var(--size-3);
+    font-size: var(--size-2);
     margin-bottom: 0.2rem;
   }
 
