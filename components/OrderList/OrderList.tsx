@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import GoogleMapReact from "google-map-react"
+import Link from "next/link"
 import { LineItem, MapMarker, ResultsHeader } from ".."
 import { OrderRes, latLng } from "../../types"
 import S from "./OrderList.Styled"
@@ -19,10 +20,10 @@ const OrderList: React.FC<{ orders: OrderRes }> = ({ orders }) => {
         >
           {orders.map(item => (
             <MapMarker
+              key={item._id}
               lat={item.location.lat}
               lng={item.location.lng}
-              key={item._id}
-              text={item.user.first}
+              data={item}
               isHovered={hoveredId === item._id}
             />
           ))}
