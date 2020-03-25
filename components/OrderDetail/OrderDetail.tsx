@@ -1,7 +1,7 @@
-import GoogleMapReact from "google-map-react";
-import { OrderDb } from "../../types";
-
-const GOOGLE_MAP_API_KEY = "AIzaSyBUPahFeC6Bucs95Ucc5Hf-QMO1S24nxfk";
+import GoogleMapReact from "google-map-react"
+import { OrderDb } from "../../types"
+import S from "./OrderDetail.Styled"
+import { Map } from ".."
 
 const Marker: React.FC<{ lat: any; lng: any }> = ({ lat, lng }) => (
   <>
@@ -19,58 +19,52 @@ const Marker: React.FC<{ lat: any; lng: any }> = ({ lat, lng }) => (
       `}
     </style>
   </>
-);
+)
 
 const OrderDetail: React.FC<{ data: OrderDb }> = ({ data }) => {
-  const { user, location, items } = data;
+  const { location } = data
+  const { lat, lng } = location
 
   return (
     <div>
-      <div>
-        <div className="map">
-          <GoogleMapReact
-            bootstrapURLKeys={{ key: GOOGLE_MAP_API_KEY }}
-            defaultCenter={{ lat: data.location.lat, lng: data.location.lng }}
-            defaultZoom={15}
-          >
-            <Marker lat={data.location.lat} lng={data.location.lng} />
-          </GoogleMapReact>
-        </div>
-        <br />
-        <br />
-        <h1>Order for {user.first}</h1>
-        <h3>
-          {location.address}
-          <br />
-          {location.city}, {location.state} {location.zip}
-        </h3>
-        <h4>{items.length} items</h4>
-        <br />
-      </div>
-      <hr />
-      {items.map(item => (
-        <div key={item.name}>
-          <h3>
-            {item.name} · {item.qty}
-            <hr />
-          </h3>
-        </div>
-      ))}
-      <br />
-      <br />
-
-      <h2>
-        <a href={`/orders/${data._id}/fulfill`}>Fulfill this order→</a>
-      </h2>
-      <style jsx scoped>
-        {`
-          .map {
-            height: 500px;
-          }
-        `}
-      </style>
+      <S.Map>
+        <Map center={{ lat, lng }}>
+          <Marker {...{ lat, lng }} />
+        </Map>
+      </S.Map>
+      <Details data={data} />
     </div>
-  );
-};
+  )
+}
 
-export default OrderDetail;
+const Details: React.FC<{ data: OrderDb }> = ({ data }) => {
+  const { user, items, location } = data
+  const { address, city, state, zip } = location
+  return (
+    <div>
+      <S.Wrapper>
+        <div>
+          <S.Head>Order for {data.user.first}</S.Head>
+          <div>{address}</div>
+          <div>
+            {city}, {state} {zip}
+          </div>
+        </div>
+        <div>
+          <S.ItemWrapper>
+            {items.map(({ qty, name }) => (
+              <S.Item>
+                {name} • {qty}
+              </S.Item>
+            ))}
+          </S.ItemWrapper>
+
+          <h2>
+            <a href={`/orders/${data._id}/fulfill`}>Fulfill this order→</a>
+          </h2>
+        </div>
+      </S.Wrapper>
+    </div>
+  )
+}
+export default OrderDetail
