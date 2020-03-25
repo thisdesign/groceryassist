@@ -1,18 +1,10 @@
-const MapMarker: React.FC<{ lat: any; lng: any }> = ({ lat, lng }) => (
-  <>
-    <div />
-    <style jsx scoped>
-      {`
-        div {
-          width: 1rem;
-          height: 1rem;
-          background: green;
-          border-radius: 50%;
-          border: 2px solid white;
-          box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        }
-      `}
-    </style>
-  </>
-);
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/member-delimiter-style */
+import S from "./MapMarker.Styled";
+
+const MapMarker: React.FC<{
+  lat: any;
+  lng: any;
+  text: string;
+}> = ({ lat, lng, text }) => <S.Marker>{text}</S.Marker>;
 export default MapMarker;

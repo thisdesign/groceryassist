@@ -21,6 +21,7 @@ const OrderList: React.FC<{ orders: OrderRes }> = ({ orders }) => {
               lat={item.location.lat}
               lng={item.location.lng}
               key={item._id}
+              text={item.user.first}
             />
           ))}
         </GoogleMapReact>
