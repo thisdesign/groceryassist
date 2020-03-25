@@ -8,7 +8,8 @@ import getTimeSince from "../../util/getTimeSince"
 const LineItem: NextPage<{
   data: OrderDb
   setHoveredId: React.Dispatch<React.SetStateAction<string>>
-}> = ({ data, setHoveredId }) => {
+  isHovered: boolean
+}> = ({ data, setHoveredId, isHovered }) => {
   const itemCount = data.items.length
   const isPlural = data.items.length > 1
   const { last, first } = data.user
@@ -21,6 +22,7 @@ const LineItem: NextPage<{
           onFocus={() => setHoveredId(data._id)}
           onMouseOut={() => setHoveredId(null)}
           onBlur={() => setHoveredId(null)}
+          isHovered={isHovered}
         >
           <div>
             <h2>

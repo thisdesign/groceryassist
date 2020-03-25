@@ -9,10 +9,19 @@ const MapMarker: React.FC<{
   lng: any
   data: OrderDb
   isHovered: boolean
-}> = ({ lat, lng, data, isHovered }) => (
+  setHoveredId: React.Dispatch<React.SetStateAction<string>>
+}> = ({ lat, lng, data, isHovered, setHoveredId }) => (
   <Link as={`/orders/${data._id}`} href="/orders/[orderId]">
     <a>
-      <S.Marker isHovered={isHovered}>{data.user.first}</S.Marker>
+      <S.Marker
+        isHovered={isHovered}
+        onMouseOver={() => setHoveredId(data._id)}
+        onFocus={() => setHoveredId(data._id)}
+        onMouseOut={() => setHoveredId(null)}
+        onBlur={() => setHoveredId(null)}
+      >
+        {data.user.first}
+      </S.Marker>
     </a>
   </Link>
 )

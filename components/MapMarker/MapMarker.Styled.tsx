@@ -18,7 +18,7 @@ const Marker = styled.div<{ isHovered: boolean }>`
   color: var(--color-primary);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   cursor: pointer;
-  transition: 0.1s background ease, 0.2s color ease;
+  transition: 0.1s background ease;
 
   &:hover {
     ${hover}

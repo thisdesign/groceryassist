@@ -1,12 +1,14 @@
 import styled from "styled-components"
 import UIBox from "../UIBox/UIBox"
 
-const LineItem = styled(UIBox)`
+const LineItem = styled(UIBox)<{ isHovered: boolean }>`
   padding: var(--size-3) var(--size-0);
   display: grid;
   grid-template-columns: 1fr auto;
   align-items: center;
   user-select: none;
+  background: ${props => props.isHovered && `var(--color-grey-3)`};
+  transition: 0.1s background ease, 0.1s color ease;
 
   h2 {
     font-size: var(--size-3);

@@ -10,6 +10,7 @@ const CENTER = { lat: 45.515369, lng: -122.654716 }
 
 const OrderList: React.FC<{ orders: OrderRes }> = ({ orders }) => {
   const [hoveredId, setHoveredId] = useState<string>(null)
+
   return (
     <S.OrderList>
       <div>
@@ -25,6 +26,7 @@ const OrderList: React.FC<{ orders: OrderRes }> = ({ orders }) => {
               lng={item.location.lng}
               data={item}
               isHovered={hoveredId === item._id}
+              setHoveredId={setHoveredId}
             />
           ))}
         </GoogleMapReact>
@@ -32,7 +34,12 @@ const OrderList: React.FC<{ orders: OrderRes }> = ({ orders }) => {
       <div>
         <ResultsHeader data={orders} />
         {orders.map(order => (
-          <LineItem data={order} key={order._id} setHoveredId={setHoveredId} />
+          <LineItem
+            isHovered={order._id === hoveredId}
+            data={order}
+            key={order._id}
+            setHoveredId={setHoveredId}
+          />
         ))}
       </div>
     </S.OrderList>
