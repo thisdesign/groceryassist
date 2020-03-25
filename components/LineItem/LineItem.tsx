@@ -13,6 +13,8 @@ const LineItem: NextPage<{
   const itemCount = data.items.length
   const isPlural = data.items.length > 1
   const { last, first } = data.user
+  const { lat, lng } = data.location
+  console.log(lat, lng)
 
   return (
     <Link as={`/orders/${data._id}`} href="/orders/[orderId]">

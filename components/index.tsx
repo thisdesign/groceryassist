@@ -6,6 +6,7 @@ import ResultsHeader from "./ResultsHeader/ResultsHeader"
 import PinIcon from "./PinIcon/PinIcon"
 import Nav from "./Nav/Nav"
 import UIBox from "./UIBox/UIBox"
+import Map from "./Map/Map"
 
 export {
   OrderDetail,
@@ -15,5 +16,6 @@ export {
   ResultsHeader,
   UIBox,
   PinIcon,
-  Nav
+  Nav,
+  Map
 }
