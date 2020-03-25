@@ -3,7 +3,7 @@ import mq from "../../style/mq"
 
 const Map = styled.div`
   height: 50vw;
-  max-height: 45vh;
+  max-height: 40vh;
 `
 
 const Wrapper = styled.div`
@@ -15,6 +15,7 @@ const Wrapper = styled.div`
   @media ${mq.sm} {
     display: grid;
     grid-template-columns: 2fr 3fr;
+    grid-gap: var(--size-4);
   }
 `
 
@@ -37,10 +38,30 @@ const Item = styled.div`
   padding: var(--size-2) 0;
 `
 
+const BottomBar = styled.div`
+  position: sticky;
+  bottom: 0;
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.05);
+  border-top: 1px solid var(--color-grey-2);
+  padding: 0.5rem var(--size-1);
+  z-index: 20;
+  background: var(--bg-color);
+  text-align: right;
+
+  a {
+    border: 1px solid var(--color-grey-2);
+    padding: 0.5rem var(--size-4);
+    font-size: var(--size-1);
+    border-radius: 0.4rem;
+    display: inline-block;
+  }
+`
+
 export default {
   ItemWrapper,
   Head,
   Wrapper,
   Map,
-  Item
+  Item,
+  BottomBar
 }

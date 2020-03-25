@@ -33,6 +33,9 @@ const OrderDetail: React.FC<{ data: OrderDb }> = ({ data }) => {
         </Map>
       </S.Map>
       <Details data={data} />
+      <S.BottomBar>
+        <a href={`/orders/${data._id}/fulfill`}>Fulfill this order→</a>
+      </S.BottomBar>
     </div>
   )
 }
@@ -58,10 +61,6 @@ const Details: React.FC<{ data: OrderDb }> = ({ data }) => {
               </S.Item>
             ))}
           </S.ItemWrapper>
-
-          <h2>
-            <a href={`/orders/${data._id}/fulfill`}>Fulfill this order→</a>
-          </h2>
         </div>
       </S.Wrapper>
     </div>

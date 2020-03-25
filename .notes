@@ -1,2 +1,17 @@
 Tutorials:
 https://dev.to/hoangvvo/how-i-build-a-full-fledged-app-with-next-js-and-mongodb-part-1-user-authentication-3io9
+
+
+
+OVERALL UI
+fonts, color, theme                       70%
+nav                                       20%
+
+
+PAGES 
+Homepage          /                       30%
+New Order         /new/                   20%
+Open Orders       /orders/                80%
+Order Detail      /orders/:id             20%
+New Order         /orders/:id/fulfill     20%
+
