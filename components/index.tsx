@@ -4,6 +4,7 @@ import OrderList from "./OrderList/OrderList"
 import MapMarker from "./MapMarker/MapMarker"
 import ResultsHeader from "./ResultsHeader/ResultsHeader"
 import PinIcon from "./PinIcon/PinIcon"
+import Nav from "./Nav/Nav"
 import UIBox from "./UIBox/UIBox"
 
 export {
@@ -13,5 +14,6 @@ export {
   MapMarker,
   ResultsHeader,
   UIBox,
-  PinIcon
+  PinIcon,
+  Nav
 }

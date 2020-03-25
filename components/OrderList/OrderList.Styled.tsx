@@ -9,7 +9,7 @@ const OrderList = styled.div`
   }
 
   @media ${mq.sm} {
-    height: 100%;
+    height: calc(100% - var(--nav-height));
     display: flex;
     flex-direction: row-reverse;
 
@@ -18,7 +18,7 @@ const OrderList = styled.div`
       height: 100%;
 
       &:nth-child(2) {
-        max-width: 25rem;
+        max-width: 23rem;
         border-right: 1px solid var(--color-grey-2);
       }
 
