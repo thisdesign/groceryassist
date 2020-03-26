@@ -11,7 +11,10 @@ const scale: number[] = modularScale({
 
 const style = css`
   :root {
-    --bg-color: white;
+    --bg-color: white; /* TODO: Delete me */
+
+    --color-white: white;
+    --color-bg: var(--color-white);
     --color-primary: #2c2c33;
     --color-brand: #254c3d;
     --color-error: #ff5400;
