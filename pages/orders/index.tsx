@@ -51,7 +51,7 @@ export const getServerSideProps: GetServerSideProps = async ({
     address = query.a.toString()
   }
 
-  if (phone === "6168227256") {
+  if (phone === "6666666666") {
     address = "10434 n wygant st"
   }
 
