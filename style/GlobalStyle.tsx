@@ -23,6 +23,9 @@ const style = css`
     --color-grey-2: #eaeaea;
     --color-grey-3: #f9f9f9;
 
+    --shadow: 0 3px 7px rgba(0, 0, 0, 0.1);
+    --border-radius: 0.5rem;
+
     ${scale.map((item, i) => `--size-${i}: ${item}rem`).join(";\n")};
 
     --spacing-standard: var(--size-0);

@@ -19,7 +19,7 @@ const TextInput = styled.input`
   }
 
   &:focus {
-    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow);
   }
 `
 

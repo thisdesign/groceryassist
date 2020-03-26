@@ -7,7 +7,8 @@ import { UIButton } from ".."
 
 const AddressInput: React.FC<{
   onSubmit: (address: string) => void
-}> = ({ onSubmit }) => {
+  buttonText?: string
+}> = ({ onSubmit, buttonText = "Next" }) => {
   const [predictions, setPredictions] = useState<GeoPrediction[]>([])
   const [suggestIndex, setSuggestIndex] = useState<number>(0)
   const [isMenuOpen, setMenuOpen] = useState<boolean>(false)
@@ -79,7 +80,7 @@ const AddressInput: React.FC<{
         )}
         <br />
       </form>
-      <UIButton onClick={handleButtonClick}>Select Address</UIButton>
+      <UIButton onClick={handleButtonClick}>{buttonText}</UIButton>
     </>
   )
 }

@@ -3,6 +3,9 @@ import styled from "styled-components"
 const Wrapper = styled.div`
   max-width: 25rem;
   width: 100%;
+  position: absolute;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
 `
 
 const PredictionItem = styled.div<{ isSelected: boolean }>`
