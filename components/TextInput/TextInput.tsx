@@ -13,7 +13,6 @@ const TextInput = styled.input`
   margin: 0 auto;
   outline: none;
   transition: 0.2s box-shadow ease;
-  font-size: var(--size-1);
 
   ::placeholder {
     color: var(--color-grey-1);

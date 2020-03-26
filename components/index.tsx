@@ -9,6 +9,8 @@ import UIBox from "./UIBox/UIBox"
 import Map from "./Map/Map"
 import CurrentLocation from "./CurrentLocation/CurrentLocation"
 import TextInput from "./TextInput/TextInput"
+import PhoneCapture from "./PhoneCapture/PhoneCapture"
+import UIButton from "./UIButton/UIButton"
 
 export {
   OrderDetail,
@@ -21,5 +23,7 @@ export {
   Nav,
   Map,
   CurrentLocation,
-  TextInput
+  TextInput,
+  PhoneCapture,
+  UIButton
 }

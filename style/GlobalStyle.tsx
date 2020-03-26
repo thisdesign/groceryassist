@@ -13,6 +13,7 @@ const style = css`
   :root {
     --bg-color: white;
     --color-primary: #2c2c33;
+    --color-brand: #404671;
 
     --color-blue: #0072ff;
 
