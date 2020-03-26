@@ -10,6 +10,10 @@ const PredictionWrapper = styled.div`
   position: absolute;
   border-radius: var(--border-radius);
   box-shadow: var(--shadow);
+  overflow: hidden;
+  transform: translateY(0.25em);
+  border: 1px solid var(--color-grey-2);
+  z-index: 20;
 `
 
 const PredictionItem = styled.div<{ isSelected: boolean }>`
