@@ -1,9 +1,9 @@
 import React, { useState } from "react"
-import Router from "next/router"
 import TextInput from "../TextInput/TextInput"
 import { GeoPrediction } from "../../types"
 import S from "./AddressInput.Styled"
 import { UIButton } from ".."
+import { fetchPredictions } from "../../middleware"
 
 const AddressInput: React.FC<{
   onSubmit: (address: string) => void
@@ -26,12 +26,6 @@ const AddressInput: React.FC<{
     if (prediction) {
       setInputVal(prediction.full)
     }
-  }
-
-  const fetchPredictions = (input: string) => {
-    return fetch(
-      `http://localhost:3000/api/location/predictions?input=${input}`
-    ).then(res => res.json())
   }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {

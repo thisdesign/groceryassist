@@ -4,13 +4,25 @@ import { OrderDb, OrderRes, Order, Coords, LocationRes } from "./types"
 const isDev = process.env.NODE_ENV !== "production"
 const apiRoute = isDev
   ? "http://localhost:3000/api"
-  : "https://covid-grocery.herokuapp.com/api"
+  : "http://covid-grocery.herokuapp.com/api"
+
+/**
+ * list order by id
+ */
 
 export const getOrderById = async (id: string): Promise<OrderDb> =>
   fetch(`${apiRoute}/orders/${id}`).then(res => res.json())
 
+/**
+ * List Orders
+ */
+
 export const getOrders = (): Promise<OrderRes> =>
   fetch(`${apiRoute}/orders`).then(res => res.json())
+
+/**
+ * Add Order
+ */
 
 export const addOrder = async (order: Order) => {
   return new Promise((resolve, reject) => {
@@ -32,6 +44,10 @@ export const addOrder = async (order: Order) => {
   })
 }
 
+/**
+ * Locations
+ */
+
 const geocode = async (qs: string): Promise<LocationRes> => {
   const url = ` ${apiRoute}/location/?${qs}}`
   return fetch(url).then(res => res.json())
@@ -41,3 +57,13 @@ export const getLocationByCoords = async (coords: Coords) =>
   geocode(`latlng=${coords.join(",")}`)
 
 export const getLocationByAddress = async (a: string) => geocode(`address=${a}`)
+
+/**
+ * Suggest
+ */
+
+export const fetchPredictions = (input: string) => {
+  return fetch(`${apiRoute}/location/predictions?input=${input}`)
+    .then(res => res.json())
+    .catch(err => console.log(err))
+}
