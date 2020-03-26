@@ -11,11 +11,17 @@ const getBackground = ({ inverted, color }: any) => {
   return "var(--color-brand)"
 }
 
-const getBorderColor = () => {
+const getBorderColor = ({ color }: any) => {
+  if (color) {
+    return `var(--color-${color})`
+  }
   return "var(--color-brand)"
 }
 
-const getColor = ({ inverted, color }: any) => {
+const getColor = ({ inverted, color, textColor }: any) => {
+  if (textColor) {
+    return `var(--color-${textColor})`
+  }
   if (inverted && color) {
     return `var(--color-${color})`
   }
@@ -23,7 +29,13 @@ const getColor = ({ inverted, color }: any) => {
   return "var(--color-bg)"
 }
 
-const UIButton = styled.button<{ inverted?: boolean; color?: string }>`
+type ButtonProps = {
+  inverted?: boolean
+  color?: string
+  textColor?: string
+}
+
+const UIButton = styled.button<ButtonProps>`
   font-size: var(--size-2);
   margin: 0;
   padding: 0.5rem var(--size-7);
@@ -45,7 +57,9 @@ const UIButton = styled.button<{ inverted?: boolean; color?: string }>`
 `
 
 UIButton.defaultProps = {
-  color: "brand"
+  color: "brand",
+  inverted: false,
+  textColor: "white"
 }
 
 export default UIButton

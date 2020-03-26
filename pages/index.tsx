@@ -2,6 +2,7 @@ import { useState } from "react"
 import Link from "next/link"
 import "isomorphic-unfetch"
 import { NextPage } from "next"
+import { UIButton } from "../components"
 
 const Home: NextPage = () => {
   const [address, setAddress] = useState<string>("")
@@ -20,15 +21,20 @@ const Home: NextPage = () => {
         COVID-19
       </h1>
       <div className="wrapper">
-        <Link href="new">
+        <Link href="/orders">
           <a>
-            <div className="button">Have groceries delivered</div>
+            <UIButton inverted textColor="white" color="white">
+              Pick up groceries <br /> for someone
+            </UIButton>
           </a>
         </Link>
 
-        <Link href="/orders">
+        <Link href="new">
           <a>
-            <div className="button black">Pick up groceries for someone</div>
+            <UIButton textColor="brand" color="white">
+              Have groceries <br />
+              delivered
+            </UIButton>
           </a>
         </Link>
       </div>
@@ -58,21 +64,6 @@ const Home: NextPage = () => {
             max-width: 15em;
             text-align: center;
             margin-bottom: var(--size-4);
-          }
-
-          .button {
-            max-width: 10rem;
-            text-align: center;
-            padding: 0.5rem;
-            border-radius: 0.5rem;
-            display: inline-block;
-            margin: 0.25rem;
-            font-size: var(--size-1);
-            background: var(--color-grey-1);
-            color: var(--bg-color);
-          }
-          .black {
-            background: var(--color-primary);
           }
         `}
       </style>
