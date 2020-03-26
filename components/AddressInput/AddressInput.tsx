@@ -8,7 +8,7 @@ import { fetchPredictions } from "../../middleware"
 const AddressInput: React.FC<{
   onSubmit: (address: string) => void
   buttonText?: string
-}> = ({ onSubmit, buttonText = "Next" }) => {
+}> = ({ onSubmit }) => {
   const [predictions, setPredictions] = useState<GeoPrediction[]>([])
   const [suggestIndex, setSuggestIndex] = useState<number>(0)
   const [isMenuOpen, setMenuOpen] = useState<boolean>(false)
@@ -19,13 +19,17 @@ const AddressInput: React.FC<{
    * Methods
    */
 
+  const selectItem = () => {
+    if (prediction) {
+      setMenuOpen(false)
+      setInputVal(prediction.full)
+      onSubmit(prediction.full)
+    }
+  }
+
   const handleItemClick = (i: number) => {
     setSuggestIndex(i)
-    setMenuOpen(false)
-
-    if (prediction) {
-      setInputVal(prediction.full)
-    }
+    selectItem()
   }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,17 +42,7 @@ const AddressInput: React.FC<{
 
   const handleEnterKey = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-
-    if (prediction) {
-      setMenuOpen(false)
-      setInputVal(prediction.full)
-    }
-  }
-
-  const handleButtonClick = () => {
-    if (prediction) {
-      onSubmit(prediction.full)
-    }
+    selectItem()
   }
 
   return (
@@ -74,7 +68,6 @@ const AddressInput: React.FC<{
         )}
         <br />
       </form>
-      <UIButton onClick={handleButtonClick}>{buttonText}</UIButton>
     </S.Wrapper>
   )
 }
