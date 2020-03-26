@@ -21,6 +21,10 @@ const AddressCapture: React.FC<{
   const handleItemClick = (i: number) => {
     setSuggestIndex(i)
     setMenuOpen(false)
+
+    if (prediction) {
+      setInputVal(prediction.full)
+    }
   }
 
   const fetchPredictions = (input: string) => {
@@ -53,28 +57,30 @@ const AddressCapture: React.FC<{
   }
 
   return (
-    <form onSubmit={handleEnterKey}>
-      <TextInput
-        placeholder="Street Address"
-        value={inputVal}
-        onChange={handleInputChange}
-      />
-      {isMenuOpen && predictions && (
-        <S.Wrapper>
-          {predictions.map((item, i) => (
-            <S.PredictionItem
-              onClick={() => handleItemClick(i)}
-              isSelected={suggestIndex === i}
-            >
-              <h5>{item.main}</h5>
-              <h6>{item.secondary}</h6>
-            </S.PredictionItem>
-          ))}
-        </S.Wrapper>
-      )}
-      <br />
+    <>
+      <form onSubmit={handleEnterKey}>
+        <TextInput
+          placeholder="Street Address"
+          value={inputVal}
+          onChange={handleInputChange}
+        />
+        {isMenuOpen && predictions && (
+          <S.Wrapper>
+            {predictions.map((item, i) => (
+              <S.PredictionItem
+                onClick={() => handleItemClick(i)}
+                isSelected={suggestIndex === i}
+              >
+                <h5>{item.main}</h5>
+                <h6>{item.secondary}</h6>
+              </S.PredictionItem>
+            ))}
+          </S.Wrapper>
+        )}
+        <br />
+      </form>
       <UIButton onClick={handleButtonClick}>Select Address</UIButton>
-    </form>
+    </>
   )
 }
 

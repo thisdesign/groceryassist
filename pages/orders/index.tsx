@@ -7,6 +7,9 @@ import { getOrders, getLocationByAddress } from "../../middleware"
 import formatLocation from "../../util/formatLocation"
 import spaceToPlus from "../../util/spaceToPlus"
 
+const goToOrdersPage = (address: string) =>
+  Router.push(`/orders?a=${spaceToPlus(address)}`)
+
 const Listings: NextPage<{
   data: OrderRes
   location: LocationRes
@@ -21,13 +24,7 @@ const Listings: NextPage<{
   }
 
   if (phone) {
-    return (
-      <AddressCapture
-        onSubmit={address => {
-          console.log(address)
-        }}
-      />
-    )
+    return <AddressCapture onSubmit={address => goToOrdersPage(address)} />
   }
 
   return <PhoneCapture onNext={num => Router.push(`/orders?p=${num}`)} />
