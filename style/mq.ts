@@ -1,8 +1,12 @@
-import theme from './theme'
+const sizes = {
+  xl: 1900,
+  lg: 1440,
+  md: 1024,
+  sm: 768,
+  xs: 576
+}
 
-const { sizes } = theme
-
-export type Size = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+export type Size = "xs" | "sm" | "md" | "lg" | "xl"
 
 export type Sizes = {
   [item in Size]: number
@@ -15,9 +19,9 @@ export type MediaQuery = {
 const mq: MediaQuery = Object.keys(sizes).reduce(
   (acc, current) => ({
     ...acc,
-    [current as Size]: `(min-width: ${Reflect.get(sizes, current)}px)`,
+    [current as Size]: `(min-width: ${Reflect.get(sizes, current)}px)`
   }),
-  { xs: '', sm: '', md: '', lg: '', xl: '' }
+  { xs: "", sm: "", md: "", lg: "", xl: "" }
 )
 
 export default mq

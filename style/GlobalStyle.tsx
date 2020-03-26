@@ -30,6 +30,9 @@ const style = css`
 
     --spacing-standard: var(--size-0);
     --nav-height: var(--size-9);
+
+    --line-height-body: 1.2;
+    --line-height-head: 1.1;
   }
 
   @font-face {
@@ -58,8 +61,8 @@ const style = css`
 
   body,
   html {
-    line-height: ${props => props.theme.lineHeights.body};
-    font-family: ${props => props.theme.fontFamilies.sansSerif};
+    line-height: 1.2;
+    font-family: "basis grotesque", helvetica, arial, sans-serif;
     color: var(--color-primary);
     background: var(--bg-color);
     font-size: 20px;
@@ -93,7 +96,7 @@ const style = css`
   h4,
   h5,
   h6 {
-    line-height: ${props => props.theme.lineHeights.heading};
+    line-height: var(--line-height-head);
   }
 
   img,
