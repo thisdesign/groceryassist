@@ -22,10 +22,10 @@ const PhoneCapture: React.FC<{
 
     if (!isValid) {
       setError("Please enter a valid number")
+    } else {
+      onNext(parsed)
+      Cookie.set("__phone_num", parsed)
     }
-
-    onNext(parsed)
-    Cookie.set("__phone_num", parsed)
   }
 
   return (
