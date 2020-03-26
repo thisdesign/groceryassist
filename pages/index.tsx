@@ -20,20 +20,20 @@ const Home: NextPage = () => {
         [App name] is a volunteer delivery service to help those vulnerable to
         COVID-19
       </h1>
-      <div className="wrapper">
-        <Link href="/orders">
+      <div className="buttonWrapper">
+        <Link href="new">
           <a>
             <UIButton inverted textColor="white" color="white">
-              Pick up groceries <br /> for someone
+              Have groceries <br />
+              delivered
             </UIButton>
           </a>
         </Link>
 
-        <Link href="new">
+        <Link href="/orders">
           <a>
             <UIButton textColor="brand" color="white">
-              Have groceries <br />
-              delivered
+              Pick up groceries <br /> for someone
             </UIButton>
           </a>
         </Link>
@@ -43,13 +43,16 @@ const Home: NextPage = () => {
       <br />
       <style jsx>
         {`
-          .wrapper {
-            text-align: center;
+          .buttonWrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: var(--space--2);
           }
           .home {
             background: url("https://images.unsplash.com/photo-1544755101-93bfbad2396c?ixlib=rb-1.2.1&auto=format&fit=crop&w=2734&q=80");
             background-position: center;
-            backgroun-size: cover;
+            background-size: 150%;
+            background-color: var(--color-brand);
 
             color: white;
             min-height: calc(100vh - var(--nav-height));
