@@ -13,28 +13,20 @@ const Home: NextPage = () => {
   const urlAddress = address.replace(/ /g, "+")
 
   return (
-    <>
+    <div className="home">
+      <br />
       <h1>
         [App name] is a volunteer delivery service to help those vulnerable to
         COVID-19
       </h1>
       <div className="wrapper">
-        <div>
-          <input
-            type="text"
-            onChange={handleChange}
-            value={address}
-            placeholder="Enter address"
-          />
-        </div>
-
-        <Link href={`/new?a=${urlAddress}`}>
+        <Link href="new">
           <a>
             <div className="button">Have groceries delivered</div>
           </a>
         </Link>
 
-        <Link href={`/orders?a=${urlAddress}`}>
+        <Link href="/orders">
           <a>
             <div className="button black">Pick up groceries for someone</div>
           </a>
@@ -48,12 +40,24 @@ const Home: NextPage = () => {
           .wrapper {
             text-align: center;
           }
+          .home {
+            background: url("https://images.unsplash.com/photo-1544755101-93bfbad2396c?ixlib=rb-1.2.1&auto=format&fit=crop&w=2734&q=80");
+            background-position: center;
+            backgroun-size: cover;
+
+            color: white;
+            min-height: calc(100vh - var(--nav-height));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+          }
 
           h1 {
             font-size: var(--size-6);
             max-width: 15em;
             text-align: center;
-            margin: var(--size-10) auto;
+            margin-bottom: var(--size-4);
           }
 
           .button {
@@ -70,22 +74,9 @@ const Home: NextPage = () => {
           .black {
             background: var(--color-primary);
           }
-
-          input {
-            font-size: 1rem;
-            padding: 0.5rem var(--size-0);
-            border: 1px solid var(--color-grey-2);
-            color: var(--color-primary);
-            border-radius: 0.5rem;
-            margin: 0;
-            width: 100%;
-            max-width: 25rem;
-            margin: 0 auto;
-            outline: none;
-          }
         `}
       </style>
-    </>
+    </div>
   )
 }
 
