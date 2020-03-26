@@ -8,7 +8,7 @@ import { fetchPredictions } from "../../middleware"
 const AddressInput: React.FC<{
   onSubmit: (address: string) => void
   buttonText?: string
-}> = ({ onSubmit }) => {
+}> = ({ onSubmit, ...props }) => {
   const [predictions, setPredictions] = useState<GeoPrediction[]>([])
   const [suggestIndex, setSuggestIndex] = useState<number>(0)
   const [isMenuOpen, setMenuOpen] = useState<boolean>(false)
@@ -40,34 +40,28 @@ const AddressInput: React.FC<{
     )
   }
 
-  const handleEnterKey = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    selectItem()
-  }
-
   return (
     <S.Wrapper>
-      <form onSubmit={handleEnterKey}>
-        <TextInput
-          placeholder="Street Address"
-          value={inputVal}
-          onChange={handleInputChange}
-        />
-        {isMenuOpen && predictions && (
-          <S.PredictionWrapper>
-            {predictions.map((item, i) => (
-              <S.PredictionItem
-                onClick={() => handleItemClick(i)}
-                isSelected={suggestIndex === i}
-              >
-                <h5>{item.main}</h5>
-                <h6>{item.secondary}</h6>
-              </S.PredictionItem>
-            ))}
-          </S.PredictionWrapper>
-        )}
-        <br />
-      </form>
+      <TextInput
+        placeholder="Street Address"
+        value={inputVal}
+        onChange={handleInputChange}
+        {...props}
+      />
+      {isMenuOpen && predictions && (
+        <S.PredictionWrapper>
+          {predictions.map((item, i) => (
+            <S.PredictionItem
+              onClick={() => handleItemClick(i)}
+              isSelected={suggestIndex === i}
+            >
+              <h5>{item.main}</h5>
+              <h6>{item.secondary}</h6>
+            </S.PredictionItem>
+          ))}
+        </S.PredictionWrapper>
+      )}
+      <br />
     </S.Wrapper>
   )
 }

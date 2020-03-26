@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 // import { createUser } from "../../middleware"
+import { useForm } from "react-hook-form"
 import { TwoPanel, PhoneInput, MediumHeading, AddressInput, UIButton } from ".."
 import { NewUserReq } from "../../types"
 import TextInput from "../TextInput/TextInput"
@@ -53,20 +54,36 @@ const PhoneScreen: React.FC<{
 }
 
 const AddressScreen: React.FC<{}> = () => {
+  const { register, handleSubmit, errors } = useForm()
+  const onSubmit = data => console.log(data)
+
+  console.log(errors)
+
   return (
     <div>
-      <MediumHeading>
-        Enter some final information
-        <br /> to get started
-      </MediumHeading>
-      <S.InfoGrid>
-        <TextInput placeholder="First" />
-        <TextInput placeholder="Last" />
-        <AddressInput onSubmit={text => console.log(text)} />
-        <div>
-          <UIButton>See Orders</UIButton>
-        </div>
-      </S.InfoGrid>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <MediumHeading>
+          Enter some final information
+          <br /> to get started
+        </MediumHeading>
+        <S.InfoGrid>
+          <TextInput
+            placeholder="First"
+            name="first"
+            ref={register({ required: true, maxLength: 80 })}
+          />
+          <TextInput
+            placeholder="Last"
+            name="last"
+            ref={register({ required: true, maxLength: 100 })}
+          />
+
+          <AddressInput onSubmit={text => console.log(text)} />
+          <div>
+            <UIButton>See Orders</UIButton>
+          </div>
+        </S.InfoGrid>
+      </form>
     </div>
   )
 }
