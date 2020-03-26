@@ -48,14 +48,6 @@ const BottomBar = styled.div`
   z-index: 20;
   background: var(--bg-color);
   text-align: right;
-
-  a {
-    border: 1px solid var(--color-grey-2);
-    padding: 0.5rem var(--size-4);
-    font-size: var(--size-1);
-    border-radius: 0.4rem;
-    display: inline-block;
-  }
 `
 
 export default {

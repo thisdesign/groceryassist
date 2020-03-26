@@ -1,7 +1,8 @@
 import GoogleMapReact from "google-map-react"
 import { OrderDb } from "../../types"
 import S from "./OrderDetail.Styled"
-import { Map } from ".."
+
+import { Map, UIButton } from ".."
 
 const Marker: React.FC<{ lat: any; lng: any }> = ({ lat, lng }) => (
   <>
@@ -34,7 +35,9 @@ const OrderDetail: React.FC<{ data: OrderDb }> = ({ data }) => {
       </S.Map>
       <Details data={data} />
       <S.BottomBar>
-        <a href={`/orders/${data._id}/fulfill`}>Fulfill this order→</a>
+        <a href={`/orders/${data._id}/fulfill`}>
+          <UIButton>Fulfill this order</UIButton>
+        </a>
       </S.BottomBar>
     </div>
   )
