@@ -44,3 +44,14 @@ export type GeoPrediction = {
 }
 
 export type OrderRes = OrderDb[]
+
+/**
+ * User
+ */
+
+export type NewUserReq = {
+  first: string
+  last: string
+  address: string
+  phone: number
+}

@@ -5,7 +5,9 @@ const TwoPanel: React.FC<{ image: string }> = ({ children, image }) => {
   return (
     <S.TwoPanel>
       <S.Image image={image} />
-      <S.Wrapper>{children}</S.Wrapper>
+      <S.Wrapper>
+        <S.Inner>{children}</S.Inner>
+      </S.Wrapper>
     </S.TwoPanel>
   )
 }

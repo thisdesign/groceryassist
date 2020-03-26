@@ -1,5 +1,12 @@
 import "isomorphic-unfetch"
-import { OrderDb, OrderRes, Order, Coords, LocationRes } from "./types"
+import {
+  OrderDb,
+  OrderRes,
+  Order,
+  Coords,
+  LocationRes,
+  NewUserReq
+} from "./types"
 
 const isDev = process.env.NODE_ENV !== "production"
 const apiRoute = isDev
@@ -66,4 +73,12 @@ export const fetchPredictions = (input: string) => {
   return fetch(`${apiRoute}/location/predictions?input=${input}`)
     .then(res => res.json())
     .catch(err => console.log(err))
+}
+
+/**
+ * Users
+ */
+
+export const createUser = (data: NewUserReq) => {
+  console.log(data)
 }

@@ -15,6 +15,7 @@ import { MediumHeading } from "./Heading/Heading"
 import AddressCapture from "./AddressCapture/AddressCapture"
 import AddressInput from "./AddressInput/AddressInput"
 import TwoPanel from "./TwoPanel/TwoPanel"
+import VolunteerOnboard from "./VolunteerOnboard/VolunteerOnboard"
 
 export {
   OrderDetail,
@@ -33,5 +34,6 @@ export {
   MediumHeading,
   AddressCapture,
   TwoPanel,
-  AddressInput
+  AddressInput,
+  VolunteerOnboard
 }

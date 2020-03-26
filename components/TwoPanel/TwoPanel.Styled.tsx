@@ -1,11 +1,15 @@
 import styled from "styled-components"
-import UIButton from "../UIButton/UIButton"
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+`
+
+const Inner = styled.div`
+  width: 100%;
+  max-width: 20em;
 `
 
 const TwoPanel = styled.div`
@@ -27,8 +31,8 @@ const Image = styled.div<{ image: string }>`
 `
 
 export default {
+  Inner,
   Wrapper,
   TwoPanel,
-  Image,
-  Error
+  Image
 }
