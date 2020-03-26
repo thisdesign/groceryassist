@@ -4,7 +4,7 @@ import { OrderDb, OrderRes, Order, Coords, LocationRes } from "./types"
 const isDev = process.env.NODE_ENV !== "production"
 const apiRoute = isDev
   ? "http://localhost:3000/api"
-  : "http://covid-grocery.herokuapp.com/api"
+  : "https://covid-grocery.herokuapp.com/api"
 
 /**
  * list order by id
