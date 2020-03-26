@@ -14,6 +14,7 @@ import UIButton from "./UIButton/UIButton"
 import { MediumHeading } from "./Heading/Heading"
 import AddressCapture from "./AddressCapture/AddressCapture"
 import AddressInput from "./AddressInput/AddressInput"
+import PhoneInput from "./PhoneInput/PhoneInput"
 import TwoPanel from "./TwoPanel/TwoPanel"
 import VolunteerOnboard from "./VolunteerOnboard/VolunteerOnboard"
 
@@ -35,5 +36,6 @@ export {
   AddressCapture,
   TwoPanel,
   AddressInput,
-  VolunteerOnboard
+  VolunteerOnboard,
+  PhoneInput
 }
