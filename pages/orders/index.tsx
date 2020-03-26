@@ -4,6 +4,7 @@ import { OrderList } from "../../components"
 import { OrderRes, LocationRes } from "../../types"
 import "isomorphic-unfetch"
 import { getOrders, getLocationByAddress } from "../../middleware"
+import { DEFAULT_CORDS } from "../../constants"
 
 const Listings: NextPage<{ data: OrderRes; location: LocationRes }> = ({
   data,
@@ -11,11 +12,7 @@ const Listings: NextPage<{ data: OrderRes; location: LocationRes }> = ({
 }) => {
   return (
     <>
-      {location ? (
-        <OrderList orders={data} location={location} />
-      ) : (
-        <Error statusCode={404} />
-      )}
+      <OrderList orders={data} location={location} />
     </>
   )
 }
@@ -23,13 +20,12 @@ const Listings: NextPage<{ data: OrderRes; location: LocationRes }> = ({
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const data = await getOrders()
 
-  if (query.a) {
-    const qddress = query.a.toString()
-    const location = await getLocationByAddress(qddress)
-    return { props: { data, location } }
-  }
+  const address = query.a
+    ? query.a.toString()
+    : "4231 N. Interstate Ave, Portland OR, 97217"
+  const location = await getLocationByAddress(address)
 
-  return { props: {} }
+  return { props: { data, location } }
 }
 
 export default Listings
