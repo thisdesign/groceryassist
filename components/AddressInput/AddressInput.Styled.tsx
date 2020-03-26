@@ -2,6 +2,7 @@ import styled from "styled-components"
 
 const Wrapper = styled.div`
   max-width: 25rem;
+  width: 100%;
 `
 
 const PredictionItem = styled.div<{ isSelected: boolean }>`
