@@ -1,7 +1,9 @@
 import React, { useState } from "react"
 // import { createUser } from "../../middleware"
-import { TwoPanel, PhoneInput, MediumHeading, AddressInput } from ".."
+import { TwoPanel, PhoneInput, MediumHeading, AddressInput, UIButton } from ".."
 import { NewUserReq } from "../../types"
+import TextInput from "../TextInput/TextInput"
+import S from "./VolunteerOnboard.Styled"
 
 const IMAGES = [
   "https://images.unsplash.com/photo-1583247949334-e07ab70681c5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=780&q=60",
@@ -53,7 +55,18 @@ const PhoneScreen: React.FC<{
 const AddressScreen: React.FC<{}> = () => {
   return (
     <div>
-      <AddressInput onSubmit={text => console.log(text)} />
+      <MediumHeading>
+        Enter some final information
+        <br /> to get started
+      </MediumHeading>
+      <S.InfoGrid>
+        <TextInput placeholder="First" />
+        <TextInput placeholder="Last" />
+        <AddressInput onSubmit={text => console.log(text)} />
+        <div>
+          <UIButton>See Orders</UIButton>
+        </div>
+      </S.InfoGrid>
     </div>
   )
 }
