@@ -45,11 +45,18 @@ const Image = styled.div`
   height: 100%;
 `
 
+const Error = styled.div`
+  font-size: var(--size-1);
+  padding-top: 0.25rem;
+  color: var(--color-error);
+`
+
 export default {
   Head,
   Label,
   Wrapper,
   Button,
   TwoPanel,
-  Image
+  Image,
+  Error
 }

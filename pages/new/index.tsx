@@ -2,23 +2,29 @@ import React, { useState } from "react"
 // import { useForm } from "react-hook-form"
 // import Router from "next/router"
 import { GetServerSideProps, NextPage } from "next"
-import { Item, LocationRes } from "../../types"
-import { getLocationByAddress } from "../../middleware"
+import router from "next/router"
+import Cookie from "js-cookie"
 import { PhoneCapture } from "../../components"
 
-const App: NextPage<{ location: LocationRes }> = ({ location }) => {
-  const [items, setItems] = useState<Item[]>([])
-
-  return <PhoneCapture />
+const App: NextPage<{ phone: string | null }> = ({ phone }) => {
+  return (
+    <>
+      {phone ? (
+        <div>{phone}</div>
+      ) : (
+        <PhoneCapture
+          onNext={num => {
+            router.push(`/new?p=${num}`)
+          }}
+        />
+      )}
+    </>
+  )
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  if (query.a) {
-    const address = query.a.toString()
-    const location = await getLocationByAddress(address)
-    return { props: { location } }
-  }
-  return { props: {} }
+  const phone = query.p ? query.p.toString() : null
+  return { props: { phone } }
 }
 
 export default App

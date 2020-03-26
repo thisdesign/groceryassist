@@ -14,6 +14,7 @@ const style = css`
     --bg-color: white;
     --color-primary: #2c2c33;
     --color-brand: #254c3d;
+    --color-error: #ff5400;
 
     --color-blue: #0072ff;
 
