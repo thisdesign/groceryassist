@@ -13,6 +13,7 @@ import PhoneCapture from "./PhoneCapture/PhoneCapture"
 import UIButton from "./UIButton/UIButton"
 import { MediumHeading } from "./Heading/Heading"
 import AddressCapture from "./AddressCapture/AddressCapture"
+import TwoPanel from "./TwoPanel/TwoPanel"
 
 export {
   OrderDetail,
@@ -29,5 +30,6 @@ export {
   PhoneCapture,
   UIButton,
   MediumHeading,
-  AddressCapture
+  AddressCapture,
+  TwoPanel
 }

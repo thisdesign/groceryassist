@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import Cookie from "js-cookie"
-import { TextInput, MediumHeading } from ".."
+import { TextInput, MediumHeading, TwoPanel } from ".."
 import S from "./PhoneCapture.Styled"
 
 const PhoneCapture: React.FC<{
@@ -29,22 +29,19 @@ const PhoneCapture: React.FC<{
   }
 
   return (
-    <S.TwoPanel>
-      <S.Image />
-      <S.Wrapper>
-        <div>
-          <form onSubmit={handleNext}>
-            <MediumHeading>Enter your number to get started</MediumHeading>
-            <S.Label>
-              Your delivery person will call you to set things up.
-            </S.Label>
-            <TextInput onChange={handleChange} placeholder="Phone Number" />
-            {err && <S.Error>{err}</S.Error>}
-            <S.Button onClick={handleNext}>Next</S.Button>
-          </form>
-        </div>
-      </S.Wrapper>
-    </S.TwoPanel>
+    <TwoPanel image="https://images.unsplash.com/photo-1583247949334-e07ab70681c5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2468&q=80">
+      <div>
+        <form onSubmit={handleNext}>
+          <MediumHeading>Enter your number to get started</MediumHeading>
+          <S.Label>
+            Your delivery person will call you to set things up.
+          </S.Label>
+          <TextInput onChange={handleChange} placeholder="Phone Number" />
+          {err && <S.Error>{err}</S.Error>}
+          <S.Button onClick={handleNext}>Next</S.Button>
+        </form>
+      </div>
+    </TwoPanel>
   )
 }
 
