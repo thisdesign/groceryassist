@@ -8,8 +8,10 @@ const PhoneCapture = () => {
       <S.Image />
       <S.Wrapper>
         <div>
-          <S.Head>New Order</S.Head>
-          <S.Label>Enter your phone number to continue.</S.Label>
+          <S.Head>Enter your number to get started</S.Head>
+          <S.Label>
+            Your delivery person will call you to set things up.
+          </S.Label>
           <TextInput placeholder="Phone Number" />
           <S.Button>Next</S.Button>
         </div>

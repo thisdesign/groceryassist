@@ -5,7 +5,8 @@ const Label = styled.div`
   font-size: var(--size-1);
   margin-bottom: var(--size-3);
   display: inline-block;
-  text-align: center;
+  line-height: 1.3;
+
   color: var(--color-grey-1);
 `
 
@@ -22,7 +23,8 @@ const Button = styled(UIButton)`
 `
 const Head = styled.h2`
   font-size: var(--size-4);
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.1;
 `
 
 const TwoPanel = styled.div`
