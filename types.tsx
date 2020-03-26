@@ -37,4 +37,10 @@ export type OrderDb = Order & {
   location: LocationRes
 }
 
+export type GeoPrediction = {
+  full: string
+  main: string
+  secondary: string
+}
+
 export type OrderRes = OrderDb[]
