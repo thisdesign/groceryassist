@@ -1,7 +1,11 @@
 import styled from "styled-components"
 
 const Wrapper = styled.div`
-  max-width: 25rem;
+  display: block;
+  position: relative;
+`
+
+const PredictionWrapper = styled.div`
   width: 100%;
   position: absolute;
   border-radius: var(--border-radius);
@@ -18,15 +22,18 @@ const PredictionItem = styled.div<{ isSelected: boolean }>`
 
   h5 {
     margin-bottom: 0.25rem;
+    font-size: var(--size-1);
   }
+
   h6 {
     color: var(--color-grey-1);
-    font-size: var(--size-1);
+    font-size: var(--size-0);
     font-weight: 300;
   }
 `
 
 export default {
   Wrapper,
+  PredictionWrapper,
   PredictionItem
 }

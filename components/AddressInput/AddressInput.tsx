@@ -52,7 +52,7 @@ const AddressInput: React.FC<{
   }
 
   return (
-    <>
+    <S.Wrapper>
       <form onSubmit={handleEnterKey}>
         <TextInput
           placeholder="Street Address"
@@ -60,7 +60,7 @@ const AddressInput: React.FC<{
           onChange={handleInputChange}
         />
         {isMenuOpen && predictions && (
-          <S.Wrapper>
+          <S.PredictionWrapper>
             {predictions.map((item, i) => (
               <S.PredictionItem
                 onClick={() => handleItemClick(i)}
@@ -70,12 +70,12 @@ const AddressInput: React.FC<{
                 <h6>{item.secondary}</h6>
               </S.PredictionItem>
             ))}
-          </S.Wrapper>
+          </S.PredictionWrapper>
         )}
         <br />
       </form>
       <UIButton onClick={handleButtonClick}>{buttonText}</UIButton>
-    </>
+    </S.Wrapper>
   )
 }
 

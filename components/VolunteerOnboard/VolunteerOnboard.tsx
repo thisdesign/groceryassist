@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 // import { createUser } from "../../middleware"
-import { TwoPanel, PhoneInput, MediumHeading } from ".."
+import { TwoPanel, PhoneInput, MediumHeading, AddressInput } from ".."
 import { NewUserReq } from "../../types"
 
 const IMAGES = [
@@ -11,7 +11,7 @@ const IMAGES = [
 const initialState = {
   first: null,
   last: null,
-  phone: null,
+  phone: 6168227256,
   address: null
 }
 
@@ -21,6 +21,7 @@ const VolunteerOnboard = () => {
 
   const handlePhoneInput = (phone: number) => {
     setData({ ...data, phone })
+    // TODO: check if user exists here
   }
 
   return (
@@ -28,7 +29,7 @@ const VolunteerOnboard = () => {
       {isPhoneScreen ? (
         <PhoneScreen handlePhoneInput={handlePhoneInput} />
       ) : (
-        <div>nextform</div>
+        <AddressScreen />
       )}
     </TwoPanel>
   )
@@ -45,6 +46,14 @@ const PhoneScreen: React.FC<{
       </MediumHeading>
       {/* Your phone will be used to lorem ipsum dolor sit. */}
       <PhoneInput onNext={handlePhoneInput} />
+    </div>
+  )
+}
+
+const AddressScreen: React.FC<{}> = () => {
+  return (
+    <div>
+      <AddressInput onSubmit={text => console.log(text)} />
     </div>
   )
 }
