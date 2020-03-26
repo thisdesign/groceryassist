@@ -4,6 +4,7 @@ const next = require("next")
 const bodyParser = require("body-parser")
 const sslRedirect = require("heroku-ssl-redirect")
 const orderRoutes = require("./routes/api/orders")
+const userRoutes = require("./routes/api/users")
 const locationRoutes = require("./routes/api/location")
 
 require("dotenv").config({})
@@ -34,6 +35,7 @@ app.prepare().then(() => {
   server.use(bodyParser.urlencoded({ extended: true }))
 
   server.use("/api/orders", orderRoutes)
+  server.use("/api/users", userRoutes)
   server.use("/api/location", locationRoutes)
 
   server.all("*", (req, res) => {
