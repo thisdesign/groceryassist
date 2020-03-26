@@ -51,7 +51,7 @@ const AddressCapture: React.FC<{
   }
 
   const handleButtonClick = () => {
-    if (prediction.full) {
+    if (prediction) {
       onSubmit(prediction.full)
     }
   }
