@@ -12,6 +12,7 @@ import TextInput from "./TextInput/TextInput"
 import PhoneCapture from "./PhoneCapture/PhoneCapture"
 import UIButton from "./UIButton/UIButton"
 import { MediumHeading } from "./Heading/Heading"
+import AddressCapture from "./AddressCapture/AddressCapture"
 
 export {
   OrderDetail,
@@ -27,5 +28,6 @@ export {
   TextInput,
   PhoneCapture,
   UIButton,
-  MediumHeading
+  MediumHeading,
+  AddressCapture
 }
