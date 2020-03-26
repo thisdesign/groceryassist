@@ -11,6 +11,7 @@ import CurrentLocation from "./CurrentLocation/CurrentLocation"
 import TextInput from "./TextInput/TextInput"
 import PhoneCapture from "./PhoneCapture/PhoneCapture"
 import UIButton from "./UIButton/UIButton"
+import { MediumHeading } from "./Heading/Heading"
 
 export {
   OrderDetail,
@@ -25,5 +26,6 @@ export {
   CurrentLocation,
   TextInput,
   PhoneCapture,
-  UIButton
+  UIButton,
+  MediumHeading
 }

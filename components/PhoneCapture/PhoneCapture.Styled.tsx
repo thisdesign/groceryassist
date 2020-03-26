@@ -21,11 +21,6 @@ const Button = styled(UIButton)`
   margin-top: var(--size-0);
   display: block;
 `
-const Head = styled.h2`
-  font-size: var(--size-4);
-  margin-bottom: 0.5rem;
-  line-height: 1.1;
-`
 
 const TwoPanel = styled.div`
   display: grid;
@@ -52,7 +47,6 @@ const Error = styled.div`
 `
 
 export default {
-  Head,
   Label,
   Wrapper,
   Button,

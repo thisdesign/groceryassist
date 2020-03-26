@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import Cookie from "js-cookie"
-import { TextInput } from ".."
+import { TextInput, MediumHeading } from ".."
 import S from "./PhoneCapture.Styled"
 
 const PhoneCapture: React.FC<{
@@ -34,7 +34,7 @@ const PhoneCapture: React.FC<{
       <S.Wrapper>
         <div>
           <form onSubmit={handleNext}>
-            <S.Head>Enter your number to get started</S.Head>
+            <MediumHeading>Enter your number to get started</MediumHeading>
             <S.Label>
               Your delivery person will call you to set things up.
             </S.Label>
