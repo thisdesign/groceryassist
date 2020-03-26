@@ -8,6 +8,7 @@ import Nav from "./Nav/Nav"
 import UIBox from "./UIBox/UIBox"
 import Map from "./Map/Map"
 import CurrentLocation from "./CurrentLocation/CurrentLocation"
+import TextInput from "./TextInput/TextInput"
 
 export {
   OrderDetail,
@@ -19,5 +20,6 @@ export {
   PinIcon,
   Nav,
   Map,
-  CurrentLocation
+  CurrentLocation,
+  TextInput
 }
