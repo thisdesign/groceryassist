@@ -2,6 +2,7 @@ const express = require("express")
 const mongoose = require("mongoose")
 const next = require("next")
 const bodyParser = require("body-parser")
+const sslRedirect = require("heroku-ssl-redirect")
 const orderRoutes = require("./routes/api/orders")
 const locationRoutes = require("./routes/api/location")
 
@@ -27,6 +28,7 @@ mongoose
 
 app.prepare().then(() => {
   const server = express()
+  server.use(sslRedirect())
 
   server.use(bodyParser.json())
   server.use(bodyParser.urlencoded({ extended: true }))
