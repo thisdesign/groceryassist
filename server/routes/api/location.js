@@ -52,4 +52,29 @@ router.get("/", (req, res) => {
     })
 })
 
+router.get("/predictions", (req, res) => {
+  const { input } = req.query
+
+  if (!input) {
+    res.json({ error: "include input" })
+  } else {
+    const url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${input}&key=${apiKey}&sessiontoken=1234567890`
+
+    fetch(url)
+      .then(resp => resp.json())
+      .then(data => {
+        res.json({
+          predictions: data.predictions.map(item => ({
+            full: item.description,
+            main: item.structured_formatting.main_text,
+            secondary: item.structured_formatting.secondary_text
+          }))
+        })
+      })
+      .catch(err => {
+        res.json({ err })
+      })
+  }
+})
+
 module.exports = router
