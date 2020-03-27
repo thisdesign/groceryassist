@@ -5,7 +5,7 @@ import { UIWrapper, MediumHeading, LargeHeading, UIButton } from "components"
 import S from "./OrderFulfill.Styled"
 
 const OrderFulfill: React.FC<{ order: OrderDb }> = ({ order }) => {
-  const [isPromptOpen, setIsPromptOpen] = useState<boolean>(false)
+  const [isPromptOpen, setIsPromptOpen] = useState<boolean>(true)
   const closePrompt = () => setIsPromptOpen(false)
   const {
     user: { first, phone }
