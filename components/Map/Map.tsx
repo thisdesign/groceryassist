@@ -1,7 +1,7 @@
 import React from "react"
 import GoogleMapReact from "google-map-react"
 
-const GOOGLE_MAP_API_KEY = "AIzaSyBUPahFeC6Bucs95Ucc5Hf-QMO1S24nxfk"
+const GOOGLE_MAP_API_KEY = "AIzaSyAezbHQ150lx33Q0me17ROGTboEyd-7K5o"
 
 const Map: React.FC<{
   center: {

@@ -21,7 +21,7 @@ const Home: NextPage = () => {
         COVID-19
       </h1>
       <div className="buttonWrapper">
-        <Link href="new">
+        <Link href="orders/new">
           <a>
             <UIButton inverted textColor="white" color="white">
               Have groceries <br />
