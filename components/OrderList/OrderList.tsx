@@ -14,7 +14,7 @@ const OrderList: React.FC<{
 
   return (
     <S.OrderList>
-      <div>
+      <S.MapWrapper>
         <Map center={{ lat: coords[0], lng: coords[1] }}>
           <CurrentLocation lat={coords[0]} lng={coords[1]} />
           {orders.map(item => (
@@ -28,7 +28,7 @@ const OrderList: React.FC<{
             />
           ))}
         </Map>
-      </div>
+      </S.MapWrapper>
       <div>
         <ResultsHeader data={orders} location={location} />
         {orders.map(order => (
