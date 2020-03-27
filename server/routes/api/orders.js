@@ -23,6 +23,21 @@ router.get("/", (req, res) => {
 })
 
 /**
+ * @route     GET api/orders/open
+ * @desc      List all orders
+ * @access    Public
+ */
+router.get("/open/", (req, res) => {
+  Order.find({ _version: CURRENT_VERSION, "status.open": true })
+    .then(orders => {
+      res.json(orders)
+    })
+    .catch(err => {
+      res.json(err)
+    })
+})
+
+/**
  * @route     GET api/orders/:id
  * @desc      Get order by id
  * @access    Public

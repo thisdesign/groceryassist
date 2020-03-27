@@ -25,7 +25,7 @@ export const getOrderById = async (id: string): Promise<OrderDb> =>
  */
 
 export const getOrders = (): Promise<OrderRes> =>
-  fetch(`${apiRoute}/orders`).then(res => res.json())
+  fetch(`${apiRoute}/orders/open`).then(res => res.json())
 
 /**
  * Add Order
