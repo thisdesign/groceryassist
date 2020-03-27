@@ -79,6 +79,22 @@ export const fetchPredictions = (input: string) => {
  * Users
  */
 
-export const createUser = (data: NewUserReq) => {
-  console.log(data)
+export const createUser = async (inputData: NewUserReq) => {
+  return new Promise((resolve, reject) => {
+    fetch(`${apiRoute}/users`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(inputData)
+    })
+      .then(res => res.json())
+      .then(apiRes => {
+        console.log(apiRes)
+        resolve(apiRes)
+
+        // resolve(response)
+      })
+  })
 }

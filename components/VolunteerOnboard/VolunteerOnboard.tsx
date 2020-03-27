@@ -26,7 +26,9 @@ const VolunteerOnboard = () => {
   const handlePhoneInput = (phone: number) => setData({ ...data, phone })
 
   const pushData = (newItem: object) => {
-    createUser({ ...data, ...newItem })
+    createUser({ ...data, ...newItem }).then(apiRes => {
+      console.log(apiRes)
+    })
   }
 
   return (
