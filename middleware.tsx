@@ -51,6 +51,21 @@ export const addOrder = async (order: Order) => {
   })
 }
 
+export const completeOrder = (id: string): Promise<any> => {
+  return new Promise((resolve, reject) => {
+    return fetch(`${apiRoute}/orders/${id}/complete`, {
+      method: "PUT"
+    })
+      .then(res => res.json())
+      .then(res => {
+        if (res.success) {
+          resolve(res)
+        }
+        reject(res)
+      })
+  })
+}
+
 /**
  * Locations
  */

@@ -2,6 +2,8 @@ import React, { useState } from "react"
 import { OrderDb } from "types"
 import { UIWrapper, BottomBar, LargeHeading, UIButton } from "components"
 
+import { completeOrder } from "middleware"
+import Router from "next/router"
 import S from "./OrderFulfill.Styled"
 
 const OrderFulfill: React.FC<{ order: OrderDb }> = ({ order }) => {
@@ -66,6 +68,14 @@ const Fulfillment: React.FC<{
     setCheckItems(newCheckItems)
   }
 
+  const handleCompleteBtn = () => {
+    completeOrder(data._id)
+      .then(() => {
+        Router.push(`/orders/${data._id}/complete`)
+      })
+      .catch(err => console.error(err))
+  }
+
   return (
     <>
       <UIWrapper pad>
@@ -88,7 +98,7 @@ const Fulfillment: React.FC<{
             <S.SmallWords>
               {completeItemCount} / {items.length} Complete
             </S.SmallWords>
-            <UIButton>Mark as complete</UIButton>
+            <UIButton onClick={handleCompleteBtn}>Mark as complete</UIButton>
           </S.BottomBarGrid>
         </UIWrapper>
       </BottomBar>

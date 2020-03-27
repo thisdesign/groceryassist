@@ -56,8 +56,8 @@ router.get("/:id", (req, res) => {
 })
 
 /**
- * @route     POST api/orders/:id
- * @desc      Update order
+ * @route     PUT api/orders/:id/complete
+ * @desc      Mark an order complete
  * @access    Public
  */
 router.put("/:id/complete", async (req, res) => {
@@ -66,7 +66,19 @@ router.put("/:id/complete", async (req, res) => {
   order.status.contact_made = true
 
   order.save((err, doc) => {
-    res.json(doc)
+    if (err) {
+      res.json({
+        success: false,
+        msg: "Could not update order.",
+        data: err
+      })
+    } else {
+      res.json({
+        success: true,
+        msg: "Successfully updated order.",
+        data: doc
+      })
+    }
   })
 })
 
