@@ -45,6 +45,18 @@ const UserSchema = new Schema({
     required: true
   },
 
+  last: {
+    type: String,
+    required: true
+  },
+
+  first: {
+    type: String,
+    required: true
+  },
+
+  location: LocationSchema,
+
   dateJoined: {
     type: Date,
     default: new Date()

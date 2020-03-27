@@ -45,7 +45,6 @@ router.get("/:id", (req, res) => {
 router.post("/", (req, res) => {
   const { address, city, state, zip } = req.body.location
 
-  // TODO: Replace with api
   getAddressData(`${address}, ${city}, ${state} ${zip}`)
     .then(location => {
       const data = {
