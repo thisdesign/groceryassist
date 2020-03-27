@@ -28,7 +28,10 @@ router.get("/", (req, res) => {
  * @access    Public
  */
 router.get("/open/", (req, res) => {
-  Order.find({ _version: CURRENT_VERSION, "status.open": [true, undefined] })
+  Order.find({
+    _version: CURRENT_VERSION,
+    "status.fulfilled": [false, undefined]
+  })
     .then(orders => {
       res.json(orders)
     })
@@ -50,6 +53,21 @@ router.get("/:id", (req, res) => {
     .catch(err => {
       res.json({ err })
     })
+})
+
+/**
+ * @route     POST api/orders/:id
+ * @desc      Update order
+ * @access    Public
+ */
+router.put("/:id/complete", async (req, res) => {
+  const order = await Order.findOne({ _id: req.params.id })
+  order.status.fulfilled = true
+  order.status.contact_made = true
+
+  order.save((err, doc) => {
+    res.json(doc)
+  })
 })
 
 /**
