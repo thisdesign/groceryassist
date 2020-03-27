@@ -17,6 +17,7 @@ import AddressInput from "./AddressInput/AddressInput"
 import PhoneInput from "./PhoneInput/PhoneInput"
 import TwoPanel from "./TwoPanel/TwoPanel"
 import VolunteerOnboard from "./VolunteerOnboard/VolunteerOnboard"
+import UIWrapper from "./UIWrapper/UIWrapper"
 
 export {
   OrderDetail,
@@ -37,5 +38,6 @@ export {
   TwoPanel,
   AddressInput,
   VolunteerOnboard,
-  PhoneInput
+  PhoneInput,
+  UIWrapper
 }
