@@ -28,14 +28,14 @@ const TYPESCRIPT_RULES = {
       }
     }
   ]
-};
+}
 
 const NEXTJS_RULES = {
   // NextJs doesn't require React to be in scope
   "react/react-in-jsx-scope": 0,
   // <a> is required in <Link/> without herf
   "jsx-a11y/anchor-is-valid": 0
-};
+}
 
 module.exports = {
   parser: "@typescript-eslint/parser", // Specifies the ESLint parser
@@ -78,7 +78,7 @@ module.exports = {
 
     "import/resolver": {
       node: {
-        paths: ["src"],
+        paths: ["."],
         extensions: [".js", ".jsx", ".ts", ".tsx"]
       }
     }
@@ -88,4 +88,4 @@ module.exports = {
     browser: true,
     node: true
   }
-};
+}
