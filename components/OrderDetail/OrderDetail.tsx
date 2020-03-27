@@ -10,12 +10,13 @@ const Marker: React.FC<{ lat: any; lng: any }> = ({ lat, lng }) => (
     <style jsx scoped>
       {`
         div {
-          width: 1rem;
-          height: 1rem;
-          background: green;
+          width: 6rem;
+          height: 6rem;
+          transform: translate3d(-50%, -50%, 0);
+          background: rgba(var(--color-brand-rgb), 0.2);
           border-radius: 50%;
-          border: 2px solid white;
-          box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+          border: 2px solid rgba(var(--color-brand-rgb), 0.6);
+          box-shadow: 0 0 10px rgba(var(--color-brand-rgb), 0.3);
         }
       `}
     </style>

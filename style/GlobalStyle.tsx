@@ -16,7 +16,10 @@ const style = css`
     --color-white: white;
     --color-bg: var(--color-white);
     --color-primary: #2c2c33;
-    --color-brand: #254c3d;
+
+    --color-brand-rgb: 37, 76, 61;
+    --color-brand: rgb(var(--color-brand-rgb));
+
     --color-error: #ff5400;
 
     --color-blue: #0072ff;
