@@ -25,10 +25,18 @@ export type OrderUser = {
   phone: string
 }
 
+export type Status = {
+  open: boolean
+  fulfilled: boolean
+  date_fulfilled: null | Date
+  volunteer_phone: null | number
+}
+
 export type Order = {
   user: OrderUser
   items: Item[]
   location: Location
+  status: Status
 }
 
 export type OrderDb = Order & {
