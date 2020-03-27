@@ -55,7 +55,7 @@ const AddressInput: React.FC<{
         onChange={handleInputChange}
         onKeyDown={handleKeyDown}
       />
-      {isMenuOpen && predictions && (
+      {isMenuOpen && predictions && !!predictions.length && (
         <S.PredictionWrapper>
           {predictions.map((item, i) => (
             <S.PredictionItem

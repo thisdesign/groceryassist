@@ -14,6 +14,7 @@ const PredictionWrapper = styled.div`
   transform: translateY(0.25em);
   border: 1px solid var(--color-grey-2);
   z-index: 20;
+  background: var(--color-bg);
 `
 
 const PredictionItem = styled.div<{ isSelected: boolean }>`

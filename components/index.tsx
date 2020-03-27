@@ -20,6 +20,8 @@ import VolunteerOnboard from "./VolunteerOnboard/VolunteerOnboard"
 import UIWrapper from "./UIWrapper/UIWrapper"
 import OrderFulfill from "./OrderFulfill/OrderFulfill"
 import BottomBar from "./BottomBar/BottomBar"
+import NewOrder from "./NewOrder/NewOrder"
+import Paragraph from "./Paragraph/Paragraph"
 
 export {
   OrderDetail,
@@ -44,5 +46,7 @@ export {
   PhoneInput,
   UIWrapper,
   OrderFulfill,
-  BottomBar
+  BottomBar,
+  NewOrder,
+  Paragraph
 }
