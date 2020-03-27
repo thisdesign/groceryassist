@@ -1,43 +1,84 @@
-import React from "react"
+import React, { useState } from "react"
 import { OrderDb } from "types"
-import { UIWrapper } from "components"
+import { UIWrapper, MediumHeading, LargeHeading, UIButton } from "components"
+
+import S from "./OrderFulfill.Styled"
 
 const OrderFulfill: React.FC<{ order: OrderDb }> = ({ order }) => {
+  const [isPromptOpen, setIsPromptOpen] = useState<boolean>(false)
+  const closePrompt = () => setIsPromptOpen(false)
   const {
-    user: { first, last, phone },
-    items
+    user: { first, phone }
   } = order
 
   return (
-    <div>
-      <UIWrapper>
+    <>
+      {isPromptOpen ? (
+        <CallPrompt phone={phone} first={first} closePrompt={closePrompt} />
+      ) : (
+        <Fulfillment data={order} />
+      )}
+    </>
+  )
+}
+
+const CallPrompt: React.FC<{
+  phone: string
+  first: string
+  closePrompt: () => void
+}> = ({ phone, first, closePrompt }) => {
+  return (
+    <S.PhonePrompt>
+      <UIWrapper pad>
+        <LargeHeading>
+          Call {first} at <a href={`tel:${phone}`}>{phone}</a>
+        </LargeHeading>
+        <MediumHeading>
+          Continue once you&apos;ve arranged <br />
+          pickup and payment with {first}
+        </MediumHeading>
         <br />
-        <br />
-        <h2>
-          Call <a href={`tel:${phone}`}>{phone}</a> to arrange your pickup and
-          payment.
-        </h2>
-        <br />
-        <br />
-        <hr />
-        <br />
-        <br />
-        <h1>
-          0 / {items.length} items fulfilled for {first} {last}
-        </h1>
-        <br />
-        <br />
-        <hr />
-        {items.map(item => (
-          <div key={item.name}>
-            <h2>
-              [<>&nbsp;&nbsp;</>] {item.name}
-            </h2>
-            <hr />
-          </div>
-        ))}
+        <UIButton textColor="brand" color="white" onClick={closePrompt}>
+          Continue
+        </UIButton>
       </UIWrapper>
-    </div>
+    </S.PhonePrompt>
+  )
+}
+
+const Fulfillment: React.FC<{
+  data: OrderDb
+}> = ({ data }) => {
+  const {
+    items,
+    user: { first }
+  } = data
+
+  const [checkItems, setCheckItems] = useState(
+    items.map(item => ({ ...item, checked: false }))
+  )
+
+  const handleItem = (i: number) => {
+    const newCheckItems = [...checkItems]
+    newCheckItems[i].checked = !newCheckItems[i].checked
+    setCheckItems(newCheckItems)
+  }
+
+  return (
+    <UIWrapper pad>
+      <LargeHeading>
+        {items.length} items to fulfill for {first}
+      </LargeHeading>
+      {checkItems.map((item, i) => (
+        <S.OrderItem
+          isChecked={item.checked}
+          key={item.name}
+          onClick={() => handleItem(i)}
+        >
+          {item.name}
+        </S.OrderItem>
+      ))}
+    </UIWrapper>
   )
 }
 

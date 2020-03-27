@@ -11,7 +11,7 @@ import CurrentLocation from "./CurrentLocation/CurrentLocation"
 import TextInput from "./TextInput/TextInput"
 import PhoneCapture from "./PhoneCapture/PhoneCapture"
 import UIButton from "./UIButton/UIButton"
-import { MediumHeading } from "./Heading/Heading"
+import { MediumHeading, LargeHeading } from "./Heading/Heading"
 import AddressCapture from "./AddressCapture/AddressCapture"
 import AddressInput from "./AddressInput/AddressInput"
 import PhoneInput from "./PhoneInput/PhoneInput"
@@ -35,6 +35,7 @@ export {
   PhoneCapture,
   UIButton,
   MediumHeading,
+  LargeHeading,
   AddressCapture,
   TwoPanel,
   AddressInput,

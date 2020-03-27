@@ -1,5 +1,6 @@
 import GoogleMapReact from "google-map-react"
 import { UIWrapper } from "components"
+import { LargeHeading } from "components/Heading/Heading"
 import { OrderDb } from "../../types"
 import S from "./OrderDetail.Styled"
 
@@ -55,7 +56,7 @@ const Details: React.FC<{ data: OrderDb }> = ({ data }) => {
       <S.Grid>
         <div>
           {status.open ? <div>open</div> : <div>open</div>}
-          <S.Head>Order for {data.user.first}</S.Head>
+          <LargeHeading>Order for {data.user.first}</LargeHeading>
           <div>
             {city}, {state}
           </div>
