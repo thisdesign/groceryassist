@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
+const mongoose = require("mongoose")
 
-const { Schema } = mongoose;
+const { Schema } = mongoose
 
 const OrderSchema = new Schema({
   _version: {
@@ -59,6 +59,25 @@ const OrderSchema = new Schema({
     default: new Date()
   },
 
+  status: {
+    open: {
+      type: Boolean,
+      default: true
+    },
+    fulfilled: {
+      type: Boolean,
+      default: false
+    },
+    date_fulfilled: {
+      type: Date,
+      default: null
+    },
+    volunteer_phone: {
+      type: Number,
+      default: null
+    }
+  },
+
   items: [
     {
       name: {
@@ -80,6 +99,6 @@ const OrderSchema = new Schema({
       notes: String
     }
   ]
-});
+})
 
-module.exports = mongoose.model("order", OrderSchema);
+module.exports = mongoose.model("order", OrderSchema)
