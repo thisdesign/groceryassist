@@ -51,10 +51,10 @@ const Details: React.FC<{ data: OrderDb }> = ({ data }) => {
       <S.Wrapper>
         <div>
           <S.Head>Order for {data.user.first}</S.Head>
-          <div>{address}</div>
           <div>
-            {city}, {state} {zip}
+            {city}, {state}
           </div>
+          <div>{data.user.phone}</div>
         </div>
         <div>
           <S.ItemWrapper>
