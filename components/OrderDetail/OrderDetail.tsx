@@ -1,4 +1,5 @@
 import GoogleMapReact from "google-map-react"
+import { UIWrapper } from "components"
 import { OrderDb } from "../../types"
 import S from "./OrderDetail.Styled"
 
@@ -36,38 +37,40 @@ const OrderDetail: React.FC<{ data: OrderDb }> = ({ data }) => {
       </S.Map>
       <Details data={data} />
       <S.BottomBar>
-        <a href={`/orders/${data._id}/fulfill`}>
-          <UIButton>Fulfill this order</UIButton>
-        </a>
+        <UIWrapper>
+          <a href={`/orders/${data._id}/fulfill`}>
+            <UIButton>Fulfill this order</UIButton>
+          </a>
+        </UIWrapper>
       </S.BottomBar>
     </div>
   )
 }
 
 const Details: React.FC<{ data: OrderDb }> = ({ data }) => {
-  const { user, items, location } = data
-  const { address, city, state, zip } = location
+  const { items, location, status } = data
+  const { city, state, zip } = location
   return (
-    <div>
-      <S.Wrapper>
+    <UIWrapper pad>
+      <S.Grid>
         <div>
+          {status.open ? <div>open</div> : <div>open</div>}
           <S.Head>Order for {data.user.first}</S.Head>
           <div>
             {city}, {state}
           </div>
           <div>{data.user.phone}</div>
         </div>
-        <div>
-          <S.ItemWrapper>
-            {items.map(({ qty, name }) => (
-              <S.Item>
-                {name} • {qty}
-              </S.Item>
-            ))}
-          </S.ItemWrapper>
-        </div>
-      </S.Wrapper>
-    </div>
+
+        <S.ItemWrapper>
+          {items.map(({ qty, name }) => (
+            <S.Item>
+              {name} • {qty}
+            </S.Item>
+          ))}
+        </S.ItemWrapper>
+      </S.Grid>
+    </UIWrapper>
   )
 }
 export default OrderDetail

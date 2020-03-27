@@ -6,10 +6,7 @@ const Map = styled.div`
   max-height: 40vh;
 `
 
-const Wrapper = styled.div`
-  margin: var(--size-10) auto;
-  padding: 0 var(--size-3);
-  max-width: 1200px;
+const Grid = styled.div`
   width: 100%;
 
   @media ${mq.sm} {
@@ -53,7 +50,7 @@ const BottomBar = styled.div`
 export default {
   ItemWrapper,
   Head,
-  Wrapper,
+  Grid,
   Map,
   Item,
   BottomBar
