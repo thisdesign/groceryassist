@@ -35,13 +35,15 @@ const OrderDetail: React.FC<{ data: OrderDb }> = ({ data }) => {
         </Map>
       </S.Map>
       <Details data={data} />
-      <BottomBar>
-        <UIWrapper>
-          <a href={`/orders/${data._id}/fulfill`}>
-            <UIButton>Fulfill this order</UIButton>
-          </a>
-        </UIWrapper>
-      </BottomBar>
+      {!data.status.fulfilled && (
+        <BottomBar>
+          <UIWrapper>
+            <a href={`/orders/${data._id}/fulfill`}>
+              <UIButton>Fulfill this order</UIButton>
+            </a>
+          </UIWrapper>
+        </BottomBar>
+      )}
     </div>
   )
 }
@@ -53,7 +55,7 @@ const Details: React.FC<{ data: OrderDb }> = ({ data }) => {
     <UIWrapper pad>
       <S.Grid>
         <div>
-          {status.open ? <div>open</div> : <div>open</div>}
+          {status.fulfilled ? <div>Fulfilled</div> : <div>Open</div>}
           <LargeHeading>Order for {data.user.first}</LargeHeading>
           <div>
             {city}, {state}

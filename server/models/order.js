@@ -70,7 +70,7 @@ const OrderSchema = new Schema({
     },
     date_fulfilled: {
       type: Date,
-      default: null
+      default: new Date()
     }
   },
 

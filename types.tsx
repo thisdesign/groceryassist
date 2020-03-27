@@ -26,10 +26,8 @@ export type OrderUser = {
 }
 
 export type Status = {
-  open: boolean
   fulfilled: boolean
   date_fulfilled: null | Date
-  volunteer_phone: null | number
 }
 
 export type Order = {
