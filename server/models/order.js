@@ -60,20 +60,16 @@ const OrderSchema = new Schema({
   },
 
   status: {
-    open: {
-      type: Boolean,
-      default: true
-    },
     fulfilled: {
+      type: Boolean,
+      default: false
+    },
+    contact_made: {
       type: Boolean,
       default: false
     },
     date_fulfilled: {
       type: Date,
-      default: null
-    },
-    volunteer_phone: {
-      type: Number,
       default: null
     }
   },
