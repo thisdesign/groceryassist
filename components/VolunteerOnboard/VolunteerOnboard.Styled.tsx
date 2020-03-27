@@ -1,6 +1,10 @@
 import styled from "styled-components"
 
-const InfoGrid = styled.div`
+const FormWrapper = styled.div`
+  margin-top: var(--size-4);
+`
+
+const InfoGrid = styled(FormWrapper)`
   display: grid;
   grid-template-areas:
     "a b"
@@ -9,7 +13,6 @@ const InfoGrid = styled.div`
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto;
   grid-gap: var(--size-0);
-  margin-top: var(--size-4);
 
   > * {
     &:nth-child(3) {
@@ -24,5 +27,6 @@ const InfoGrid = styled.div`
 `
 
 export default {
-  InfoGrid
+  InfoGrid,
+  FormWrapper
 }

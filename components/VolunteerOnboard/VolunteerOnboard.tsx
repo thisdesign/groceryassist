@@ -1,10 +1,11 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 // import { createUser } from "../../middleware"
 import { useForm } from "react-hook-form"
 import { TwoPanel, PhoneInput, MediumHeading, AddressInput, UIButton } from ".."
 import { NewUserReq } from "../../types"
 import TextInput from "../TextInput/TextInput"
 import S from "./VolunteerOnboard.Styled"
+import { createUser } from "../../middleware"
 
 const IMAGES = [
   "https://images.unsplash.com/photo-1583247949334-e07ab70681c5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=780&q=60",
@@ -14,7 +15,7 @@ const IMAGES = [
 const initialState = {
   first: null,
   last: null,
-  phone: 6168227256,
+  phone: null,
   address: null
 }
 
@@ -22,9 +23,10 @@ const VolunteerOnboard = () => {
   const [data, setData] = useState<NewUserReq>(initialState)
   const isPhoneScreen = !data.phone
 
-  const handlePhoneInput = (phone: number) => {
-    setData({ ...data, phone })
-    // TODO: check if user exists here
+  const handlePhoneInput = (phone: number) => setData({ ...data, phone })
+
+  const pushData = (newItem: object) => {
+    createUser({ ...data, ...newItem })
   }
 
   return (
@@ -32,7 +34,7 @@ const VolunteerOnboard = () => {
       {isPhoneScreen ? (
         <PhoneScreen handlePhoneInput={handlePhoneInput} />
       ) : (
-        <AddressScreen />
+        <AddressScreen pushData={pushData} />
       )}
     </TwoPanel>
   )
@@ -43,21 +45,26 @@ const PhoneScreen: React.FC<{
 }> = ({ handlePhoneInput }) => {
   return (
     <div>
-      <MediumHeading>
-        Enter your number to <br />
-        get started
-      </MediumHeading>
+      <MediumHeading>Create an account by entering your number</MediumHeading>
       {/* Your phone will be used to lorem ipsum dolor sit. */}
-      <PhoneInput onNext={handlePhoneInput} />
+      <S.FormWrapper>
+        <PhoneInput onNext={handlePhoneInput} />
+      </S.FormWrapper>
     </div>
   )
 }
 
-const AddressScreen: React.FC<{}> = () => {
-  const { register, handleSubmit, errors } = useForm()
-  const onSubmit = data => console.log(data)
+const AddressScreen: React.FC<{
+  pushData: (newItem: object) => void
+}> = ({ pushData }) => {
+  const [address, setAddress] = useState<string>(null)
+  const { register, handleSubmit } = useForm()
 
-  console.log(errors)
+  const onSubmit = data => {
+    if (address) {
+      pushData({ ...data, address })
+    }
+  }
 
   return (
     <div>
@@ -78,7 +85,7 @@ const AddressScreen: React.FC<{}> = () => {
             ref={register({ required: true, maxLength: 100 })}
           />
 
-          <AddressInput onSubmit={text => console.log(text)} />
+          <AddressInput onSubmit={addrString => setAddress(addrString)} />
           <div>
             <UIButton>See Orders</UIButton>
           </div>

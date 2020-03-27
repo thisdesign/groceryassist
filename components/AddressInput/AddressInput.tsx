@@ -40,13 +40,20 @@ const AddressInput: React.FC<{
     )
   }
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.keyCode === 13) {
+      e.preventDefault()
+      handleItemClick(suggestIndex)
+      e.currentTarget.blur()
+    }
+  }
   return (
     <S.Wrapper>
       <TextInput
         placeholder="Street Address"
         value={inputVal}
         onChange={handleInputChange}
-        {...props}
+        onKeyDown={handleKeyDown}
       />
       {isMenuOpen && predictions && (
         <S.PredictionWrapper>
