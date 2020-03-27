@@ -1,6 +1,4 @@
-import GoogleMapReact from "google-map-react"
-import { UIWrapper } from "components"
-import { LargeHeading } from "components/Heading/Heading"
+import { UIWrapper, BottomBar, LargeHeading } from "components"
 import { OrderDb } from "../../types"
 import S from "./OrderDetail.Styled"
 
@@ -37,13 +35,13 @@ const OrderDetail: React.FC<{ data: OrderDb }> = ({ data }) => {
         </Map>
       </S.Map>
       <Details data={data} />
-      <S.BottomBar>
+      <BottomBar>
         <UIWrapper>
           <a href={`/orders/${data._id}/fulfill`}>
             <UIButton>Fulfill this order</UIButton>
           </a>
         </UIWrapper>
-      </S.BottomBar>
+      </BottomBar>
     </div>
   )
 }

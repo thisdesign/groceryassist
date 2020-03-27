@@ -19,6 +19,7 @@ import TwoPanel from "./TwoPanel/TwoPanel"
 import VolunteerOnboard from "./VolunteerOnboard/VolunteerOnboard"
 import UIWrapper from "./UIWrapper/UIWrapper"
 import OrderFulfill from "./OrderFulfill/OrderFulfill"
+import BottomBar from "./BottomBar/BottomBar"
 
 export {
   OrderDetail,
@@ -42,5 +43,6 @@ export {
   VolunteerOnboard,
   PhoneInput,
   UIWrapper,
-  OrderFulfill
+  OrderFulfill,
+  BottomBar
 }

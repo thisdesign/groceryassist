@@ -32,7 +32,21 @@ const OrderItem = styled.div<{ isChecked: boolean }>`
   }
 `
 
+const SmallWords = styled.div`
+  font-size: var(--size-1);
+  color: var(--color-grey-1);
+`
+
+const BottomBarGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr auto;
+  text-align: left;
+  align-items: center;
+`
+
 export default {
   PhonePrompt,
-  OrderItem
+  OrderItem,
+  SmallWords,
+  BottomBarGrid
 }

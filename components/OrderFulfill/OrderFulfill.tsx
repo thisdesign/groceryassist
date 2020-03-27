@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { OrderDb } from "types"
-import { UIWrapper, MediumHeading, LargeHeading, UIButton } from "components"
+import { UIWrapper, BottomBar, LargeHeading, UIButton } from "components"
 
 import S from "./OrderFulfill.Styled"
 
@@ -33,10 +33,10 @@ const CallPrompt: React.FC<{
         <LargeHeading>
           Call {first} at <a href={`tel:${phone}`}>{phone}</a>
         </LargeHeading>
-        <MediumHeading>
+        <p>
           Continue once you&apos;ve arranged <br />
           pickup and payment with {first}
-        </MediumHeading>
+        </p>
         <br />
         <UIButton textColor="brand" color="white" onClick={closePrompt}>
           Continue
@@ -58,6 +58,8 @@ const Fulfillment: React.FC<{
     items.map(item => ({ ...item, checked: false }))
   )
 
+  const completeItemCount = checkItems.filter(item => item.checked).length
+
   const handleItem = (i: number) => {
     const newCheckItems = [...checkItems]
     newCheckItems[i].checked = !newCheckItems[i].checked
@@ -65,20 +67,32 @@ const Fulfillment: React.FC<{
   }
 
   return (
-    <UIWrapper pad>
-      <LargeHeading>
-        {items.length} items to fulfill for {first}
-      </LargeHeading>
-      {checkItems.map((item, i) => (
-        <S.OrderItem
-          isChecked={item.checked}
-          key={item.name}
-          onClick={() => handleItem(i)}
-        >
-          {item.name}
-        </S.OrderItem>
-      ))}
-    </UIWrapper>
+    <>
+      <UIWrapper pad>
+        <LargeHeading>
+          {items.length} items to fulfill for {first}
+        </LargeHeading>
+        {checkItems.map((item, i) => (
+          <S.OrderItem
+            isChecked={item.checked}
+            key={item.name}
+            onClick={() => handleItem(i)}
+          >
+            {item.name}
+          </S.OrderItem>
+        ))}
+      </UIWrapper>
+      <BottomBar>
+        <UIWrapper>
+          <S.BottomBarGrid>
+            <S.SmallWords>
+              {completeItemCount} / {items.length} Complete
+            </S.SmallWords>
+            <UIButton>Mark as complete</UIButton>
+          </S.BottomBarGrid>
+        </UIWrapper>
+      </BottomBar>
+    </>
   )
 }
 
