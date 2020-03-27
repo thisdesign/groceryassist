@@ -28,7 +28,7 @@ router.get("/", (req, res) => {
  * @access    Public
  */
 router.get("/open/", (req, res) => {
-  Order.find({ _version: CURRENT_VERSION, "status.open": true })
+  Order.find({ _version: CURRENT_VERSION, "status.open": [true, undefined] })
     .then(orders => {
       res.json(orders)
     })
