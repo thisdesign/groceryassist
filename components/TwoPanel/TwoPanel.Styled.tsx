@@ -15,7 +15,7 @@ const Inner = styled.div`
 const TwoPanel = styled.div`
   display: grid;
   grid-template-columns: 2fr 3fr;
-  height: calc(100% - var(--nav-height));
+  min-height: calc(100vh - var(--nav-height));
 
   > div {
     padding: 1rem;

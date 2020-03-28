@@ -7,7 +7,7 @@ const MapWrapper = styled.div`
 
 const OrderList = styled.div`
   @media ${mq.sm} {
-    height: calc(100% - var(--nav-height));
+    height: calc(100vh - var(--nav-height));
     display: flex;
     flex-direction: row-reverse;
     overflow: scroll;
