@@ -47,8 +47,8 @@ const OrderInfo: React.FC<{ state: PageState }> = ({ state: pageState }) => {
             />
             <TextInput
               type="tel"
-              placeholder="Mobile number"
-              name="mobile"
+              placeholder="Phone number"
+              name="phone"
               ref={register({ required: true, min: 10, maxLength: 13 })}
             />
 

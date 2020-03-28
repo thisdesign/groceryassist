@@ -107,7 +107,6 @@ router.post("/", (req, res) => {
         ...formInput,
         _version: CURRENT_VERSION
       }
-      console.log(data)
 
       const order = new Order(data)
       order.save((err, doc) => {
