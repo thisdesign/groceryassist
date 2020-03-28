@@ -10,16 +10,24 @@ import S from "./AppFrame.Styled"
 
 const AppFrame: React.FC<{
   header: React.ReactNode
-}> = ({ header, children }) => {
+  bottomBar?: React.ReactNode
+}> = ({ header, children, bottomBar }) => {
   return (
-    <S.Wrapper>
-      <S.Header>
-        <UIWrapper pad>{header}</UIWrapper>
-      </S.Header>
-      <S.Body>
-        <UIWrapper pad>{children}</UIWrapper>
-      </S.Body>
-    </S.Wrapper>
+    <>
+      <S.Wrapper>
+        <S.Header>
+          <UIWrapper pad>{header}</UIWrapper>
+        </S.Header>
+        <S.Body>
+          <UIWrapper pad>{children}</UIWrapper>
+        </S.Body>
+      </S.Wrapper>
+      {bottomBar && (
+        <BottomBar>
+          <UIWrapper>{bottomBar}</UIWrapper>
+        </BottomBar>
+      )}
+    </>
   )
 }
 

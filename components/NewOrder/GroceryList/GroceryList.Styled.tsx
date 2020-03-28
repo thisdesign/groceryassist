@@ -11,6 +11,7 @@ const White = styled.div`
   /* border: 1px solid var(--color-grey-2); */
   margin-top: var(--size-2);
   box-shadow: var(--shadow);
+  padding: 1px;
 `
 
 const NewItemInputWrapper = styled.div`

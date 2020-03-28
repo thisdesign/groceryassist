@@ -1,19 +1,12 @@
 /* eslint-disable react/jsx-wrap-multilines */
 /* eslint-disable react/no-array-index-key */
 import React, { useState } from "react"
-import {
-  MediumHeading,
-  UIWrapper,
-  BottomBar,
-  UIButton,
-  Paragraph,
-  AppFrame
-} from "components"
+import { MediumHeading, UIButton, Paragraph, AppFrame } from "components"
 import { Item } from "types"
 
 import { PLACEHOLDER_ITEMS } from "../../constants"
-import S from "./NewOrder.Styled"
 import GroceryList from "./GroceryList/GroceryList"
+import OrderInfo from "./OrderInfo/OrderInfo"
 
 export type PageState = {
   first: string
@@ -26,7 +19,7 @@ export type PageState = {
 }
 
 const NewOrder = () => {
-  const [isGroceryPage, setIsGroceryPage] = useState(false)
+  const [isGroceryPage, setIsGroceryPage] = useState(true)
   const [pageState, setPageState] = useState<PageState>({
     first: "",
     last: "",
@@ -42,29 +35,41 @@ const NewOrder = () => {
   }
 
   const handleCompleteButton = () => {
-    console.log(pageState)
+    setIsGroceryPage(false)
   }
 
   return (
     <>
-      <AppFrame
-        header={
-          <>
-            <MediumHeading>New Order</MediumHeading>
-            <Paragraph>Your information will be used to</Paragraph>
-          </>
-        }
-      >
-        <GroceryList
-          pushToState={pushToState}
-          items={pageState ? pageState.items : []}
-        />
-      </AppFrame>
-      <BottomBar>
-        <UIWrapper>
-          <UIButton onClick={handleCompleteButton}>Next</UIButton>
-        </UIWrapper>
-      </BottomBar>
+      {isGroceryPage ? (
+        <AppFrame
+          bottomBar={<UIButton onClick={handleCompleteButton}>Next</UIButton>}
+          header={
+            <>
+              <MediumHeading>New Order</MediumHeading>
+              <Paragraph>Your information will be used to</Paragraph>
+            </>
+          }
+        >
+          <GroceryList
+            pushToState={pushToState}
+            items={pageState ? pageState.items : []}
+          />
+        </AppFrame>
+      ) : (
+        <AppFrame
+          bottomBar={
+            <UIButton onClick={handleCompleteButton}>Submit Order</UIButton>
+          }
+          header={
+            <>
+              <MediumHeading>Order Details</MediumHeading>
+              <Paragraph>Enter your location and phone number</Paragraph>
+            </>
+          }
+        >
+          <OrderInfo />
+        </AppFrame>
+      )}
     </>
   )
 }
