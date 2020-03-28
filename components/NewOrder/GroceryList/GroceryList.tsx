@@ -4,7 +4,7 @@ import React, { useState, useRef } from "react"
 import { UIButton, TextInput, TextArea } from "components"
 import { Item } from "types"
 import GroceryLineItem from "components/GroceryLineItem/GroceryLineItem"
-import S from "../NewOrder.Styled"
+import S from "./GroceryList.Styled"
 import useItemAdd from "./useItemAdd"
 import { PageState } from "../NewOrder"
 
