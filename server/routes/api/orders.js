@@ -12,8 +12,27 @@ const CURRENT_VERSION = "0.3"
  * @desc      List all orders
  * @access    Public
  */
+
+const getStatus = status => {
+  if (status === "open")
+    return {
+      "status.fulfilled": [false, undefined]
+    }
+  if (status === "closed")
+    return {
+      "status.fulfilled": true
+    }
+  return {}
+}
+
 router.get("/", (req, res) => {
-  Order.find({ _version: CURRENT_VERSION })
+  const { limit = 0, status = "open" } = req.query
+
+  Order.find({
+    _version: CURRENT_VERSION,
+    ...getStatus(status)
+  })
+    .limit(parseFloat(limit))
     .then(orders => {
       res.json(orders)
     })
@@ -29,8 +48,7 @@ router.get("/", (req, res) => {
  */
 router.get("/open/", (req, res) => {
   Order.find({
-    _version: CURRENT_VERSION,
-    "status.fulfilled": [false, undefined]
+    _version: CURRENT_VERSION
   })
     .then(orders => {
       res.json(orders)

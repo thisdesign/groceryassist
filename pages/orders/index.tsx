@@ -11,11 +11,11 @@ const goToOrdersPage = (address: string) =>
   Router.push(`/orders?a=${spaceToPlus(address)}`)
 
 const Listings: NextPage<{
-  data: OrderRes
+  orders: OrderRes
   location: LocationRes
-}> = ({ data, location }) => {
+}> = ({ orders, location }) => {
   if (location) {
-    return <OrderList orders={data} location={location} />
+    return <OrderList orders={orders} location={location} />
   }
 
   return <AddressCapture onSubmit={address => goToOrdersPage(address)} />
@@ -25,17 +25,22 @@ export const getServerSideProps: GetServerSideProps = async ({
   res,
   query
 }) => {
-  const data = await getOrders()
-  let location = null
+  let orders = null
+  let location: LocationRes = null
 
   if (query.a) {
     const address = query.a.toString()
     location = await getLocationByAddress(address)
+
+    orders = await getOrders({
+      limit: 4,
+      coords: [location.lat, location.lng]
+    })
   }
 
   return {
     props: {
-      data,
+      orders,
       location
     }
   }

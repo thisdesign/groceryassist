@@ -28,12 +28,19 @@ export const getOrderById = async (id: string): Promise<OrderDb> =>
 
 type OrderProps = {
   limit?: number
-  latlng?: Coords
+  coords?: Coords
+  status?: "open" | "any" | "closed"
 }
 
-export const getOrders = (props: OrderProps): Promise<OrderRes> => {
-  console.log(props)
-  return fetch(`${apiRoute}/orders/open`).then(res => res.json())
+export const getOrders = ({ limit, coords }: OrderProps): Promise<OrderRes> => {
+  const queryString = qs.stringify({
+    limit,
+    latlng: coords ? coords.join(",") : null
+  })
+
+  console.log(`${apiRoute}/orders/open?${queryString}`)
+
+  return fetch(`${apiRoute}/orders/open?${queryString}`).then(res => res.json())
 }
 
 /**
@@ -79,8 +86,8 @@ export const completeOrder = (id: string): Promise<any> => {
  * Locations
  */
 
-const geocode = async (qs: string): Promise<LocationRes> => {
-  const url = ` ${apiRoute}/location/?${qs}}`
+const geocode = async (querystring: string): Promise<LocationRes> => {
+  const url = ` ${apiRoute}/location/?${querystring}}`
   return fetch(url).then(res => res.json())
 }
 
