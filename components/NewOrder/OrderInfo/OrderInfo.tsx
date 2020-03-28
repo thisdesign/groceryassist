@@ -3,7 +3,7 @@ import { Item } from "types"
 import { useForm } from "react-hook-form"
 import Paragraph from "components/Paragraph/Paragraph"
 import { addOrder } from "middleware"
-import { Router } from "next/router"
+import Router from "next/router"
 import S from "./OrderInfo.Styled"
 import { PageState } from "../NewOrder"
 
@@ -18,7 +18,7 @@ const OrderInfo: React.FC<{ state: PageState }> = ({ state: pageState }) => {
     }
 
     addOrder(mergedData)
-      .then(res => {
+      .then(() => {
         Router.push("/")
       })
       .catch(err => console.log(err))
