@@ -22,6 +22,7 @@ import OrderFulfill from "./OrderFulfill/OrderFulfill"
 import BottomBar from "./BottomBar/BottomBar"
 import NewOrder from "./NewOrder/NewOrder"
 import Paragraph from "./Paragraph/Paragraph"
+import AppFrame from "./AppFrame/AppFrame"
 
 export {
   OrderDetail,
@@ -49,5 +50,6 @@ export {
   OrderFulfill,
   BottomBar,
   NewOrder,
-  Paragraph
+  Paragraph,
+  AppFrame
 }

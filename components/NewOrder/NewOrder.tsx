@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-wrap-multilines */
 /* eslint-disable react/no-array-index-key */
 import React, { useState } from "react"
 import {
@@ -5,9 +6,11 @@ import {
   UIWrapper,
   BottomBar,
   UIButton,
-  Paragraph
+  Paragraph,
+  AppFrame
 } from "components"
 import { Item } from "types"
+
 import { PLACEHOLDER_ITEMS } from "../../constants"
 import S from "./NewOrder.Styled"
 import GroceryList from "./GroceryList/GroceryList"
@@ -23,6 +26,7 @@ export type PageState = {
 }
 
 const NewOrder = () => {
+  const [isGroceryPage, setIsGroceryPage] = useState(false)
   const [pageState, setPageState] = useState<PageState>({
     first: "",
     last: "",
@@ -43,20 +47,19 @@ const NewOrder = () => {
 
   return (
     <>
-      <UIWrapper pad>
-        <MediumHeading>New Order</MediumHeading>
-        <Paragraph>Your information will be used to</Paragraph>
-      </UIWrapper>
-
-      <S.Bg>
-        <UIWrapper pad>
-          <GroceryList
-            pushToState={pushToState}
-            items={pageState ? pageState.items : []}
-          />
-        </UIWrapper>
-      </S.Bg>
-
+      <AppFrame
+        header={
+          <>
+            <MediumHeading>New Order</MediumHeading>
+            <Paragraph>Your information will be used to</Paragraph>
+          </>
+        }
+      >
+        <GroceryList
+          pushToState={pushToState}
+          items={pageState ? pageState.items : []}
+        />
+      </AppFrame>
       <BottomBar>
         <UIWrapper>
           <UIButton onClick={handleCompleteButton}>Next</UIButton>
