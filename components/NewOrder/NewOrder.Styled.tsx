@@ -3,6 +3,7 @@ import styled from "styled-components"
 const Grid = styled.div`
   display: grid;
   grid-template-columns: 3fr 2fr;
+  grid-gap: var(--size-4);
 `
 
 const FormWrapper = styled.div`
@@ -38,7 +39,14 @@ const FormWrapper = styled.div`
   }
 `
 
+const NewItemInputWrapper = styled.div`
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-gap: var(--size-0);
+`
+
 export default {
+  NewItemInputWrapper,
   Grid,
   FormWrapper
 }

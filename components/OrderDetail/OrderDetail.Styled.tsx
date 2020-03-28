@@ -30,15 +30,9 @@ const ItemWrapper = styled.div`
   }
 `
 
-const Item = styled.div`
-  border-bottom: 1px solid var(--color-grey-2);
-  padding: var(--size-2) 0;
-`
-
 export default {
   ItemWrapper,
   Head,
   Grid,
-  Map,
-  Item
+  Map
 }
