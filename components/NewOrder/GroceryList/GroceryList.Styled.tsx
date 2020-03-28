@@ -31,6 +31,10 @@ const NewItemInputWrapper = styled.div`
     margin-top: 0.25rem;
     cursor: pointer;
   }
+
+  input:focus {
+    box-shadow: none;
+  }
 `
 
 export default {
