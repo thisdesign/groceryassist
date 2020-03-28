@@ -23,6 +23,7 @@ import BottomBar from "./BottomBar/BottomBar"
 import NewOrder from "./NewOrder/NewOrder"
 import Paragraph from "./Paragraph/Paragraph"
 import AppFrame from "./AppFrame/AppFrame"
+import RadioCircle from "./RadioCircle/RadioCircle"
 
 export {
   OrderDetail,
@@ -51,5 +52,6 @@ export {
   BottomBar,
   NewOrder,
   Paragraph,
-  AppFrame
+  AppFrame,
+  RadioCircle
 }

@@ -1,13 +1,19 @@
 import React, { useState } from "react"
 import { OrderDb } from "types"
-import { UIWrapper, BottomBar, LargeHeading, UIButton } from "components"
+import {
+  UIWrapper,
+  RadioCircle,
+  BottomBar,
+  LargeHeading,
+  UIButton
+} from "components"
 
 import { completeOrder } from "middleware"
 import Router from "next/router"
 import S from "./OrderFulfill.Styled"
 
 const OrderFulfill: React.FC<{ order: OrderDb }> = ({ order }) => {
-  const [isPromptOpen, setIsPromptOpen] = useState<boolean>(true)
+  const [isPromptOpen, setIsPromptOpen] = useState<boolean>(false)
   const closePrompt = () => setIsPromptOpen(false)
   const {
     user: { first, phone }
@@ -88,6 +94,7 @@ const Fulfillment: React.FC<{
             key={item.text}
             onClick={() => handleItem(i)}
           >
+            <RadioCircle checked={!!item.checked} />
             {item.text}
           </S.OrderItem>
         ))}

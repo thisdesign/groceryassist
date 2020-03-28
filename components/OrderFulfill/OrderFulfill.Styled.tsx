@@ -21,15 +21,6 @@ const OrderItem = styled.div<{ isChecked: boolean }>`
   text-decoration: ${props => (props.isChecked ? "line-through" : "none")};
   color: ${props => (props.isChecked ? "var(--color-grey-1)" : "inherit")};
   transition: 200ms color ease;
-
-  &:before {
-    content: "";
-    border: 1px solid var(--color-grey-1);
-    border-radius: 0.25rem;
-    display: inline-block;
-    width: 1rem;
-    height: 1rem;
-  }
 `
 
 const SmallWords = styled.div`
