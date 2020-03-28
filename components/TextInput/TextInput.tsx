@@ -30,6 +30,7 @@ const TextInput = styled.input`
 
 export const TextArea = styled.textarea`
   ${normalize}
+  resize: none;
 `
 
 export default TextInput
