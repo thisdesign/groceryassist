@@ -12,10 +12,12 @@ const LineItem: NextPage<{
   isHovered: boolean
   distance: number
 }> = ({ data, setHoveredId, isHovered, distance }) => {
-  const itemCount = data.items.length
-  const isPlural = data.items.length > 1
-  const { last, first } = data.user
-  const { lat, lng } = data.location
+  const {
+    items,
+    user: { last, first }
+  } = data
+  const itemCount = items.length
+  const isPlural = itemCount > 1
 
   return (
     <Link as={`/orders/${data._id}`} href="/orders/[orderId]">

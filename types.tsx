@@ -10,14 +10,14 @@ export type Location = {
   zip: number
 }
 
-export type latLng = {
-  lat: number
-  lng: number
+export type JSONGeo = {
+  type: "Point"
+  coordinates: [number, number]
 }
 
 export type Coords = [number, number]
 
-export type LocationRes = latLng & Location
+export type LocationRes = { lat: number; lng: number } & Location
 
 export type OrderUser = {
   first: string
@@ -55,7 +55,7 @@ export type Order = {
 export type OrderDb = Order & {
   date: string
   _id: string
-  location: LocationRes
+  location: Location & JSONGeo
 }
 
 export type GeoPrediction = {

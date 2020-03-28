@@ -24,8 +24,11 @@ const Marker: React.FC<{ lat: any; lng: any }> = ({ lat, lng }) => (
 )
 
 const OrderDetail: React.FC<{ data: OrderDb }> = ({ data }) => {
-  const { location } = data
-  const { lat, lng } = location
+  const {
+    location: {
+      coordinates: [lng, lat]
+    }
+  } = data
 
   return (
     <div>

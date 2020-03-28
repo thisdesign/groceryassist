@@ -10,23 +10,27 @@ const OrderList: React.FC<{
   location: LocationRes
 }> = ({ orders, location }) => {
   const [hoveredId, setHoveredId] = useState<string>(null)
-  const coords: Coords = [location.lat, location.lng]
+  const [ctrLat, ctrLng]: Coords = [location.lat, location.lng]
 
   return (
     <S.OrderList>
       <S.MapWrapper>
-        <Map center={{ lat: coords[0], lng: coords[1] }}>
-          <CurrentLocation lat={coords[0]} lng={coords[1]} />
-          {orders.map(item => (
-            <MapMarker
-              key={item._id}
-              lat={item.location.lat}
-              lng={item.location.lng}
-              data={item}
-              isHovered={hoveredId === item._id}
-              setHoveredId={setHoveredId}
-            />
-          ))}
+        <Map center={{ lat: ctrLat, lng: ctrLng }}>
+          <CurrentLocation lat={ctrLat} lng={ctrLng} />
+          {orders.map(item => {
+            const [lng, lat] = item.location.coordinates
+
+            return (
+              <MapMarker
+                key={item._id}
+                lat={lat}
+                lng={lng}
+                data={item}
+                isHovered={hoveredId === item._id}
+                setHoveredId={setHoveredId}
+              />
+            )
+          })}
         </Map>
       </S.MapWrapper>
       <div>
@@ -38,8 +42,8 @@ const OrderList: React.FC<{
             key={order._id}
             setHoveredId={setHoveredId}
             distance={getDistBetweenCoords(
-              [order.location.lat, order.location.lng],
-              coords
+              [order.location.coordinates[1], order.location.coordinates[0]],
+              [ctrLat, ctrLng]
             )}
           />
         ))}
