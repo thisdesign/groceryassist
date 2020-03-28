@@ -20,61 +20,10 @@ export type PageState = {
   first: string
   last: string
   address: string
-  phone: number
+  phone: string
   age: number
   additionalNotes: string | null
   items: Item[]
-}
-
-const NewOrder = () => {
-  const [pageState, setPageState] = useState<PageState>(null)
-
-  const pushToState = (newItem: Partial<PageState>) => {
-    setPageState({ ...pageState, ...newItem })
-  }
-
-  const handleCompleteButton = () => {
-    console.log(pageState)
-  }
-
-  return (
-    <div>
-      <UIWrapper pad>
-        <LargeHeading>New Order</LargeHeading>
-      </UIWrapper>
-      <UIWrapper>
-        <S.Grid>
-          <div>
-            <MediumHeading>Grocery List</MediumHeading>
-            <GroceryList
-              pushToState={pushToState}
-              items={pageState ? pageState.items : []}
-            />
-          </div>
-          <div>
-            <MediumHeading>Where can we find you?</MediumHeading>
-            <Paragraph>
-              Your information will be used to <br />
-              lorem ipsum dolor sit amet
-            </Paragraph>
-            <S.FormWrapper>
-              <AddressInput onSubmit={address => console.log(address)} />
-              <TextInput placeholder="First" />
-              <TextInput placeholder="Last" />
-              <TextInput placeholder="Phone" />
-              <TextInput placeholder="Age" />
-              <TextArea placeholder="Additional notes" rows={5} />
-            </S.FormWrapper>
-          </div>
-        </S.Grid>
-      </UIWrapper>
-      <BottomBar>
-        <UIWrapper>
-          <UIButton onClick={handleCompleteButton}>Place order</UIButton>
-        </UIWrapper>
-      </BottomBar>
-    </div>
-  )
 }
 
 const PLACEHOLDER_ITEMS: Item[] = [
@@ -112,18 +61,62 @@ const PLACEHOLDER_ITEMS: Item[] = [
   }
 ]
 
-const GroceryList: React.FC<{
+const NewOrder = () => {
+  const [pageState, setPageState] = useState<PageState>({
+    first: "",
+    last: "",
+    address: "",
+    phone: "6168227256",
+    age: 53,
+    additionalNotes: null,
+    items: PLACEHOLDER_ITEMS
+  })
+
+  const pushToState = (newItem: Partial<PageState>) => {
+    setPageState({ ...pageState, ...newItem })
+  }
+
+  const handleCompleteButton = () => {
+    console.log(pageState)
+  }
+
+  return (
+    <div>
+      <UIWrapper pad>
+        <LargeHeading>New Order</LargeHeading>
+      </UIWrapper>
+      <UIWrapper>
+        <S.Grid>
+          <GroceryList
+            pushToState={pushToState}
+            items={pageState ? pageState.items : []}
+          />
+          <InfoInput />
+        </S.Grid>
+      </UIWrapper>
+      <BottomBar>
+        <UIWrapper>
+          <UIButton onClick={handleCompleteButton}>Place order</UIButton>
+        </UIWrapper>
+      </BottomBar>
+    </div>
+  )
+}
+
+type ListProps = {
   items: Item[]
   pushToState: (newItem: Partial<PageState>) => void
-}> = ({ pushToState, items }) => {
+}
+
+const GroceryList: React.FC<ListProps> = ({ pushToState, items }) => {
   const { newItemFieldRef, moreDetailsFieldRef, handleNewItem } = useItemAdd(
     items,
     pushToState
   )
 
   return (
-    <>
-      {PLACEHOLDER_ITEMS.map((item, i) => (
+    <div>
+      {items.map((item, i) => (
         <GroceryLineItem
           key={`${item.text}${i}`}
           text={item.text}
@@ -135,6 +128,7 @@ const GroceryList: React.FC<{
         <div>
           <TextInput placeholder="1 carton of eggs" ref={newItemFieldRef} />
           <TextArea
+            style={{ display: "none" }}
             ref={moreDetailsFieldRef}
             placeholder="Additional details"
           />
@@ -147,7 +141,27 @@ const GroceryList: React.FC<{
           <div>add details</div>
         </div>
       </S.NewItemInputWrapper>
-    </>
+    </div>
+  )
+}
+
+const InfoInput = () => {
+  return (
+    <div>
+      <MediumHeading>Where can we find you?</MediumHeading>
+      <Paragraph>
+        Your information will be used to <br />
+        lorem ipsum dolor sit amet
+      </Paragraph>
+      <S.FormWrapper>
+        <AddressInput onSubmit={address => console.log(address)} />
+        <TextInput placeholder="First" />
+        <TextInput placeholder="Last" />
+        <TextInput placeholder="Phone" />
+        <TextInput placeholder="Age" />
+        <TextArea placeholder="Additional notes" rows={5} />
+      </S.FormWrapper>
+    </div>
   )
 }
 export default NewOrder

@@ -15,7 +15,7 @@ const useItemAdd = (
 
     if ($itemName && $itemNotes && $itemName.value !== "") {
       const newItem = {
-        name: $itemName.value,
+        text: $itemName.value,
         notes: $itemNotes.value !== "" ? $itemNotes.value : null
       }
 
@@ -43,6 +43,8 @@ const useItemAdd = (
         $itemName.removeEventListener("keydown", listenForEnter)
       }
     }
+
+    return null
   }, [newItemFieldRef, items])
 
   return {
