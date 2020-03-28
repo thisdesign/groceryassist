@@ -7,14 +7,15 @@ import { PageState } from "../NewOrder"
 
 import GroceryStyled from "../GroceryList/GroceryList.Styled"
 
-const OrderInfo: React.FC<{ state: PageState }> = ({ state }) => {
+const OrderInfo: React.FC<{ state: PageState }> = ({ state: pageState }) => {
   const { register, handleSubmit, errors } = useForm()
   const onSubmit = formData => {
-    const mergedData = { ...state, ...formData }
+    const mergedData = {
+      ...pageState,
+      ...formData
+    }
     console.log(JSON.stringify(mergedData))
   }
-
-  console.log(state)
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

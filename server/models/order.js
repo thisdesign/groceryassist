@@ -48,8 +48,9 @@ const OrderSchema = new Schema({
       type: String,
       required: true
     },
+
     zip: {
-      type: Number,
+      type: String,
       required: true
     }
   },
@@ -76,20 +77,9 @@ const OrderSchema = new Schema({
 
   items: [
     {
-      name: {
+      text: {
         type: String,
         required: true
-      },
-      qty: {
-        type: Number,
-        required: false,
-        default: 1
-      },
-
-      unit: {
-        type: String,
-        required: false,
-        default: "ea"
       },
 
       notes: String

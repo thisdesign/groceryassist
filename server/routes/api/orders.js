@@ -5,7 +5,7 @@ const getAddressData = require("../../util/getAddressData")
 
 const router = express.Router()
 
-const CURRENT_VERSION = "0.2.4"
+const CURRENT_VERSION = "0.3"
 
 /**
  * @route     GET api/orders
@@ -88,15 +88,26 @@ router.put("/:id/complete", async (req, res) => {
  * @access    Public
  */
 router.post("/", (req, res) => {
-  const { address, city, state, zip } = req.body.location
+  const {
+    address,
+    city,
+    state,
+    zip,
+    phone,
+    first,
+    last,
+    ...formInput
+  } = req.body
 
   getAddressData(`${address}, ${city}, ${state} ${zip}`)
     .then(location => {
       const data = {
-        ...req.body,
         location,
+        user: { phone, first, last },
+        ...formInput,
         _version: CURRENT_VERSION
       }
+      console.log(data)
 
       const order = new Order(data)
       order.save((err, doc) => {
@@ -116,6 +127,8 @@ router.post("/", (req, res) => {
       })
     })
     .catch(err => {
+      console.log(err)
+
       res.json({
         success: false,
         msg: "Invalid address.",
