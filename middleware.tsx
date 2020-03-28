@@ -32,13 +32,18 @@ type OrderProps = {
   status?: "open" | "any" | "closed"
 }
 
-export const getOrders = ({ limit, coords }: OrderProps): Promise<OrderRes> => {
+export const getOrders = ({
+  limit,
+  coords,
+  status = "open"
+}: OrderProps): Promise<OrderRes> => {
   const queryString = qs.stringify({
     limit,
-    latlng: coords ? coords.join(",") : null
+    latlng: coords ? coords.join(",") : null,
+    status
   })
 
-  return fetch(`${apiRoute}/orders/open?${queryString}`).then(res => res.json())
+  return fetch(`${apiRoute}/orders/?${queryString}`).then(res => res.json())
 }
 
 /**
