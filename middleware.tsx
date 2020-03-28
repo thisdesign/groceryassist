@@ -1,4 +1,5 @@
 import "isomorphic-unfetch"
+import qs from "qs"
 import {
   OrderDb,
   OrderRes,
@@ -25,8 +26,15 @@ export const getOrderById = async (id: string): Promise<OrderDb> =>
  * List Orders
  */
 
-export const getOrders = (): Promise<OrderRes> =>
-  fetch(`${apiRoute}/orders/open`).then(res => res.json())
+type OrderProps = {
+  limit?: number
+  latlng?: Coords
+}
+
+export const getOrders = (props: OrderProps): Promise<OrderRes> => {
+  console.log(props)
+  return fetch(`${apiRoute}/orders/open`).then(res => res.json())
+}
 
 /**
  * Add Order
