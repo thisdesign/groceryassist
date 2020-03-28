@@ -30,6 +30,21 @@ export type Status = {
   date_fulfilled: null | Date
 }
 
+export type NewOrderBody = {
+  first: string
+  last: string
+  address: string
+  phone: string
+  age: string
+  additionalNotes?: any
+  items: Item[]
+  mobile: string
+  city: string
+  state: string
+  zip: string
+  apt: string
+}
+
 export type Order = {
   user: OrderUser
   items: Item[]

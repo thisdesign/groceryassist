@@ -5,7 +5,8 @@ import {
   Order,
   Coords,
   LocationRes,
-  NewUserReq
+  NewUserReq,
+  NewOrderBody
 } from "./types"
 
 const isDev = process.env.NODE_ENV !== "production"
@@ -31,7 +32,7 @@ export const getOrders = (): Promise<OrderRes> =>
  * Add Order
  */
 
-export const addOrder = async (order: Order) => {
+export const addOrder = async (order: NewOrderBody) => {
   return new Promise((resolve, reject) => {
     return fetch(`${apiRoute}/orders`, {
       method: "POST",

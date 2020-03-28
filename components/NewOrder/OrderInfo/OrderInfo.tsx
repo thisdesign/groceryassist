@@ -2,6 +2,8 @@ import { UIButton, TextArea, TextInput, AddressInput } from "components"
 import { Item } from "types"
 import { useForm } from "react-hook-form"
 import Paragraph from "components/Paragraph/Paragraph"
+import { addOrder } from "middleware"
+import { Router } from "next/router"
 import S from "./OrderInfo.Styled"
 import { PageState } from "../NewOrder"
 
@@ -14,7 +16,10 @@ const OrderInfo: React.FC<{ state: PageState }> = ({ state: pageState }) => {
       ...pageState,
       ...formData
     }
-    console.log(JSON.stringify(mergedData))
+
+    addOrder(mergedData)
+      .then(res => Router.push("/"))
+      .catch(err => console.log(err))
   }
 
   return (
@@ -98,7 +103,7 @@ const OrderInfo: React.FC<{ state: PageState }> = ({ state: pageState }) => {
             <TextArea
               style={{ gridColumn: "span 1" }}
               placeholder="Order Notes (optional)"
-              name="Order Notes"
+              name="orderNotes"
               rows={4}
               ref={register}
             />
