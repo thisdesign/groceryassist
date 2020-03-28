@@ -27,7 +27,7 @@ const style = css`
     --color-grey-lt: #dadce0;
     --color-grey-1: #8f9398;
     --color-grey-2: #eaeaea;
-    --color-grey-3: #f9f9f9;
+    --color-grey-3: rgb(250, 249, 249);
 
     --shadow: 0 3px 7px rgba(0, 0, 0, 0.1);
     --border-radius: 0.5rem;
@@ -57,12 +57,6 @@ const style = css`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     box-sizing: border-box;
-  }
-
-  body,
-  html,
-  #__next {
-    height: 100%;
   }
 
   body,

@@ -13,6 +13,7 @@ import {
 } from "components"
 import { Item } from "types"
 import GroceryLineItem from "components/GroceryLineItem/GroceryLineItem"
+import { PLACEHOLDER_ITEMS } from "../../constants"
 import S from "./NewOrder.Styled"
 import useItemAdd from "./useItemAdd"
 
@@ -25,41 +26,6 @@ export type PageState = {
   additionalNotes: string | null
   items: Item[]
 }
-
-const PLACEHOLDER_ITEMS: Item[] = [
-  {
-    text: "2 organic fuji apples"
-  },
-  {
-    text: "4 bananas"
-  },
-  {
-    text: "2 avocados",
-    notes: "Prefer if they are a little soft"
-  },
-  {
-    text: "2 avocados"
-  },
-  {
-    text: "2 sweet potatoes"
-  },
-  {
-    text: "2 sweet onion"
-  },
-  {
-    text: "1 bag organic spinich"
-  },
-  {
-    text: "1 carton eggs"
-  },
-  {
-    text: "stick butter",
-    notes: "I prefer kerrygold"
-  },
-  {
-    text: "1 lb organic salted almonds"
-  }
-]
 
 const NewOrder = () => {
   const [pageState, setPageState] = useState<PageState>({
@@ -81,25 +47,27 @@ const NewOrder = () => {
   }
 
   return (
-    <div>
+    <>
       <UIWrapper pad>
-        <LargeHeading>New Order</LargeHeading>
+        <MediumHeading>New Order</MediumHeading>
+        <Paragraph>Your information will be used to</Paragraph>
       </UIWrapper>
-      <UIWrapper>
-        <S.Grid>
+
+      <S.Bg>
+        <UIWrapper pad>
           <GroceryList
             pushToState={pushToState}
             items={pageState ? pageState.items : []}
           />
-          <InfoInput />
-        </S.Grid>
-      </UIWrapper>
+        </UIWrapper>
+      </S.Bg>
+
       <BottomBar>
         <UIWrapper>
-          <UIButton onClick={handleCompleteButton}>Place order</UIButton>
+          <UIButton onClick={handleCompleteButton}>Next</UIButton>
         </UIWrapper>
       </BottomBar>
-    </div>
+    </>
   )
 }
 
@@ -115,53 +83,37 @@ const GroceryList: React.FC<ListProps> = ({ pushToState, items }) => {
   )
 
   return (
-    <div>
-      {items.map((item, i) => (
-        <GroceryLineItem
-          key={`${item.text}${i}`}
-          text={item.text}
-          notes={item.notes}
-        />
-      ))}
+    <S.GroceryWrap>
+      <S.White>
+        <S.Pad>
+          {items.map((item, i) => (
+            <GroceryLineItem
+              key={`${item.text}${i}`}
+              text={item.text}
+              notes={item.notes}
+            />
+          ))}
+        </S.Pad>
+        <S.NewItemInputWrapper>
+          <div>
+            <TextInput placeholder="1 carton of eggs" ref={newItemFieldRef} />
+            <TextArea
+              style={{ display: "none" }}
+              ref={moreDetailsFieldRef}
+              placeholder="Additional details"
+            />
+          </div>
 
-      <S.NewItemInputWrapper>
-        <div>
-          <TextInput placeholder="1 carton of eggs" ref={newItemFieldRef} />
-          <TextArea
-            style={{ display: "none" }}
-            ref={moreDetailsFieldRef}
-            placeholder="Additional details"
-          />
-        </div>
-
-        <div>
-          <UIButton inverted textColor="brand" onClick={handleNewItem}>
-            Add Item
-          </UIButton>
-          <div>add details</div>
-        </div>
-      </S.NewItemInputWrapper>
-    </div>
+          <div>
+            <UIButton inverted textColor="brand" onClick={handleNewItem}>
+              Add Item
+            </UIButton>
+            <span>add details</span>
+          </div>
+        </S.NewItemInputWrapper>
+      </S.White>
+    </S.GroceryWrap>
   )
 }
 
-const InfoInput = () => {
-  return (
-    <div>
-      <MediumHeading>Where can we find you?</MediumHeading>
-      <Paragraph>
-        Your information will be used to <br />
-        lorem ipsum dolor sit amet
-      </Paragraph>
-      <S.FormWrapper>
-        <AddressInput onSubmit={address => console.log(address)} />
-        <TextInput placeholder="First" />
-        <TextInput placeholder="Last" />
-        <TextInput placeholder="Phone" />
-        <TextInput placeholder="Age" />
-        <TextArea placeholder="Additional notes" rows={5} />
-      </S.FormWrapper>
-    </div>
-  )
-}
 export default NewOrder

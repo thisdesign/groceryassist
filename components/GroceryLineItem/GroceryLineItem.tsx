@@ -7,7 +7,8 @@ const GroceryLineItem: React.FC<GroceryItemProps> = ({ text, notes }) => {
   return (
     <S.ItemWrapper>
       <h3>{text}</h3>
-      {notes && <h5>{notes}</h5>}
+      {notes && <h4>{notes}</h4>}
+      <h5>Edit · Remove</h5>
     </S.ItemWrapper>
   )
 }
