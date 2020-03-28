@@ -1,6 +1,6 @@
 export type Item = {
-  name: string
-  notes: null | string
+  text: string
+  notes?: string
 }
 
 export type Location = {

@@ -64,10 +64,8 @@ const Details: React.FC<{ data: OrderDb }> = ({ data }) => {
         </div>
 
         <S.ItemWrapper>
-          {items.map(({ qty, name }) => (
-            <S.Item>
-              {name} • {qty}
-            </S.Item>
+          {items.map(({ text }) => (
+            <S.Item>{text}</S.Item>
           ))}
         </S.ItemWrapper>
       </S.Grid>
