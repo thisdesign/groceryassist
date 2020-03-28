@@ -8,7 +8,7 @@ import Nav from "./Nav/Nav"
 import UIBox from "./UIBox/UIBox"
 import Map from "./Map/Map"
 import CurrentLocation from "./CurrentLocation/CurrentLocation"
-import TextInput from "./TextInput/TextInput"
+import TextInput, { TextArea } from "./TextInput/TextInput"
 import PhoneCapture from "./PhoneCapture/PhoneCapture"
 import UIButton from "./UIButton/UIButton"
 import { MediumHeading, LargeHeading } from "./Heading/Heading"
@@ -35,6 +35,7 @@ export {
   Map,
   CurrentLocation,
   TextInput,
+  TextArea,
   PhoneCapture,
   UIButton,
   MediumHeading,

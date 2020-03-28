@@ -1,7 +1,7 @@
 import React from "react"
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 
-const TextInput = styled.input`
+const normalize = css`
   font-size: 1rem;
   padding: 0.5rem var(--size-0);
   border: 1px solid var(--color-grey-lt);
@@ -13,6 +13,7 @@ const TextInput = styled.input`
   margin: 0 auto;
   outline: none;
   transition: 0.2s box-shadow ease;
+  width: 100%;
 
   ::placeholder {
     color: var(--color-grey-1);
@@ -21,6 +22,14 @@ const TextInput = styled.input`
   &:focus {
     box-shadow: var(--shadow);
   }
+`
+
+const TextInput = styled.input`
+  ${normalize}
+`
+
+export const TextArea = styled.textarea`
+  ${normalize}
 `
 
 export default TextInput
