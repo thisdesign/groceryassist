@@ -26,16 +26,15 @@ const OrderSchema = new Schema({
   },
 
   location: {
-    lat: {
-      type: Number,
-      required: true
+    type: {
+      type: String, // Don't do `{ location: { type: String } }`
+      enum: ["Point"], // 'location.type' must be 'Point'
+      required: true,
+      default: "Point"
     },
-    lng: {
-      type: Number,
-      required: true
-    },
-    address: {
-      type: String,
+
+    coordinates: {
+      type: [Number],
       required: true
     },
 

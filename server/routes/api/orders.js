@@ -26,12 +26,23 @@ const getStatus = status => {
 }
 
 router.get("/", (req, res) => {
-  const { limit = 0, status = "open" } = req.query
+  const { radius = 10, latlng, limit = 0, status = "open" } = req.query
 
-  Order.find({
+  const orderQuery = Order.find({
     _version: CURRENT_VERSION,
     ...getStatus(status)
   })
+
+  if (latlng) {
+    const [lat, lng] = latlng.split(",")
+    orderQuery.where("location").within({
+      center: [lng, lat],
+      radius: parseFloat(radius)
+    })
+  }
+
+  orderQuery
+    .sort({ date: -1 })
     .limit(parseFloat(limit))
     .then(orders => {
       res.json(orders)
@@ -118,9 +129,12 @@ router.post("/", (req, res) => {
   } = req.body
 
   getAddressData(`${address}, ${city}, ${state} ${zip}`)
-    .then(location => {
+    .then(({ lat, lng, ...location }) => {
       const data = {
-        location,
+        location: {
+          coordinates: [lng, lat],
+          ...location
+        },
         user: { phone, first, last },
         ...formInput,
         _version: CURRENT_VERSION

@@ -38,8 +38,6 @@ export const getOrders = ({ limit, coords }: OrderProps): Promise<OrderRes> => {
     latlng: coords ? coords.join(",") : null
   })
 
-  console.log(`${apiRoute}/orders/open?${queryString}`)
-
   return fetch(`${apiRoute}/orders/open?${queryString}`).then(res => res.json())
 }
 
