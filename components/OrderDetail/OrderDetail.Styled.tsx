@@ -23,7 +23,7 @@ const Head = styled.div`
 
 const ItemWrapper = styled.div`
   border-top: 1px solid var(--color-grey-2);
-  margin: var(--size-6) 0;
+  margin: var(--size-6);
 
   @media ${mq.sm} {
     margin-top: 0;

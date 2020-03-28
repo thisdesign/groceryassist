@@ -1,15 +1,16 @@
 import styled from "styled-components"
 
 const GroceryWrap = styled.div`
-  max-width: 35rem;
-  margin: 0 auto;
+  /* max-width: 35rem; */
+  /* margin: 0 auto; */
 `
 
 const White = styled.div`
   border-radius: 0.5rem;
   background: white;
-  border: 1px solid var(--color-grey-2);
+  /* border: 1px solid var(--color-grey-2); */
   margin-top: var(--size-2);
+  box-shadow: var(--shadow);
 `
 
 const NewItemInputWrapper = styled.div`
@@ -34,7 +35,8 @@ const NewItemInputWrapper = styled.div`
 `
 
 const ItemWrapper = styled.div`
-  padding: var(--size-2) 0;
+  padding: var(--size-3) var(--size-2);
+
   &:not(:last-child) {
     border-bottom: 1px solid var(--color-grey-2);
   }
@@ -42,12 +44,15 @@ const ItemWrapper = styled.div`
   h4 {
     margin-bottom: 0.8rem;
   }
+  h5 {
+    font-weight: lighter;
+  }
   h5,
   h4 {
     color: var(--color-grey-1);
     font-size: var(--size-0);
     letter-spacing: 0.02em;
-    padding-top: 0.25rem;
+    padding-top: 0.25em;
   }
 `
 
