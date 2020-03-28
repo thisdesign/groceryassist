@@ -18,7 +18,9 @@ const OrderInfo: React.FC<{ state: PageState }> = ({ state: pageState }) => {
     }
 
     addOrder(mergedData)
-      .then(res => Router.push("/"))
+      .then(res => {
+        Router.push("/")
+      })
       .catch(err => console.log(err))
   }
 
