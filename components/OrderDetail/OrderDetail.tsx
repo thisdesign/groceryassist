@@ -1,4 +1,4 @@
-import { UIWrapper, BottomBar, LargeHeading, GroceryLineItem } from "components"
+import { UIWrapper, BottomBar, LargeHeading } from "components"
 import { OrderDb } from "../../types"
 import S from "./OrderDetail.Styled"
 
@@ -64,8 +64,11 @@ const Details: React.FC<{ data: OrderDb }> = ({ data }) => {
         </div>
 
         <S.ItemWrapper>
-          {items.map(({ text, notes }) => (
-            <GroceryLineItem text={text} notes={notes} />
+          {items.map((item, i) => (
+            <div key={item.text}>
+              {item.text}
+              {item.notes}
+            </div>
           ))}
         </S.ItemWrapper>
       </S.Grid>

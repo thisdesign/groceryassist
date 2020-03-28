@@ -22,10 +22,11 @@ const GroceryList: React.FC<ListProps> = ({ pushToState, items }) => {
     <S.GroceryWrap>
       <S.White>
         {items.map((item, i) => (
-          <div key={`${item.text}${i}`}>
-            {item.text}
-            {item.notes}
-          </div>
+          <GroceryLineItem
+            key={`${item.text}${i}`}
+            text={item.text}
+            notes={item.notes}
+          />
         ))}
 
         <S.NewItemInputWrapper>
