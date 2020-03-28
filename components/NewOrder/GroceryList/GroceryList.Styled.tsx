@@ -12,10 +12,6 @@ const White = styled.div`
   margin-top: var(--size-2);
 `
 
-const Pad = styled.div`
-  padding: 0.5rem var(--size-3);
-`
-
 const NewItemInputWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr auto;
@@ -37,9 +33,28 @@ const NewItemInputWrapper = styled.div`
   }
 `
 
+const ItemWrapper = styled.div`
+  padding: var(--size-2) 0;
+  &:not(:last-child) {
+    border-bottom: 1px solid var(--color-grey-2);
+  }
+
+  h4 {
+    margin-bottom: 0.8rem;
+  }
+  h5,
+  h4 {
+    color: var(--color-grey-1);
+    font-size: var(--size-0);
+    letter-spacing: 0.02em;
+    padding-top: 0.25rem;
+  }
+`
+
 export default {
   GroceryWrap,
   White,
-  Pad,
-  NewItemInputWrapper
+
+  NewItemInputWrapper,
+  ItemWrapper
 }

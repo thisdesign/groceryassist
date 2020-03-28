@@ -29,7 +29,7 @@ const style = css`
     --color-grey-2: #eaeaea;
     --color-grey-3: rgb(250, 249, 249);
 
-    --shadow: 0 3px 7px rgba(0, 0, 0, 0.1);
+    --shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
     --border-radius: 0.5rem;
 
     ${scale.map((item, i) => `--size-${i}: ${item}rem`).join(";\n")};
@@ -65,15 +65,15 @@ const style = css`
     font-family: "basis grotesque", helvetica, arial, sans-serif;
     color: var(--color-primary);
     background: var(--bg-color);
-    font-size: 20px;
+    font-size: 18px;
     overscroll-behavior-y: none;
 
     @media ${mq.xs} {
-      font-size: 21px;
+      font-size: 20px;
     }
 
     @media ${mq.sm} {
-      font-size: 22px;
+      font-size: 21px;
     }
 
     @media ${mq.lg} {

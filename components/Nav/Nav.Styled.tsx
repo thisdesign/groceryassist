@@ -3,7 +3,6 @@ import UIBox from "../UIBox/UIBox"
 
 const Nav = styled(UIBox)`
   background: white;
-  box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);
   z-index: 10;
   position: sticky;
   top: 0;

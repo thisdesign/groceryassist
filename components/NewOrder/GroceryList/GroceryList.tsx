@@ -3,7 +3,6 @@ import React, { useState, useRef } from "react"
 
 import { UIButton, TextInput, TextArea } from "components"
 import { Item } from "types"
-import GroceryLineItem from "components/GroceryLineItem/GroceryLineItem"
 import S from "./GroceryList.Styled"
 import useItemAdd from "./useItemAdd"
 import { PageState } from "../NewOrder"
@@ -22,15 +21,13 @@ const GroceryList: React.FC<ListProps> = ({ pushToState, items }) => {
   return (
     <S.GroceryWrap>
       <S.White>
-        <S.Pad>
-          {items.map((item, i) => (
-            <GroceryLineItem
-              key={`${item.text}${i}`}
-              text={item.text}
-              notes={item.notes}
-            />
-          ))}
-        </S.Pad>
+        {items.map((item, i) => (
+          <div key={`${item.text}${i}`}>
+            {item.text}
+            {item.notes}
+          </div>
+        ))}
+
         <S.NewItemInputWrapper>
           <div>
             <TextInput placeholder="1 carton of eggs" ref={newItemFieldRef} />
@@ -50,6 +47,16 @@ const GroceryList: React.FC<ListProps> = ({ pushToState, items }) => {
         </S.NewItemInputWrapper>
       </S.White>
     </S.GroceryWrap>
+  )
+}
+
+const GroceryLineItem: React.FC<Item> = ({ text, notes }) => {
+  return (
+    <S.ItemWrapper>
+      <h3>{text}</h3>
+      {notes && <h4>&quot;{notes}&quot;</h4>}
+      <h5>Edit · Remove</h5>
+    </S.ItemWrapper>
   )
 }
 
