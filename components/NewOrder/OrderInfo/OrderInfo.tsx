@@ -3,12 +3,18 @@ import { Item } from "types"
 import { useForm } from "react-hook-form"
 import Paragraph from "components/Paragraph/Paragraph"
 import S from "./OrderInfo.Styled"
+import { PageState } from "../NewOrder"
 
 import GroceryStyled from "../GroceryList/GroceryList.Styled"
 
-const OrderInfo = () => {
+const OrderInfo: React.FC<{ state: PageState }> = ({ state }) => {
   const { register, handleSubmit, errors } = useForm()
-  const onSubmit = data => console.log(data)
+  const onSubmit = formData => {
+    const mergedData = { ...state, ...formData }
+    console.log(JSON.stringify(mergedData))
+  }
+
+  console.log(state)
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

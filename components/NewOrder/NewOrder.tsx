@@ -57,9 +57,6 @@ const NewOrder = () => {
         </AppFrame>
       ) : (
         <AppFrame
-          bottomBar={
-            <UIButton onClick={handleCompleteButton}>Submit Order</UIButton>
-          }
           header={
             <>
               <MediumHeading>Order Details</MediumHeading>
@@ -67,7 +64,7 @@ const NewOrder = () => {
             </>
           }
         >
-          <OrderInfo />
+          <OrderInfo state={pageState} />
         </AppFrame>
       )}
     </>
