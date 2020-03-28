@@ -27,7 +27,7 @@ const NewOrder = () => {
     phone: "6168227256",
     age: 53,
     additionalNotes: null,
-    items: PLACEHOLDER_ITEMS
+    items: []
   })
 
   const pushToState = (newItem: Partial<PageState>) => {

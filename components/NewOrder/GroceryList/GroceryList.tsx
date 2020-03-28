@@ -3,6 +3,7 @@ import React, { useState, useRef } from "react"
 
 import { UIButton, TextInput, TextArea } from "components"
 import { Item } from "types"
+import Paragraph from "components/Paragraph/Paragraph"
 import S from "./GroceryList.Styled"
 import useItemAdd from "./useItemAdd"
 import { PageState } from "../NewOrder"
@@ -21,13 +22,17 @@ const GroceryList: React.FC<ListProps> = ({ pushToState, items }) => {
   return (
     <S.GroceryWrap>
       <S.White>
-        {items.map((item, i) => (
-          <GroceryLineItem
-            key={`${item.text}${i}`}
-            text={item.text}
-            notes={item.notes}
-          />
-        ))}
+        {items.length ? (
+          items.map((item, i) => (
+            <GroceryLineItem
+              key={`${item.text}${i}`}
+              text={item.text}
+              notes={item.notes}
+            />
+          ))
+        ) : (
+          <Paragraph>add items!!</Paragraph>
+        )}
 
         <S.NewItemInputWrapper>
           <div>
