@@ -85,10 +85,10 @@ const Fulfillment: React.FC<{
         {checkItems.map((item, i) => (
           <S.OrderItem
             isChecked={item.checked}
-            key={item.name}
+            key={item.text}
             onClick={() => handleItem(i)}
           >
-            {item.name}
+            {item.text}
           </S.OrderItem>
         ))}
       </UIWrapper>
