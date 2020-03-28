@@ -1,7 +1,7 @@
 import styled from "styled-components"
 
 const ItemWrapper = styled.div`
-  padding: var(--size-1) 0;
+  padding: var(--size-2) 0;
   &:not(:last-child) {
     border-bottom: 1px solid var(--color-grey-2);
   }

@@ -1,21 +1,16 @@
 /* eslint-disable react/no-array-index-key */
-import React, { useState, useRef } from "react"
-import UIWrapper from "components/UIWrapper/UIWrapper"
+import React, { useState } from "react"
 import {
-  LargeHeading,
   MediumHeading,
+  UIWrapper,
   BottomBar,
   UIButton,
-  TextInput,
-  AddressInput,
-  Paragraph,
-  TextArea
+  Paragraph
 } from "components"
 import { Item } from "types"
-import GroceryLineItem from "components/GroceryLineItem/GroceryLineItem"
 import { PLACEHOLDER_ITEMS } from "../../constants"
 import S from "./NewOrder.Styled"
-import useItemAdd from "./useItemAdd"
+import GroceryList from "./GroceryList/GroceryList"
 
 export type PageState = {
   first: string
@@ -68,51 +63,6 @@ const NewOrder = () => {
         </UIWrapper>
       </BottomBar>
     </>
-  )
-}
-
-type ListProps = {
-  items: Item[]
-  pushToState: (newItem: Partial<PageState>) => void
-}
-
-const GroceryList: React.FC<ListProps> = ({ pushToState, items }) => {
-  const { newItemFieldRef, moreDetailsFieldRef, handleNewItem } = useItemAdd(
-    items,
-    pushToState
-  )
-
-  return (
-    <S.GroceryWrap>
-      <S.White>
-        <S.Pad>
-          {items.map((item, i) => (
-            <GroceryLineItem
-              key={`${item.text}${i}`}
-              text={item.text}
-              notes={item.notes}
-            />
-          ))}
-        </S.Pad>
-        <S.NewItemInputWrapper>
-          <div>
-            <TextInput placeholder="1 carton of eggs" ref={newItemFieldRef} />
-            <TextArea
-              style={{ display: "none" }}
-              ref={moreDetailsFieldRef}
-              placeholder="Additional details"
-            />
-          </div>
-
-          <div>
-            <UIButton inverted textColor="brand" onClick={handleNewItem}>
-              Add Item
-            </UIButton>
-            <span>add details</span>
-          </div>
-        </S.NewItemInputWrapper>
-      </S.White>
-    </S.GroceryWrap>
   )
 }
 

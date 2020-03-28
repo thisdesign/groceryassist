@@ -1,6 +1,5 @@
-import { useState, useRef, useEffect } from "react"
-import { Item } from "types"
-import { PageState } from "./NewOrder"
+import { useRef, useEffect } from "react"
+import { PageState } from "../NewOrder"
 
 const useItemAdd = (
   items,
