@@ -65,10 +65,10 @@ const Details: React.FC<{ data: OrderDb }> = ({ data }) => {
 
         <S.ItemWrapper>
           {items.map((item, i) => (
-            <div key={item.text}>
+            <S.ListItem key={item.text}>
               {item.text}
-              {item.notes}
-            </div>
+              {item.notes && <h5>&quot;{item.notes}&quot;</h5>}
+            </S.ListItem>
           ))}
         </S.ItemWrapper>
       </S.Grid>
