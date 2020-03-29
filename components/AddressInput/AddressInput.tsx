@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import TextInput from "../TextInput/TextInput"
 import { GeoPrediction } from "../../types"
 import S from "./AddressInput.Styled"
-import { UIButton } from ".."
+import { UIButton, PinIcon } from ".."
 import { fetchPredictions } from "../../middleware"
 
 const AddressInput: React.FC<{
@@ -49,12 +49,17 @@ const AddressInput: React.FC<{
   }
   return (
     <S.Wrapper>
-      <TextInput
-        placeholder="Street Address"
-        value={inputVal}
-        onChange={handleInputChange}
-        onKeyDown={handleKeyDown}
-      />
+      <S.InputWrapper>
+        <TextInput
+          placeholder="Street Address"
+          value={inputVal}
+          onChange={handleInputChange}
+          onKeyDown={handleKeyDown}
+        />
+        <S.PinWrapper>
+          <PinIcon />
+        </S.PinWrapper>
+      </S.InputWrapper>
       {isMenuOpen && predictions && !!predictions.length && (
         <S.PredictionWrapper>
           {predictions.map((item, i) => (

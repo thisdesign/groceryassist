@@ -1,8 +1,24 @@
 import styled from "styled-components"
+import PinIcon from "../PinIcon/PinIcon"
 
 const Wrapper = styled.div`
   display: block;
   position: relative;
+`
+
+const InputWrapper = styled.div`
+  position: relative;
+
+  input {
+    padding-left: 1.7rem;
+  }
+`
+
+const PinWrapper = styled.div`
+  position: absolute;
+  top: 0.45em;
+  left: 0.85rem;
+  transform: scale(1.2);
 `
 
 const PredictionWrapper = styled.div`
@@ -40,5 +56,7 @@ const PredictionItem = styled.div<{ isSelected: boolean }>`
 export default {
   Wrapper,
   PredictionWrapper,
-  PredictionItem
+  PredictionItem,
+  InputWrapper,
+  PinWrapper
 }

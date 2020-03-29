@@ -1,4 +1,4 @@
-const PinIcon = () => (
+const PinIcon: React.FC<{ className?: string }> = ({ className, ...props }) => (
   <svg width="9px" height="13px" viewBox="0 0 9 13" version="1.1">
     <g
       id="Symbols"
@@ -6,6 +6,8 @@ const PinIcon = () => (
       strokeWidth="1"
       fill="none"
       fillRule="evenodd"
+      className={className}
+      {...props}
     >
       <g id="Filter-bar" transform="translate(-27.000000, -25.000000)">
         <rect
