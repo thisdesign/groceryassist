@@ -11,48 +11,36 @@ const Map: React.FC<{
 }> = ({ children, center }) => {
   const [mapApiData, setMapApiData] = useState(null)
 
-  // const drawRadius = () => {
-  //   const radiusCircle = new mapApiData.maps.Circle({
-  //     strokeColor: "#FF0000",
-  //     strokeOpacity: 0.8,
-  //     strokeWeight: 1,
-  //     fillColor: "#FF0000",
-  //     fillOpacity: 0.1,
-  //     map: mapApiData.map,
-  //     center,
-  //     radius: 5 * 1000
-  //   })
-  // }
+  const drawRadius = () => {
+    const MILES = 2.3
+
+    return new mapApiData.maps.Circle({
+      strokeColor: "#FF0000",
+      strokeOpacity: 0,
+      strokeWeight: 1,
+      fillColor: "#FF0000",
+      fillOpacity: 0,
+      map: mapApiData.map,
+      center,
+      radius: 1609 * MILES
+    })
+  }
 
   useEffect(() => {
-    if (mapApiData) {
-      // drawRadius()
-
-      const updateZoom = () => {
-        const map: HTMLDivElement = mapApiData.ref
-        const { width, height } = map.getBoundingClientRect()
-        const smallEdge = Math.min(width, height)
-
-        let zoomFactor = 10.0
-        if (smallEdge > 200) zoomFactor = 11
-        if (smallEdge > 300) zoomFactor = 11.5
-        if (smallEdge > 400) zoomFactor = 12
-        if (smallEdge > 500) zoomFactor = 12.5
-        if (smallEdge > 700) zoomFactor = 12.75
-        if (smallEdge > 800) zoomFactor = 13
-        if (smallEdge > 1100) zoomFactor = 13.5
-        if (smallEdge > 1400) zoomFactor = 13.75
-
-        mapApiData.map.setZoom(zoomFactor)
+    const updateZoom = () => {
+      if (mapApiData) {
+        const radius = drawRadius()
+        const { map } = mapApiData
+        map.fitBounds(radius.getBounds())
       }
+    }
 
-      updateZoom()
+    updateZoom()
 
-      window.addEventListener("resize", updateZoom)
+    window.addEventListener("resize", updateZoom)
 
-      return () => {
-        window.removeEventListener("resize", updateZoom)
-      }
+    return () => {
+      window.removeEventListener("resize", updateZoom)
     }
   }, [mapApiData])
 
@@ -62,6 +50,7 @@ const Map: React.FC<{
       defaultCenter={center}
       defaultZoom={12}
       onGoogleApiLoaded={data => setMapApiData(data)}
+      options={{ fullscreenControl: false }}
     >
       {children}
     </GoogleMapReact>
