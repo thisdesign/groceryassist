@@ -27,6 +27,13 @@ const Map: React.FC<{
   }
 
   useEffect(() => {
+    if (mapApiData) {
+      const { map, maps } = mapApiData
+      map.panTo(new maps.LatLng(center))
+    }
+  }, [mapApiData, center])
+
+  useEffect(() => {
     const updateZoom = () => {
       if (mapApiData) {
         const radius = drawRadius()
