@@ -36,8 +36,11 @@ export const getServerSideProps: GetServerSideProps = async ({
 }) => {
   let orders = null
   let location: LocationRes = null
+  let addressCookie = null
 
-  const { _address: addressCookie } = cookie.parse(req.headers.cookie)
+  if (req.headers.cookie) {
+    addressCookie = cookie.parse(req.headers.cookie)._address
+  }
 
   if (query.a || addressCookie) {
     const address = query.a ? query.a.toString() : addressCookie
