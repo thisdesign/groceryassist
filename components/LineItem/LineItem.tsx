@@ -34,7 +34,7 @@ const LineItem: NextPage<{
               {first} {last.charAt(0).toUpperCase()}.
             </h2>
             <h3>
-              {distance} mi · {itemCount} {isPlural ? "Items" : "item"}
+              {distance} mi away · {itemCount} {isPlural ? "Items" : "item"}
             </h3>
           </div>
           <div>
