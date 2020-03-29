@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import { mq } from "style"
+import { IMAGES } from "../../constants"
 
 const Page = styled.div`
   padding-top: var(--nav-height);
@@ -8,9 +9,9 @@ const Page = styled.div`
   min-height: 100vh;
   width: 100vw;
 
-  background: url("https://images.unsplash.com/photo-1544755101-93bfbad2396c?ixlib=rb-1.2.1&auto=format&fit=crop&w=2734&q=80");
+  background: url(${IMAGES.ORANGE_TREE});
   background-position: center;
-  background-size: 160%;
+  background-size: 150%;
   background-color: var(--color-brand);
 
   color: white;
@@ -31,7 +32,7 @@ const Head = styled.h1`
     font-size: var(--size-6);
   }
   @media ${mq.md} {
-    font-size: var(--size-7);
+    font-size: var(--size-6);
   }
 `
 
