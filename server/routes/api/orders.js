@@ -42,7 +42,7 @@ router.get("/", (req, res) => {
   }
 
   orderQuery
-    .sort({ date: -1 })
+    .sort({ date: 1 })
     .limit(parseFloat(limit))
     .then(orders => {
       res.json(orders)

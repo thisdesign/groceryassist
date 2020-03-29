@@ -44,7 +44,7 @@ export const getServerSideProps: GetServerSideProps = async ({
     location = await getLocationByAddress(address)
 
     orders = await getOrders({
-      limit: 4,
+      limit: 0,
       coords: [location.lat, location.lng]
     })
   }
