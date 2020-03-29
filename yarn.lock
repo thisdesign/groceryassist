@@ -1057,6 +1057,13 @@
     "@types/express-serve-static-core" "*"
     "@types/serve-static" "*"
 
+"@types/google-map-react@^1.1.5":
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/@types/google-map-react/-/google-map-react-1.1.5.tgz#6fc83620ea3b927aa1c4b8654ff9e151364c7786"
+  integrity sha512-PbpOQucrBYhCDLz/Xodtm2NZlkIY/paieEXSMheS3CKcLg5pvzowB5aY6cmj+7uY99j+qzYfO2IIUgraoDaBaQ==
+  dependencies:
+    "@types/react" "*"
+
 "@types/hoist-non-react-statics@*":
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/@types/hoist-non-react-statics/-/hoist-non-react-statics-3.3.1.tgz#1124aafe5118cb591977aeb1ceaaed1070eb039f"
