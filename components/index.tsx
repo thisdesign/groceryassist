@@ -24,6 +24,7 @@ import NewOrder from "./NewOrder/NewOrder"
 import Paragraph from "./Paragraph/Paragraph"
 import AppFrame from "./AppFrame/AppFrame"
 import RadioCircle from "./RadioCircle/RadioCircle"
+import Homepage from "./Homepage/Homepage"
 
 export {
   OrderDetail,
@@ -43,6 +44,7 @@ export {
   MediumHeading,
   LargeHeading,
   AddressCapture,
+  Homepage,
   TwoPanel,
   AddressInput,
   VolunteerOnboard,

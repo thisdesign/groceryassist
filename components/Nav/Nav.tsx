@@ -2,9 +2,11 @@ import React from "react"
 import Link from "next/link"
 import S from "./Nav.Styled"
 
-const Nav = () => {
+const Nav: React.FC<{ floating?: boolean }> = ({ floating }) => {
+  console.log(floating)
+
   return (
-    <S.Nav>
+    <S.Nav floating={floating}>
       <Link href="/">
         <a>Grocery App</a>
       </Link>
