@@ -23,6 +23,7 @@ const TwoPanel = styled.div`
 
   @media ${mq.sm} {
     grid-template-columns: 2fr 3fr;
+    grid-template-rows: unset;
   }
 
   > div {

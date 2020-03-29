@@ -41,7 +41,7 @@ export const IMAGES = {
   BOK_CHOY:
     "https://images.unsplash.com/photo-1486328228599-85db4443971f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
   ORANGE_TREE:
-    "https://images.unsplash.com/photo-1544755101-93bfbad2396c?ixlib=rb-1.2.1&auto=format&fit=crop&w=2734&q=80",
+    "https://images.unsplash.com/photo-1544755101-93bfbad2396c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=60",
   MARKET:
     "https://images.unsplash.com/photo-1533900298318-6b8da08a523e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
 }
