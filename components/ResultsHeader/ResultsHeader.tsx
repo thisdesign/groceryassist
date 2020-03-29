@@ -1,6 +1,8 @@
 import React from "react"
+import Router from "next/router"
+import spaceToPlus from "util/spaceToPlus"
 import { OrderRes, LocationRes } from "../../types"
-import { PinIcon } from ".."
+import { AddressInput } from ".."
 import S from "./ResultsHeader.styled"
 
 const ResultsHeader: React.FC<{
@@ -9,11 +11,10 @@ const ResultsHeader: React.FC<{
 }> = ({ data, location }) => {
   return (
     <S.ResultsHeader>
-      <S.LocationBox>
-        <PinIcon />
-        {"  "}
-        {location.city}, {location.state}
-      </S.LocationBox>
+      <AddressInput
+        onSubmit={address => Router.push(`/orders?a=${spaceToPlus(address)}`)}
+        defaultText={`${location.city}, ${location.state}`}
+      />
 
       <S.Title>{data.length} open orders</S.Title>
     </S.ResultsHeader>

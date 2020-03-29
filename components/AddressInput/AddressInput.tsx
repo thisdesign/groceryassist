@@ -7,12 +7,12 @@ import { fetchPredictions } from "../../middleware"
 
 const AddressInput: React.FC<{
   onSubmit: (address: string) => void
-  buttonText?: string
-}> = ({ onSubmit, ...props }) => {
+  defaultText?: string
+}> = ({ onSubmit, defaultText, ...props }) => {
   const [predictions, setPredictions] = useState<GeoPrediction[]>([])
   const [suggestIndex, setSuggestIndex] = useState<number>(0)
   const [isMenuOpen, setMenuOpen] = useState<boolean>(false)
-  const [inputVal, setInputVal] = useState<string>("")
+  const [inputVal, setInputVal] = useState<string>(defaultText || "")
   const prediction = predictions ? predictions[suggestIndex] : null
 
   /**
@@ -47,6 +47,10 @@ const AddressInput: React.FC<{
       e.currentTarget.blur()
     }
   }
+
+  const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+    e.target.value = ""
+  }
   return (
     <S.Wrapper>
       <S.InputWrapper>
@@ -55,6 +59,7 @@ const AddressInput: React.FC<{
           value={inputVal}
           onChange={handleInputChange}
           onKeyDown={handleKeyDown}
+          onFocus={handleFocus}
         />
         <S.PinWrapper>
           <PinIcon />

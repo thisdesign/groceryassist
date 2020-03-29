@@ -13,7 +13,7 @@ const AddressCapture: React.FC<{
         Enter your address to find people in need nearby
       </MediumHeading>
       <S.FormItems>
-        <AddressInput onSubmit={onSubmit} buttonText="See Orders" />
+        <AddressInput onSubmit={onSubmit} />
       </S.FormItems>
     </TwoPanel>
   )
