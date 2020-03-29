@@ -1,21 +1,29 @@
 import styled from "styled-components"
+import { mq } from "style"
 
 const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  @media ${mq.sm} {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 `
 
 const Inner = styled.div`
   width: 100%;
   max-width: 20em;
+  padding: var(--size-6) 0;
 `
 
 const TwoPanel = styled.div`
   display: grid;
-  grid-template-columns: 2fr 3fr;
   min-height: calc(100vh - var(--nav-height));
+  grid-template-rows: 200px auto;
+
+  @media ${mq.sm} {
+    grid-template-columns: 2fr 3fr;
+  }
 
   > div {
     padding: 1rem;
