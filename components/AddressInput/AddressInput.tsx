@@ -71,6 +71,7 @@ const AddressInput: React.FC<{
             <S.PredictionItem
               onClick={() => handleItemClick(i)}
               isSelected={suggestIndex === i}
+              key={item.full}
             >
               <h5>{item.main}</h5>
               <h6>{item.secondary}</h6>
