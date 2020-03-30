@@ -17,14 +17,11 @@ const White = styled.div`
 const lineitemstyle = css`
   padding: var(--size-3) 0;
   font-size: var(--size-4);
+  border-bottom: 1px solid var(--color-grey-2);
 `
 
 const ItemWrapper = styled.div`
   ${lineitemstyle}
-
-  &:not(:last-child) {
-    border-bottom: 1px solid var(--color-grey-2);
-  }
 
   h4 {
     margin-bottom: 0.8rem;
@@ -56,7 +53,7 @@ const NewItemInputWrapper = styled.div<{ isFocused: boolean }>`
   ${props =>
     props.isFocused &&
     css`
-      background-color: var(--color-grey-3);
+      /* background-color: var(--color-grey-3); */
       box-shadow: var(--shadow);
     `}
 `
@@ -75,7 +72,6 @@ const Input = styled.input`
   border: none;
   background: transparent;
   font-family: inherit;
-  border-bottom: 1px solid var(--color-grey-2);
 
   ::placeholder {
     font-weight: 300;

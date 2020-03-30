@@ -30,6 +30,8 @@ const NewOrder = () => {
     items: []
   })
 
+  console.log(JSON.stringify(pageState.items))
+
   const pushToState = (newItem: Partial<PageState>) => {
     setPageState({ ...pageState, ...newItem })
   }

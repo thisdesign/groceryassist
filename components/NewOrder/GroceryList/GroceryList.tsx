@@ -50,9 +50,9 @@ const GroceryList: React.FC<ListProps> = ({ pushToState, items }) => {
 
           <div>
             <UIButton inverted textColor="brand" onClick={handleNewItem}>
-              Add Item
+              Add
             </UIButton>
-            <span>add details</span>
+            <span>Add notes</span>
           </div>
         </S.NewItemGrid>
       </S.NewItemInputWrapper>
