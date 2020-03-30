@@ -9,11 +9,25 @@ const ResultsHeader: React.FC<{
   data: OrderRes
   location: LocationRes
 }> = ({ data, location }) => {
+  const getLocationName = (): string => {
+    const { neighborhood, city, state } = location
+
+    if (neighborhood) {
+      return neighborhood
+    }
+
+    if (city && state) {
+      return `${city}, ${state}`
+    }
+
+    return location.country
+  }
+
   return (
     <S.ResultsHeader>
       <AddressInput
         onSubmit={address => Router.push(`/orders?a=${spaceToPlus(address)}`)}
-        defaultText={`${location.city}, ${location.state}`}
+        defaultText={getLocationName()}
       />
 
       <S.Title>{data.length} open orders</S.Title>
