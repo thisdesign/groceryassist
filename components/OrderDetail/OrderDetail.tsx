@@ -42,7 +42,7 @@ const OrderDetail: React.FC<{ data: OrderDb }> = ({ data }) => {
       {!data.status.fulfilled && (
         <BottomBar>
           <UIWrapper>
-            <a href={`/orders/${data._id}/fulfill`}>
+            <a href={`/orders/${data._id}/connect`}>
               <UIButton>Fulfill this order</UIButton>
             </a>
           </UIWrapper>
