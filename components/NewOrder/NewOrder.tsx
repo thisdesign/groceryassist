@@ -46,7 +46,7 @@ const NewOrder = () => {
           header={
             <>
               <MediumHeading>New Order</MediumHeading>
-              <Paragraph>Your information will be used to</Paragraph>
+              <Paragraph>Add items to your shopping list</Paragraph>
             </>
           }
         >
