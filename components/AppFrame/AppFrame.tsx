@@ -18,9 +18,7 @@ const AppFrame: React.FC<{
         <S.Header>
           <UIWrapper pad>{header}</UIWrapper>
         </S.Header>
-        <S.Body>
-          <UIWrapper pad>{children}</UIWrapper>
-        </S.Body>
+        <S.Body>{children}</S.Body>
       </S.Wrapper>
       {bottomBar && (
         <BottomBar>

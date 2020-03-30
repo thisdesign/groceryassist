@@ -4,35 +4,45 @@ export const DEFAULT_CORDS: Coords = [45.525, -122.65]
 
 export const PLACEHOLDER_ITEMS = [
   {
+    id: "1",
     text: "2 organic fuji apples"
   },
   {
+    id: "2",
     text: "4 bananas"
   },
   {
+    id: "3",
     text: "2 avocados",
     notes: "Prefer if they are a little soft"
   },
   {
+    id: "4",
     text: "2 avocados"
   },
   {
+    id: "5",
     text: "2 sweet potatoes"
   },
   {
+    id: "6",
     text: "2 sweet onion"
   },
   {
+    id: "7",
     text: "1 bag organic spinich"
   },
   {
+    id: "8",
     text: "1 carton eggs"
   },
   {
+    id: 9,
     text: "stick butter",
     notes: "I prefer kerrygold"
   },
   {
+    id: "10",
     text: "1 lb organic salted almonds"
   }
 ]

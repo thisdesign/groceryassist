@@ -10,7 +10,6 @@ const White = styled.div`
   background: white;
   /* border: 1px solid var(--color-grey-2); */
   margin-top: var(--size-2);
-  box-shadow: var(--shadow);
   padding: 1px;
 `
 
@@ -36,7 +35,8 @@ const NewItemInputWrapper = styled.div`
 `
 
 const ItemWrapper = styled.div`
-  padding: var(--size-3) var(--size-2);
+  padding: var(--size-3) 0;
+  font-size: var(--size-4);
 
   &:not(:last-child) {
     border-bottom: 1px solid var(--color-grey-2);

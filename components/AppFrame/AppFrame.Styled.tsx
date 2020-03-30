@@ -13,7 +13,6 @@ const Header = styled.div`
 
 const Body = styled.div`
   flex: 1;
-  background: var(--color-grey-3);
 `
 
 export default {
