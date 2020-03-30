@@ -15,45 +15,7 @@ import Router from "next/router"
 import S from "./OrderFulfill.Styled"
 
 const OrderFulfill: React.FC<{ order: OrderDb }> = ({ order }) => {
-  const [isPromptOpen, setIsPromptOpen] = useState<boolean>(true)
-  const closePrompt = () => setIsPromptOpen(false)
-  const {
-    user: { first, phone }
-  } = order
-
-  return (
-    <>
-      {isPromptOpen ? (
-        <CallPrompt phone={phone} first={first} closePrompt={closePrompt} />
-      ) : (
-        <Fulfillment data={order} />
-      )}
-    </>
-  )
-}
-
-const CallPrompt: React.FC<{
-  phone: string
-  first: string
-  closePrompt: () => void
-}> = ({ phone, first, closePrompt }) => {
-  return (
-    <S.PhonePrompt>
-      <UIWrapper pad>
-        <LargeHeading>
-          Call {first} at <a href={`tel:${phone}`}>{phone}</a>
-        </LargeHeading>
-        <p>
-          Continue once you&apos;ve arranged <br />
-          pickup and payment with {first}
-        </p>
-        <br />
-        <UIButton textColor="brand" color="white" onClick={closePrompt}>
-          Continue
-        </UIButton>
-      </UIWrapper>
-    </S.PhonePrompt>
-  )
+  return <Fulfillment data={order} />
 }
 
 const Fulfillment: React.FC<{

@@ -25,6 +25,7 @@ import Paragraph from "./Paragraph/Paragraph"
 import AppFrame from "./AppFrame/AppFrame"
 import RadioCircle from "./RadioCircle/RadioCircle"
 import Homepage from "./Homepage/Homepage"
+import OrderConnect from "./OrderConnect/OrderConnect"
 
 export {
   OrderDetail,
@@ -55,5 +56,6 @@ export {
   NewOrder,
   Paragraph,
   AppFrame,
-  RadioCircle
+  RadioCircle,
+  OrderConnect
 }

@@ -1,15 +1,5 @@
 import styled from "styled-components"
 
-const PhonePrompt = styled.div`
-  height: calc(100vh - var(--nav-height));
-  background: var(--color-brand);
-  color: var(--color-white);
-  display: grid;
-  grid-template-columns: 1fr;
-  justify-content: center;
-  align-items: center;
-`
-
 const OrderItem = styled.div<{ isChecked: boolean }>`
   padding: var(--size-2) 0;
   border-top: 1px solid var(--color-grey-lt);
@@ -36,7 +26,6 @@ const BottomBarGrid = styled.div`
 `
 
 export default {
-  PhonePrompt,
   OrderItem,
   SmallWords,
   BottomBarGrid
