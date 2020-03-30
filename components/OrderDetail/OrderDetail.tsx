@@ -53,7 +53,8 @@ const OrderDetail: React.FC<{ data: OrderDb }> = ({ data }) => {
 
 const Details: React.FC<{ data: OrderDb }> = ({ data }) => {
   const { items, location, status } = data
-  const { city, state, zip } = location
+  const { city, state } = location
+
   return (
     <UIWrapper pad>
       <S.Grid>

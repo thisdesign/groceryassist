@@ -1,6 +1,7 @@
 const express = require("express")
 require("isomorphic-unfetch")
 require("dotenv").config({})
+const qs = require("qs")
 
 const router = express.Router()
 
@@ -27,23 +28,24 @@ router.get("/", (req, res) => {
         const firstResult = data.results[0]
 
         if (firstResult) {
-          const [
-            number,
-            street,
-            region,
-            city,
-            cty,
-            state,
-            country,
-            zip
-          ] = firstResult.address_components
-
+          const verboseParsed = firstResult.address_components.reduce(
+            (acc, cur, i) => {
+              const key = cur.types[0]
+                .replace("locality", "city")
+                .replace("administrative_area_level_2", "county")
+                .replace("administrative_area_level_1", "state")
+                .replace("postal_code", "zip")
+              return { ...acc, [key]: cur.short_name }
+            },
+            {}
+          )
           const parsed = {
-            ...data.results[0].geometry.location,
-            address: `${number.short_name} ${street.short_name}`,
-            city: city.short_name,
-            state: state.short_name,
-            zip: zip.short_name
+            ...firstResult.geometry.location,
+            address:
+              verboseParsed.street_number && verboseParsed.route
+                ? `${verboseParsed.street_number} ${verboseParsed.route}`
+                : null,
+            ...verboseParsed
           }
 
           res.json(parsed)
@@ -58,7 +60,15 @@ router.get("/predictions", (req, res) => {
   if (!input) {
     res.json({ error: "include input" })
   } else {
-    const url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${input}&key=${apiKey}&sessiontoken=1234567890`
+    const PARAMS = qs.stringify({
+      key: apiKey,
+      input,
+      sessiontoken: 1234567890
+    })
+
+    const url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?${PARAMS}`
+
+    console.log(url)
 
     fetch(url)
       .then(resp => resp.json())

@@ -4,12 +4,17 @@ export type Item = {
 }
 
 export type Location = {
-  address: string
-  city: string
-  state: string
-  zip: number
+  address?: "4022 N Albina Ave"
+  street_number?: "4022"
+  route?: "N Albina Ave"
+  neighborhood?: "North Portland"
+  city?: "Portland"
+  county?: "Multnomah County"
+  state?: "OR"
+  country?: "US"
+  zip?: "97227"
+  zip_suffix?: "1210"
 }
-
 export type JSONGeo = {
   type: "Point"
   coordinates: [number, number]
