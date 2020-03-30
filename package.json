@@ -25,7 +25,8 @@
     "react-dom": "16.13.1",
     "react-hook-form": "^5.1.1",
     "styled-components": "^5.0.1",
-    "styled-reset": "^4.1.2"
+    "styled-reset": "^4.1.2",
+    "uuid": "^7.0.2"
   },
   "devDependencies": {
     "@types/express": "^4.17.3",

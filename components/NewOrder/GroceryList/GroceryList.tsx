@@ -4,6 +4,7 @@ import React, { useState, useRef } from "react"
 import { UIButton, TextInput, TextArea } from "components"
 import { Item } from "types"
 import Paragraph from "components/Paragraph/Paragraph"
+import { v4 as uuidv4 } from "uuid"
 import S from "./GroceryList.Styled"
 import useItemAdd from "./useItemAdd"
 import { PageState } from "../NewOrder"
@@ -14,10 +15,12 @@ type ListProps = {
 }
 
 const GroceryList: React.FC<ListProps> = ({ pushToState, items }) => {
-  const { newItemFieldRef, moreDetailsFieldRef, handleNewItem } = useItemAdd(
-    items,
-    pushToState
-  )
+  const {
+    newItemFieldRef,
+    moreDetailsFieldRef,
+    removeItem,
+    handleNewItem
+  } = useItemAdd(items, pushToState)
 
   return (
     <S.GroceryWrap>
@@ -28,10 +31,14 @@ const GroceryList: React.FC<ListProps> = ({ pushToState, items }) => {
               key={`${item.text}${i}`}
               text={item.text}
               notes={item.notes}
+              id={item.id}
+              removeItem={removeItem}
             />
           ))
         ) : (
-          <Paragraph>add items!!</Paragraph>
+          <S.Emptystate>
+            <Paragraph>No items yet</Paragraph>
+          </S.Emptystate>
         )}
 
         <S.NewItemInputWrapper>
@@ -56,12 +63,16 @@ const GroceryList: React.FC<ListProps> = ({ pushToState, items }) => {
   )
 }
 
-const GroceryLineItem: React.FC<Item> = ({ text, notes }) => {
+const GroceryLineItem: React.FC<{
+  removeItem: (id: string) => void
+} & Item> = ({ removeItem, text, notes, id }) => {
   return (
     <S.ItemWrapper>
       <h3>{text}</h3>
       {notes && <h4>&quot;{notes}&quot;</h4>}
-      <h5>Edit · Remove</h5>
+      <h5>
+        Edit · <span onClick={() => removeItem(id)}>Remove</span>
+      </h5>
     </S.ItemWrapper>
   )
 }

@@ -1,4 +1,5 @@
 import { useRef, useEffect } from "react"
+import { v4 as uuid } from "uuid"
 import { PageState } from "../NewOrder"
 
 const useItemAdd = (
@@ -14,6 +15,7 @@ const useItemAdd = (
 
     if ($itemName && $itemNotes && $itemName.value !== "") {
       const newItem = {
+        id: uuid(),
         text: $itemName.value,
         notes: $itemNotes.value !== "" ? $itemNotes.value : null
       }
@@ -24,6 +26,10 @@ const useItemAdd = (
       $itemNotes.value = ""
       $itemName.focus()
     }
+  }
+
+  const removeItem = (id: string) => {
+    const itemsWithRemoved = items.filter(item => item.id !== id)
   }
 
   useEffect(() => {
@@ -49,7 +55,8 @@ const useItemAdd = (
   return {
     newItemFieldRef,
     moreDetailsFieldRef,
-    handleNewItem
+    handleNewItem,
+    removeItem
   }
 }
 

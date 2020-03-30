@@ -57,10 +57,17 @@ const ItemWrapper = styled.div`
   }
 `
 
+const Emptystate = styled.div`
+  height: 10rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
 export default {
   GroceryWrap,
   White,
-
+  Emptystate,
   NewItemInputWrapper,
   ItemWrapper
 }
