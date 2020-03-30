@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-wrap-multilines */
 import React, { useState } from "react"
 import { OrderDb } from "types"
 import {
@@ -5,7 +6,8 @@ import {
   RadioCircle,
   BottomBar,
   LargeHeading,
-  UIButton
+  UIButton,
+  AppFrame
 } from "components"
 
 import { completeOrder } from "middleware"
@@ -84,10 +86,15 @@ const Fulfillment: React.FC<{
 
   return (
     <>
-      <UIWrapper pad>
-        <LargeHeading>
-          {items.length} items to fulfill for {first}
-        </LargeHeading>
+      <AppFrame
+        header={
+          <>
+            <LargeHeading>
+              {items.length} items to fulfill for {first}
+            </LargeHeading>
+          </>
+        }
+      >
         {checkItems.map((item, i) => (
           <S.OrderItem
             isChecked={item.checked}
@@ -98,7 +105,8 @@ const Fulfillment: React.FC<{
             {item.text}
           </S.OrderItem>
         ))}
-      </UIWrapper>
+      </AppFrame>
+
       <BottomBar>
         <UIWrapper>
           <S.BottomBarGrid>
