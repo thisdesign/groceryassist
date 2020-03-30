@@ -36,7 +36,13 @@ const ListItem = styled.div`
   }
 `
 
+const Details = styled.div`
+  color: var(--color-grey-1);
+  font-size: var(--size-1);
+`
+
 export default {
+  Details,
   ListItem,
   ItemWrapper,
   Grid,
