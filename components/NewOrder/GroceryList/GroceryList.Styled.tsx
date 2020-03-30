@@ -15,8 +15,8 @@ const White = styled.div`
 `
 
 const lineitemstyle = css`
-  padding: var(--size-3) 0;
-  font-size: var(--size-4);
+  padding: var(--size-2) 0;
+  font-size: var(--size-2);
   border-bottom: 1px solid var(--color-grey-2);
 `
 

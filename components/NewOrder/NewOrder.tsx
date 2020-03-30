@@ -27,7 +27,7 @@ const NewOrder = () => {
     phone: "6168227256",
     age: 53,
     additionalNotes: null,
-    items: []
+    items: PLACEHOLDER_ITEMS
   })
 
   console.log(JSON.stringify(pageState.items))
