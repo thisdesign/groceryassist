@@ -10,7 +10,6 @@ import {
   AppFrame
 } from "components"
 
-import { completeOrder } from "middleware"
 import Router from "next/router"
 import S from "./OrderFulfill.Styled"
 
@@ -36,14 +35,6 @@ const Fulfillment: React.FC<{
     const newCheckItems = [...checkItems]
     newCheckItems[i].checked = !newCheckItems[i].checked
     setCheckItems(newCheckItems)
-  }
-
-  const handleCompleteBtn = () => {
-    completeOrder(data._id)
-      .then(() => {
-        Router.push(`/orders/${data._id}/complete`)
-      })
-      .catch(err => console.error(err))
   }
 
   return (
@@ -75,7 +66,11 @@ const Fulfillment: React.FC<{
             <S.SmallWords>
               {completeItemCount} / {items.length} Complete
             </S.SmallWords>
-            <UIButton onClick={handleCompleteBtn}>Mark as complete</UIButton>
+            <UIButton
+              onClick={() => Router.push(`/orders/${data._id}/deliver`)}
+            >
+              Deliver to {first}
+            </UIButton>
           </S.BottomBarGrid>
         </UIWrapper>
       </BottomBar>
