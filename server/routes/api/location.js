@@ -68,8 +68,6 @@ router.get("/predictions", (req, res) => {
 
     const url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?${PARAMS}`
 
-    console.log(url)
-
     fetch(url)
       .then(resp => resp.json())
       .then(data => {
