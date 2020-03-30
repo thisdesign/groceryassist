@@ -15,6 +15,7 @@ const ConnectPage: NextPage<{ data: OrderDb }> = ({ data }) => {
   }
 
   const { city, state, address, zip } = data.location
+
   return (
     <div>
       [FPO... Delivery page goes here]
