@@ -1,4 +1,5 @@
-import styled from "styled-components"
+import styled, { css } from "styled-components"
+import { UIWrapper } from "components"
 
 const GroceryWrap = styled.div`
   /* max-width: 35rem; */
@@ -13,30 +14,13 @@ const White = styled.div`
   padding: 1px;
 `
 
-const NewItemInputWrapper = styled.div`
-  display: grid;
-  grid-template-columns: 1fr auto;
-  grid-gap: var(--size-0);
-  border-top: 1px solid var(--color-grey-2);
-  padding: var(--size-3);
-
-  span {
-    display: block;
-    font-size: var(--size-1);
-    color: var(--color-grey-1);
-    text-align: center;
-    margin-top: 0.25rem;
-    cursor: pointer;
-  }
-
-  input:focus {
-    box-shadow: none;
-  }
+const lineitemstyle = css`
+  padding: var(--size-3) 0;
+  font-size: var(--size-4);
 `
 
 const ItemWrapper = styled.div`
-  padding: var(--size-3) 0;
-  font-size: var(--size-4);
+  ${lineitemstyle}
 
   &:not(:last-child) {
     border-bottom: 1px solid var(--color-grey-2);
@@ -57,11 +41,62 @@ const ItemWrapper = styled.div`
   }
 `
 
+const NewItemInputWrapper = styled.div<{ isFocused: boolean }>`
+  ${lineitemstyle};
+  transition: 200ms box-shadow ease, 200ms background-color ease;
+  background-color: white;
+
+  span {
+    display: block;
+    font-size: var(--size-1);
+    text-align: center;
+    padding-top: 0.5em;
+  }
+
+  ${props =>
+    props.isFocused &&
+    css`
+      background-color: var(--color-grey-3);
+      box-shadow: var(--shadow);
+    `}
+`
+
+const NewItemGrid = styled(UIWrapper)`
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-gap: 1rem;
+`
+
+const Input = styled.input`
+  font-size: inherit;
+  font-weight: normal;
+  width: 100%;
+  outline: none;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  border-bottom: 1px solid var(--color-grey-2);
+
+  ::placeholder {
+    font-weight: 300;
+    color: var(--color-grey-1);
+  }
+`
+
 const Emptystate = styled.div`
   height: 10rem;
   display: flex;
   justify-content: center;
+  flex-direction: column;
   align-items: center;
+  font-size: var(--size-4);
+
+  > div {
+    padding-top: 0.25rem;
+    color: var(--color-brand);
+    font-size: var(--size-2);
+    cursor: pointer;
+  }
 `
 
 export default {
@@ -69,5 +104,7 @@ export default {
   White,
   Emptystate,
   NewItemInputWrapper,
+  Input,
+  NewItemGrid,
   ItemWrapper
 }
