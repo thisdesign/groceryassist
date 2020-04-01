@@ -38,6 +38,11 @@ const OrderSchema = new Schema({
       required: true
     },
 
+    address: {
+      type: String,
+      required: true
+    },
+
     city: {
       type: String,
       required: true

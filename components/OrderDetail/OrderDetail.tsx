@@ -1,4 +1,5 @@
 import { UIWrapper, BottomBar, LargeHeading } from "components"
+import getTimeSince from "util/getTimeSince"
 import { OrderDb } from "../../types"
 import S from "./OrderDetail.Styled"
 
@@ -41,7 +42,7 @@ const OrderDetail: React.FC<{ data: OrderDb }> = ({ data }) => {
       {!data.status.fulfilled && (
         <BottomBar>
           <UIWrapper>
-            <a href={`/orders/${data._id}/fulfill`}>
+            <a href={`/orders/${data._id}/connect`}>
               <UIButton>Fulfill this order</UIButton>
             </a>
           </UIWrapper>
@@ -52,19 +53,19 @@ const OrderDetail: React.FC<{ data: OrderDb }> = ({ data }) => {
 }
 
 const Details: React.FC<{ data: OrderDb }> = ({ data }) => {
-  const { items, location, status } = data
+  const { items, location, date } = data
   const { city, state } = location
 
   return (
     <UIWrapper pad>
       <S.Grid>
         <div>
-          {status.fulfilled ? <div>Fulfilled</div> : <div>Open</div>}
           <LargeHeading>Order for {data.user.first}</LargeHeading>
-          <div>
+          <S.Details>
+            {getTimeSince(new Date(date))} • {items.length} items
+            <br />
             {city}, {state}
-          </div>
-          <div>{data.user.phone}</div>
+          </S.Details>
         </div>
 
         <S.ItemWrapper>

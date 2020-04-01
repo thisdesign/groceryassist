@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-wrap-multilines */
 import React, { useState } from "react"
 import { OrderDb } from "types"
 import {
@@ -5,53 +6,15 @@ import {
   RadioCircle,
   BottomBar,
   LargeHeading,
-  UIButton
+  UIButton,
+  AppFrame
 } from "components"
 
-import { completeOrder } from "middleware"
 import Router from "next/router"
 import S from "./OrderFulfill.Styled"
 
 const OrderFulfill: React.FC<{ order: OrderDb }> = ({ order }) => {
-  const [isPromptOpen, setIsPromptOpen] = useState<boolean>(false)
-  const closePrompt = () => setIsPromptOpen(false)
-  const {
-    user: { first, phone }
-  } = order
-
-  return (
-    <>
-      {isPromptOpen ? (
-        <CallPrompt phone={phone} first={first} closePrompt={closePrompt} />
-      ) : (
-        <Fulfillment data={order} />
-      )}
-    </>
-  )
-}
-
-const CallPrompt: React.FC<{
-  phone: string
-  first: string
-  closePrompt: () => void
-}> = ({ phone, first, closePrompt }) => {
-  return (
-    <S.PhonePrompt>
-      <UIWrapper pad>
-        <LargeHeading>
-          Call {first} at <a href={`tel:${phone}`}>{phone}</a>
-        </LargeHeading>
-        <p>
-          Continue once you&apos;ve arranged <br />
-          pickup and payment with {first}
-        </p>
-        <br />
-        <UIButton textColor="brand" color="white" onClick={closePrompt}>
-          Continue
-        </UIButton>
-      </UIWrapper>
-    </S.PhonePrompt>
-  )
+  return <Fulfillment data={order} />
 }
 
 const Fulfillment: React.FC<{
@@ -74,20 +37,17 @@ const Fulfillment: React.FC<{
     setCheckItems(newCheckItems)
   }
 
-  const handleCompleteBtn = () => {
-    completeOrder(data._id)
-      .then(() => {
-        Router.push(`/orders/${data._id}/complete`)
-      })
-      .catch(err => console.error(err))
-  }
-
   return (
     <>
-      <UIWrapper pad>
-        <LargeHeading>
-          {items.length} items to fulfill for {first}
-        </LargeHeading>
+      <AppFrame
+        header={
+          <>
+            <LargeHeading>
+              {items.length} items to fulfill for {first}
+            </LargeHeading>
+          </>
+        }
+      >
         {checkItems.map((item, i) => (
           <S.OrderItem
             isChecked={item.checked}
@@ -98,14 +58,19 @@ const Fulfillment: React.FC<{
             {item.text}
           </S.OrderItem>
         ))}
-      </UIWrapper>
+      </AppFrame>
+
       <BottomBar>
         <UIWrapper>
           <S.BottomBarGrid>
             <S.SmallWords>
               {completeItemCount} / {items.length} Complete
             </S.SmallWords>
-            <UIButton onClick={handleCompleteBtn}>Mark as complete</UIButton>
+            <UIButton
+              onClick={() => Router.push(`/orders/${data._id}/deliver`)}
+            >
+              Deliver to {first}
+            </UIButton>
           </S.BottomBarGrid>
         </UIWrapper>
       </BottomBar>

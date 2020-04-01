@@ -12,13 +12,13 @@ const Grid = styled.div`
   @media ${mq.sm} {
     display: grid;
     grid-template-columns: 2fr 3fr;
-    grid-gap: var(--size-4);
+    grid-gap: var(--size-5);
   }
 `
 
 const ItemWrapper = styled.div`
   border-top: 1px solid var(--color-grey-2);
-  margin: var(--size-6);
+  margin: var(--size-6) 0;
 
   @media ${mq.sm} {
     margin-top: 0;
@@ -36,7 +36,13 @@ const ListItem = styled.div`
   }
 `
 
+const Details = styled.div`
+  color: var(--color-grey-1);
+  font-size: var(--size-1);
+`
+
 export default {
+  Details,
   ListItem,
   ItemWrapper,
   Grid,
