@@ -82,3 +82,13 @@ export type NewUserReq = {
   address: string
   phone: number
 }
+
+/**
+ * Holding  data on window
+ */
+
+declare global {
+  interface Window {
+    __GROCERY_ITEMS__: Item[]
+  }
+}

@@ -4,6 +4,7 @@ import React, { useState } from "react"
 import { MediumHeading, UIButton, Paragraph, AppFrame } from "components"
 import { Item } from "types"
 
+import Router from "next/router"
 import { PLACEHOLDER_ITEMS } from "../../constants"
 import GroceryList from "./GroceryList/GroceryList"
 import OrderInfo from "./OrderInfo/OrderInfo"
@@ -19,7 +20,6 @@ export type PageState = {
 }
 
 const NewOrder = () => {
-  const [isGroceryPage, setIsGroceryPage] = useState(true)
   const [pageState, setPageState] = useState<PageState>({
     first: "",
     last: "",
@@ -27,49 +27,37 @@ const NewOrder = () => {
     phone: "6168227256",
     age: 53,
     additionalNotes: null,
-    items: PLACEHOLDER_ITEMS
+    items: []
   })
-
-  console.log(JSON.stringify(pageState.items))
 
   const pushToState = (newItem: Partial<PageState>) => {
     setPageState({ ...pageState, ...newItem })
   }
 
   const handleCompleteButton = () => {
-    setIsGroceryPage(false)
+    window.__GROCERY_ITEMS__ = []
+    Router.push("/new/capture")
   }
 
   return (
-    <>
-      {isGroceryPage ? (
-        <AppFrame
-          bottomBar={<UIButton onClick={handleCompleteButton}>Next</UIButton>}
-          header={
-            <>
-              <MediumHeading>New Order</MediumHeading>
-              <Paragraph>Add items to your shopping list</Paragraph>
-            </>
-          }
-        >
-          <GroceryList
-            pushToState={pushToState}
-            items={pageState ? pageState.items : []}
-          />
-        </AppFrame>
-      ) : (
-        <AppFrame
-          header={
-            <>
-              <MediumHeading>Order Details</MediumHeading>
-              <Paragraph>Enter your location and phone number</Paragraph>
-            </>
-          }
-        >
-          <OrderInfo state={pageState} />
-        </AppFrame>
-      )}
-    </>
+    <AppFrame
+      bottomBar={
+        pageState.items.length ? (
+          <UIButton onClick={handleCompleteButton}>Next</UIButton>
+        ) : null
+      }
+      header={
+        <>
+          <MediumHeading>New Order</MediumHeading>
+          <Paragraph>Add items to your shopping list</Paragraph>
+        </>
+      }
+    >
+      <GroceryList
+        pushToState={pushToState}
+        items={pageState ? pageState.items : []}
+      />
+    </AppFrame>
   )
 }
 
