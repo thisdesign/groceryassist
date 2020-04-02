@@ -38,10 +38,16 @@ const ItemWrapper = styled.div`
   }
 `
 
+const ButtonsWrapper = styled.div`
+  opacity: 0;
+  transition: 200ms opacity ease;
+`
+
 const NewItemInputWrapper = styled.div<{ isFocused: boolean }>`
   ${lineitemstyle};
   transition: 200ms box-shadow ease, 200ms background-color ease;
   background-color: white;
+  margin-bottom: 3rem;
 
   span {
     display: block;
@@ -55,7 +61,11 @@ const NewItemInputWrapper = styled.div<{ isFocused: boolean }>`
     css`
       /* background-color: var(--color-grey-3); */
       box-shadow: var(--shadow);
-    `}
+
+      ${ButtonsWrapper} {
+        opacity: 1;
+      }
+    `};
 `
 
 const NewItemGrid = styled(UIWrapper)`
@@ -102,5 +112,6 @@ export default {
   NewItemInputWrapper,
   Input,
   NewItemGrid,
-  ItemWrapper
+  ItemWrapper,
+  ButtonsWrapper
 }

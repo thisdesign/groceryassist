@@ -32,6 +32,7 @@ const GroceryList: React.FC<ListProps> = ({ pushToState, items }) => {
           removeItem={removeItem}
         />
       ))}
+
       <S.NewItemInputWrapper isFocused={isFocused}>
         <S.NewItemGrid>
           <div>
@@ -48,14 +49,15 @@ const GroceryList: React.FC<ListProps> = ({ pushToState, items }) => {
             />
           </div>
 
-          <div>
+          <S.ButtonsWrapper>
             <UIButton inverted textColor="brand" onClick={handleNewItem}>
               Add
             </UIButton>
             <span>Add notes</span>
-          </div>
+          </S.ButtonsWrapper>
         </S.NewItemGrid>
       </S.NewItemInputWrapper>
+
       {!items.length && (
         <S.Emptystate>
           <Paragraph>No items yet</Paragraph>
