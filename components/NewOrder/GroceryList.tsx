@@ -114,17 +114,13 @@ const NextButton = () => {
   const { state } = useContext(NewOrderCtx)
 
   return (
-    <>
-      {state.items.length ? (
-        <UIWrapper>
-          <Paragraph>
-            Once you are finished, add your info
-            <br /> so we can deliver to you.
-          </Paragraph>
-          <UIButton onClick={() => null}>Next</UIButton>
-        </UIWrapper>
-      ) : null}
-    </>
+    <S.NextWrapper isEnabled={!!state.items.length} pad>
+      <Paragraph>
+        Once you are finished, add your info
+        <br /> so we can deliver to you.
+      </Paragraph>
+      <UIButton onClick={() => null}>Next</UIButton>
+    </S.NextWrapper>
   )
 }
 

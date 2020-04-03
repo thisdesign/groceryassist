@@ -105,6 +105,18 @@ const Emptystate = styled.div`
   }
 `
 
+const NextWrapper = styled(UIWrapper)<{ isEnabled: boolean }>`
+  opacity: ${props => (props.isEnabled ? 1 : 0)};
+  transition: 500ms opacity ease;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  p {
+    margin-bottom: var(--size-0);
+  }
+`
+
 export default {
   GroceryWrap,
   White,
@@ -113,5 +125,6 @@ export default {
   Input,
   NewItemGrid,
   ItemWrapper,
-  ButtonsWrapper
+  ButtonsWrapper,
+  NextWrapper
 }

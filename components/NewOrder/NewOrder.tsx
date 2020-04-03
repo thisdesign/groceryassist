@@ -8,23 +8,17 @@ import NewOrderProvider, { NewOrderCtx } from "./NewOrderProvider"
 const NewOrder = () => {
   return (
     <NewOrderProvider>
-      <UI />
+      <AppFrame
+        header={
+          <>
+            <MediumHeading>New Order</MediumHeading>
+            <Paragraph>Add items to your shopping list</Paragraph>
+          </>
+        }
+      >
+        <GroceryList />
+      </AppFrame>
     </NewOrderProvider>
-  )
-}
-
-const UI = () => {
-  return (
-    <AppFrame
-      header={
-        <>
-          <MediumHeading>New Order</MediumHeading>
-          <Paragraph>Add items to your shopping list</Paragraph>
-        </>
-      }
-    >
-      <GroceryList />
-    </AppFrame>
   )
 }
 
