@@ -13,7 +13,7 @@ import { Item } from "types"
 import { useForm } from "react-hook-form"
 
 import Router from "next/router"
-import S from "./OrderInfoPrompt.Styled"
+import S from "./OrderInfoCapture.Styled"
 
 const OrderInfo: React.FC = () => {
   const { register, handleSubmit, errors } = useForm()

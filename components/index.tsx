@@ -26,7 +26,7 @@ import AppFrame from "./AppFrame/AppFrame"
 import RadioCircle from "./RadioCircle/RadioCircle"
 import Homepage from "./Homepage/Homepage"
 import OrderConnect from "./OrderConnect/OrderConnect"
-import OrderInfoPrompt from "./OrderInfoPrompt/OrderInfoPrompt"
+import OrderInfoCapture from "./OrderInfoCapture/OrderInfoCapture"
 
 export {
   OrderDetail,
@@ -59,5 +59,5 @@ export {
   AppFrame,
   RadioCircle,
   OrderConnect,
-  OrderInfoPrompt
+  OrderInfoCapture
 }
