@@ -8,7 +8,6 @@ import Router from "next/router"
 import Cookie from "js-cookie"
 import { PLACEHOLDER_ITEMS } from "../../constants"
 import GroceryList from "./GroceryList/GroceryList"
-import OrderInfo from "./OrderInfo/OrderInfo"
 
 export type PageState = {
   first: string

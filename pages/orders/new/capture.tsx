@@ -1,25 +1,12 @@
 import React, { useEffect, useState } from "react"
 import { NextPage } from "next"
 import { Item } from "types"
+import { OrderInfoPrompt } from "components"
 import Router from "next/router"
 import cookie from "cookie"
 
 const Capture: NextPage<{ data: any }> = ({ data }) => {
-  console.log(data)
-
-  return (
-    <div>
-      {data ? (
-        <div>
-          {data.items.map(item => (
-            <div>{item.text}</div>
-          ))}
-        </div>
-      ) : (
-        <div>loading...</div>
-      )}
-    </div>
-  )
+  return <OrderInfoPrompt />
 }
 
 Capture.getInitialProps = async ({ req }) => {
