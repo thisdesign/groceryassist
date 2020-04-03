@@ -1,13 +1,15 @@
-import { useRef, useEffect } from "react"
+import { useRef, useEffect, useContext } from "react"
 import { v4 as uuid } from "uuid"
-import { PageState } from "../NewOrder"
+import { NewOrderCtx } from "../NewOrderProvider"
 
-const useItemAdd = (
-  items,
-  pushToState: (newItem: Partial<PageState>) => void
-) => {
+const useItemAdd = () => {
+  const { state, pushToState } = useContext(NewOrderCtx)
   const newItemFieldRef = useRef<HTMLInputElement>()
   const moreDetailsFieldRef = useRef<HTMLTextAreaElement>()
+
+  /**
+   * New Item
+   */
 
   const handleNewItem = () => {
     const $itemName = newItemFieldRef.current
@@ -20,7 +22,7 @@ const useItemAdd = (
         notes: $itemNotes.value !== "" ? $itemNotes.value : null
       }
 
-      pushToState({ items: [...items, newItem] })
+      pushToState({ items: [...state.items, newItem] })
 
       $itemName.value = ""
       $itemNotes.value = ""
@@ -28,9 +30,17 @@ const useItemAdd = (
     }
   }
 
+  /**
+   * Remove item
+   */
+
   const removeItem = (id: string) => {
-    const itemsWithRemoved = items.filter(item => item.id !== id)
+    const itemsWithRemoved = state.items.filter(item => item.id !== id)
   }
+
+  /**
+   * handle "enter" keydown
+   */
 
   useEffect(() => {
     const $itemName = newItemFieldRef.current
@@ -50,7 +60,7 @@ const useItemAdd = (
     }
 
     return null
-  }, [newItemFieldRef, items])
+  }, [newItemFieldRef, state.items])
 
   return {
     newItemFieldRef,

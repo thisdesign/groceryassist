@@ -1,29 +1,25 @@
 /* eslint-disable react/no-array-index-key */
-import React, { useState, useRef } from "react"
-
-import { UIButton, TextInput, TextArea, Paragraph, UIWrapper } from "components"
+import React, { useState, useContext } from "react"
+import { UIButton, TextArea, Paragraph, UIWrapper } from "components"
 import { Item } from "types"
 import S from "./GroceryList.Styled"
 import useItemAdd from "./useItemAdd"
-import { PageState } from "../NewOrder"
+import { NewOrderCtx } from "../NewOrderProvider"
 
-type ListProps = {
-  items: Item[]
-  pushToState: (newItem: Partial<PageState>) => void
-}
+const GroceryList: React.FC = () => {
+  const { state } = useContext(NewOrderCtx)
 
-const GroceryList: React.FC<ListProps> = ({ pushToState, items }) => {
   const [isFocused, setIsFocused] = useState<boolean>(false)
   const {
     newItemFieldRef,
     moreDetailsFieldRef,
     removeItem,
     handleNewItem
-  } = useItemAdd(items, pushToState)
+  } = useItemAdd()
 
   return (
     <S.GroceryWrap>
-      {items.map((item, i) => (
+      {state.items.map((item, i) => (
         <GroceryLineItem
           key={`${item.text}${i}`}
           text={item.text}
@@ -58,7 +54,7 @@ const GroceryList: React.FC<ListProps> = ({ pushToState, items }) => {
         </S.NewItemGrid>
       </S.NewItemInputWrapper>
 
-      {!items.length && (
+      {!state.items.length && (
         <S.Emptystate>
           <Paragraph>No items yet</Paragraph>
           <div>+ Add item&nbsp;</div>
