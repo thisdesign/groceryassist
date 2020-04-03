@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react"
 import { NextPage } from "next"
-import { Item } from "types"
+import { Item, NewOrderState } from "types"
 import { OrderInfoCapture } from "components"
 import Router from "next/router"
 import cookie from "cookie"
 
-const Capture: NextPage<{ data: any }> = ({ data }) => {
-  return <OrderInfoCapture />
+const Capture: NextPage<{ data: NewOrderState }> = ({ data }) => {
+  return <OrderInfoCapture data={data} />
 }
 
 Capture.getInitialProps = async ({ req }) => {

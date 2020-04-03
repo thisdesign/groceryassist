@@ -1,24 +1,15 @@
 /* eslint-disable react/jsx-wrap-multilines */
 /* eslint-disable react/no-array-index-key */
 import React, { useState, createContext, useEffect } from "react"
-import { Item } from "types"
+import { NewOrderState } from "types"
 import Cookie from "js-cookie"
 import Router from "next/router"
 import { PLACEHOLDER_ITEMS } from "../../constants"
 
-export type PageState = {
-  first: string
-  last: string
-  address: string
-  phone: string
-  age: number
-  additionalNotes: string | null
-  items: Item[]
-}
 type Ctx = {
-  state: PageState
+  state: NewOrderState
   handleCompleteButton: () => void
-  pushToState: (newItem: Partial<PageState>) => void
+  pushToState: (newItem: Partial<NewOrderState>) => void
 }
 
 const INITIAL_STATE = {
@@ -38,20 +29,16 @@ export const NewOrderCtx = createContext<Ctx>({
 })
 
 const NewOrderProvider: React.FC = ({ children }) => {
-  const [pageState, setPageState] = useState<PageState>(INITIAL_STATE)
+  const [pageState, setPageState] = useState<NewOrderState>(INITIAL_STATE)
 
-  const pushToState = (newItem: Partial<PageState>) => {
+  const pushToState = (newItem: Partial<NewOrderState>) => {
     setPageState({ ...pageState, ...newItem })
   }
 
   const handleCompleteButton = () => {
     Cookie.set("_grocery_items", pageState)
-    Router.push("/orders/new/capture")
+    Router.push("/orders/new/capture").then(() => window.scrollTo(0, 0))
   }
-
-  useEffect(() => {
-    Cookie.set("_grocery_items_live", pageState)
-  }, [pageState])
 
   return (
     <NewOrderCtx.Provider

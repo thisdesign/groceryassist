@@ -9,24 +9,25 @@ import {
   LargeHeading,
   MediumHeading
 } from "components"
-import { Item } from "types"
+import { Item, NewOrderState } from "types"
 import { useForm } from "react-hook-form"
-
 import Router from "next/router"
+import { addOrder } from "middleware"
 import S from "./OrderInfoCapture.Styled"
 
-const OrderInfo: React.FC = () => {
+const OrderInfo: React.FC<{ data: NewOrderState }> = ({ data }) => {
   const { register, handleSubmit, errors } = useForm()
   const onSubmit = formData => {
-    // const mergedData = {
-    //   ...pageState,
-    //   ...formData
-    // }
-    // addOrder(mergedData)
-    //   .then(() => {
-    //     Router.push("/")
-    //   })
-    //   .catch(err => console.log(err))
+    const mergedData = {
+      ...data,
+      ...formData
+    }
+
+    addOrder(mergedData)
+      .then(() => {
+        Router.push("/")
+      })
+      .catch(err => console.log(err))
   }
 
   return (
@@ -112,13 +113,14 @@ const OrderInfo: React.FC = () => {
               ref={register({ required: false })}
             />
           </S.Grid>
-          Where should we deliver?
+          Anything else we should know?
           <Paragraph>
-            Are you gluten free? Where would you like us to deliver?
+            Let us know things like food alergies, <br />
+            where to place the order, etc.
           </Paragraph>
           <S.Grid>
             <TextArea
-              style={{ gridColumn: "span 1" }}
+              style={{ gridColumn: "span 5" }}
               placeholder="Order Notes (optional)"
               name="orderNotes"
               rows={4}

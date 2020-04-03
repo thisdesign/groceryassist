@@ -92,3 +92,15 @@ declare global {
     __GROCERY_ITEMS__: Item[]
   }
 }
+
+/** New Order state */
+
+export type NewOrderState = {
+  first: string
+  last: string
+  address: string
+  phone: string
+  age: number
+  additionalNotes: string | null
+  items: Item[]
+}
