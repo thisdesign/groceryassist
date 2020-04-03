@@ -2,31 +2,31 @@ import React, { useEffect, useState } from "react"
 import { NextPage } from "next"
 import { Item } from "types"
 import Router from "next/router"
+import cookie from "cookie"
 
-const Capture: NextPage<{ items: Item[] }> = ({ items }) => {
-  const [windowItems, setWindowItems] = useState<Item[]>(items || null)
-
-  useEffect(() => {
-    if (window.__GROCERY_ITEMS__) {
-      setWindowItems(window.__GROCERY_ITEMS__)
-    } else {
-      Router.push("/orders/new")
-    }
-  }, [])
+const Capture: NextPage<{ data: any }> = ({ data }) => {
+  console.log(data)
 
   return (
-    <div>{windowItems ? <div>items found</div> : <div>loading...</div>}</div>
+    <div>
+      {data ? (
+        <div>
+          {data.items.map(item => (
+            <div>{item.text}</div>
+          ))}
+        </div>
+      ) : (
+        <div>loading...</div>
+      )}
+    </div>
   )
 }
 
-Capture.getInitialProps = async () => {
-  let items = null
+Capture.getInitialProps = async ({ req }) => {
+  const cookies = cookie.parse(req ? req.headers.cookie : document.cookie)
+  const data = JSON.parse(cookies._grocery_items)
 
-  if (typeof window !== "undefined") {
-    items = window.__GROCERY_ITEMS__
-  }
-
-  return { items }
+  return { data }
 }
 
 export default Capture

@@ -5,6 +5,7 @@ import { MediumHeading, UIButton, Paragraph, AppFrame } from "components"
 import { Item } from "types"
 
 import Router from "next/router"
+import Cookie from "js-cookie"
 import { PLACEHOLDER_ITEMS } from "../../constants"
 import GroceryList from "./GroceryList/GroceryList"
 import OrderInfo from "./OrderInfo/OrderInfo"
@@ -35,8 +36,8 @@ const NewOrder = () => {
   }
 
   const handleCompleteButton = () => {
-    window.__GROCERY_ITEMS__ = []
-    Router.push("/new/capture")
+    Cookie.set("_grocery_items", pageState)
+    Router.push("/orders/new/capture")
   }
 
   return (
