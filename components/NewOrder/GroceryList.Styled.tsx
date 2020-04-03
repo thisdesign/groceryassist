@@ -12,10 +12,8 @@ const lineitemstyle = css`
 
 const ItemWrapper = styled.div`
   border-bottom: 1px solid var(--color-grey-2);
+  ${lineitemstyle}
 
-  h4 {
-    margin-bottom: 0.8rem;
-  }
   h5 {
     font-weight: lighter;
   }
@@ -28,7 +26,6 @@ const ItemWrapper = styled.div`
   }
 
   input {
-    ${lineitemstyle}
     font-size: inherit;
     border: inherit;
     padding: none;
@@ -47,8 +44,9 @@ const LineItem = {
   Inner: ItemInner,
   Wrapper: ItemWrapper
 }
+
 /**
- *
+ * NewItemInput
  */
 
 const ButtonsWrapper = styled.div`
@@ -103,6 +101,38 @@ const AddItemInput = styled.input`
   }
 `
 
+const NewItemTextArea = styled.textarea<{ isEnabled: boolean }>`
+  border: 1px solid blue;
+  font-size: var(--size-1);
+  padding: inherit;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: inherit;
+  color: var(--color-grey-1);
+  width: 100%;
+  border-top: 1px solid var(--color-grey-2);
+  margin-top: 0.5rem;
+  padding-top: 0.25rem;
+  resize: none;
+
+  opacity: ${props => (props.isEnabled ? 1 : 0)};
+  transition: 200ms opacity ease;
+
+  ::placeholder {
+    font-weight: 300;
+    color: var(--color-grey-1);
+  }
+`
+
+const NewItem = {
+  Wrapper: NewItemInputWrapper,
+  Grid: NewItemGrid,
+  Input: AddItemInput,
+  ButtonWrap: ButtonsWrapper,
+  TextArea: NewItemTextArea
+}
+
 const Emptystate = styled.div`
   height: 10rem;
   display: flex;
@@ -136,6 +166,7 @@ export default {
   NewItemInputWrapper,
   AddItemInput,
   NewItemGrid,
+  NewItem,
   ItemWrapper,
   ButtonsWrapper,
   NextWrapper,

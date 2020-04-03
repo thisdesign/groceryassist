@@ -70,30 +70,32 @@ const NewItemInput = () => {
     handleNewItem
   } = useItemAdd()
 
+  const [isDetailsEnabled, setDetailsEnabled] = useState<boolean>(false)
+
   return (
-    <S.NewItemInputWrapper isFocused={isFocused}>
-      <S.NewItemGrid>
+    <S.NewItem.Wrapper isFocused={isFocused}>
+      <S.NewItem.Grid>
         <div>
           <S.AddItemInput
             onFocus={() => setIsFocused(true)}
             placeholder="Add item..."
             ref={newItemFieldRef}
           />
-          <TextArea
-            style={{ display: "none" }}
+          <S.NewItem.TextArea
+            isEnabled={isDetailsEnabled}
             ref={moreDetailsFieldRef}
             placeholder="Additional details"
           />
         </div>
 
-        <S.ButtonsWrapper>
+        <S.NewItem.ButtonWrap>
           <UIButton inverted textColor="brand" onClick={handleNewItem}>
             Add
           </UIButton>
-          <span>Add notes</span>
-        </S.ButtonsWrapper>
-      </S.NewItemGrid>
-    </S.NewItemInputWrapper>
+          <span onClick={() => setDetailsEnabled(true)}>Add notes</span>
+        </S.NewItem.ButtonWrap>
+      </S.NewItem.Grid>
+    </S.NewItem.Wrapper>
   )
 }
 
@@ -126,11 +128,11 @@ const GroceryLineItem: React.FC<{ data: Item }> = ({ data }) => {
             onChange={handleChange}
             ref={inputRef}
           />
-          {data.notes && <h4>&quot;{data.notes}&quot;</h4>}
+          {data.notes && <h4>{data.notes}</h4>}
         </div>
         <div>
           <h5>
-            <span>Edit</span> • <span onClick={handleRemove}>Remove</span>
+            <span onClick={handleRemove}>Remove</span>
           </h5>
         </div>
       </S.LineItem.Inner>

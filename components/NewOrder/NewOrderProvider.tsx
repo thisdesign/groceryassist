@@ -4,7 +4,7 @@ import React, { useState, createContext, useEffect } from "react"
 import { NewOrderState } from "types"
 import Cookie from "js-cookie"
 import Router from "next/router"
-import { PLACEHOLDER_ITEMS } from "../../constants"
+// import { PLACEHOLDER_ITEMS } from "../../constants"
 
 type Ctx = {
   state: NewOrderState
@@ -19,7 +19,7 @@ const INITIAL_STATE = {
   phone: "",
   age: 0,
   additionalNotes: null,
-  items: PLACEHOLDER_ITEMS
+  items: []
 }
 
 export const NewOrderCtx = createContext<Ctx>({
