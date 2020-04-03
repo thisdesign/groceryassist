@@ -9,6 +9,14 @@ const useItemAdd = () => {
   const [isFocused, setIsFocused] = useState<boolean>(false)
 
   /**
+   * Scroll to bottom
+   */
+
+  const scrollToBottom = () => {
+    window.scrollTo(0, document.querySelector("body").scrollHeight)
+  }
+
+  /**
    * New Item
    */
 
@@ -28,6 +36,7 @@ const useItemAdd = () => {
       $itemName.value = ""
       $itemNotes.value = ""
       $itemName.focus()
+      scrollToBottom()
     }
   }
 
