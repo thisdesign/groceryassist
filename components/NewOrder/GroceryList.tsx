@@ -130,7 +130,7 @@ const GroceryLineItem: React.FC<{ data: Item }> = ({ data }) => {
         </div>
         <div>
           <h5>
-            <span>Edit</span> • <span onClick={handleRemove}>remove</span>
+            <span>Edit</span> • <span onClick={handleRemove}>Remove</span>
           </h5>
         </div>
       </S.LineItem.Inner>

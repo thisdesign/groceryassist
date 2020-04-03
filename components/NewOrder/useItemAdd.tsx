@@ -48,7 +48,7 @@ const useItemAdd = () => {
 
   const removeItem = (id: string) => {
     const itemsWithRemoved = state.items.filter(item => item.id !== id)
-    console.log(itemsWithRemoved)
+    pushToState({ items: itemsWithRemoved })
   }
 
   /**
