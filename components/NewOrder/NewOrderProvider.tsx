@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-wrap-multilines */
 /* eslint-disable react/no-array-index-key */
-import React, { useState, createContext } from "react"
+import React, { useState, createContext, useEffect } from "react"
 import { Item } from "types"
 import Cookie from "js-cookie"
 import Router from "next/router"
@@ -48,6 +48,10 @@ const NewOrderProvider: React.FC = ({ children }) => {
     Cookie.set("_grocery_items", pageState)
     Router.push("/orders/new/capture")
   }
+
+  useEffect(() => {
+    Cookie.set("_grocery_items_live", pageState)
+  }, [pageState])
 
   return (
     <NewOrderCtx.Provider

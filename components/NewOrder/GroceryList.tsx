@@ -139,7 +139,7 @@ const GroceryLineItem: React.FC<{ data: Item }> = ({ data }) => {
 }
 
 const NextButton = () => {
-  const { state } = useContext(NewOrderCtx)
+  const { state, handleCompleteButton } = useContext(NewOrderCtx)
 
   return (
     <S.NextWrapper isEnabled={!!state.items.length} pad>
@@ -147,7 +147,7 @@ const NextButton = () => {
         Once you are finished, add your info
         <br /> so we can deliver to you.
       </Paragraph>
-      <UIButton onClick={() => null}>Next</UIButton>
+      <UIButton onClick={handleCompleteButton}>Next</UIButton>
     </S.NextWrapper>
   )
 }
