@@ -4,7 +4,7 @@ import { UIButton, TextArea, Paragraph, UIWrapper } from "components"
 import { Item } from "types"
 import S from "./GroceryList.Styled"
 import useItemAdd from "./useItemAdd"
-import { NewOrderCtx } from "../NewOrderProvider"
+import { NewOrderCtx } from "./NewOrderProvider"
 
 const GroceryList: React.FC = () => {
   const { state } = useContext(NewOrderCtx)

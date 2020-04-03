@@ -1,6 +1,6 @@
 import { useRef, useEffect, useContext } from "react"
 import { v4 as uuid } from "uuid"
-import { NewOrderCtx } from "../NewOrderProvider"
+import { NewOrderCtx } from "./NewOrderProvider"
 
 const useItemAdd = () => {
   const { state, pushToState } = useContext(NewOrderCtx)

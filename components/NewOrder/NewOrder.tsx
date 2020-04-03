@@ -1,9 +1,8 @@
 /* eslint-disable react/jsx-wrap-multilines */
 /* eslint-disable react/no-array-index-key */
-import React, { useState, useContext, createContext } from "react"
+import React, { useContext } from "react"
 import { MediumHeading, UIButton, Paragraph, AppFrame } from "components"
-import { Item } from "types"
-import GroceryList from "./GroceryList/GroceryList"
+import GroceryList from "./GroceryList"
 import NewOrderProvider, { NewOrderCtx } from "./NewOrderProvider"
 
 const NewOrder = () => {
