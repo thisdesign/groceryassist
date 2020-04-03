@@ -1,6 +1,12 @@
-import { useRef, useEffect, useContext, useState } from "react"
+import { useRef, useEffect, useContext, createContext, useState } from "react"
 import { v4 as uuid } from "uuid"
 import { NewOrderCtx } from "./NewOrderProvider"
+
+const GroceryListCtx = createContext<{
+  isFocused: boolean
+}>({
+  isFocused: false
+})
 
 const useItemAdd = () => {
   const { state, pushToState } = useContext(NewOrderCtx)
@@ -88,7 +94,8 @@ const useItemAdd = () => {
     handleNewItem,
     removeItem,
     isFocused,
-    setIsFocused
+    setIsFocused,
+    GroceryListCtx
   }
 }
 

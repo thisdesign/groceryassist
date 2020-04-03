@@ -14,15 +14,8 @@ const NewOrder = () => {
 }
 
 const UI = () => {
-  const { state, handleCompleteButton } = useContext(NewOrderCtx)
-
   return (
     <AppFrame
-      bottomBar={
-        state.items.length ? (
-          <UIButton onClick={handleCompleteButton}>Next</UIButton>
-        ) : null
-      }
       header={
         <>
           <MediumHeading>New Order</MediumHeading>

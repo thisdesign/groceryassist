@@ -8,18 +8,10 @@ import { NewOrderCtx } from "./NewOrderProvider"
 
 const GroceryList: React.FC = () => {
   const { state } = useContext(NewOrderCtx)
-
-  const {
-    newItemFieldRef,
-    moreDetailsFieldRef,
-    removeItem,
-    handleNewItem,
-    isFocused,
-    setIsFocused
-  } = useItemAdd()
+  const { removeItem, isFocused, GroceryListCtx } = useItemAdd()
 
   return (
-    <>
+    <GroceryListCtx.Provider value={{ isFocused }}>
       {isFocused || state.items.length ? (
         <>
           {state.items.map((item, i) => (
@@ -31,38 +23,24 @@ const GroceryList: React.FC = () => {
               removeItem={removeItem}
             />
           ))}
-
-          <S.NewItemInputWrapper isFocused={isFocused}>
-            <S.NewItemGrid>
-              <div>
-                <S.Input
-                  onFocus={() => setIsFocused(true)}
-                  placeholder="Add item..."
-                  ref={newItemFieldRef}
-                />
-                <TextArea
-                  style={{ display: "none" }}
-                  ref={moreDetailsFieldRef}
-                  placeholder="Additional details"
-                />
-              </div>
-
-              <S.ButtonsWrapper>
-                <UIButton inverted textColor="brand" onClick={handleNewItem}>
-                  Add
-                </UIButton>
-                <span>Add notes</span>
-              </S.ButtonsWrapper>
-            </S.NewItemGrid>
-          </S.NewItemInputWrapper>
+          <NewItemInput />
+          <NextButton />
         </>
       ) : (
-        <S.Emptystate>
-          <Paragraph>No items yet</Paragraph>
-          <div onClick={() => setIsFocused(true)}>+ Add item&nbsp;</div>
-        </S.Emptystate>
+        <EmptyState />
       )}
-    </>
+    </GroceryListCtx.Provider>
+  )
+}
+
+const EmptyState = () => {
+  const { setIsFocused } = useItemAdd()
+
+  return (
+    <S.Emptystate>
+      <Paragraph>No items yet</Paragraph>
+      <div onClick={() => setIsFocused(true)}>+ Add item&nbsp;</div>
+    </S.Emptystate>
   )
 }
 
@@ -76,6 +54,60 @@ const GroceryLineItem: React.FC<{
         {notes && <h4>&quot;{notes}&quot;</h4>}
       </UIWrapper>
     </S.ItemWrapper>
+  )
+}
+
+const NewItemInput = () => {
+  const {
+    newItemFieldRef,
+    moreDetailsFieldRef,
+    handleNewItem,
+    isFocused,
+    setIsFocused
+  } = useItemAdd()
+
+  return (
+    <S.NewItemInputWrapper isFocused={isFocused}>
+      <S.NewItemGrid>
+        <div>
+          <S.Input
+            onFocus={() => setIsFocused(true)}
+            placeholder="Add item..."
+            ref={newItemFieldRef}
+          />
+          <TextArea
+            style={{ display: "none" }}
+            ref={moreDetailsFieldRef}
+            placeholder="Additional details"
+          />
+        </div>
+
+        <S.ButtonsWrapper>
+          <UIButton inverted textColor="brand" onClick={handleNewItem}>
+            Add
+          </UIButton>
+          <span>Add notes</span>
+        </S.ButtonsWrapper>
+      </S.NewItemGrid>
+    </S.NewItemInputWrapper>
+  )
+}
+
+const NextButton = () => {
+  const { state } = useContext(NewOrderCtx)
+
+  return (
+    <>
+      {state.items.length ? (
+        <UIWrapper>
+          <Paragraph>
+            Once you are finished, add your info
+            <br /> so we can deliver to you.
+          </Paragraph>
+          <UIButton onClick={() => null}>Next</UIButton>
+        </UIWrapper>
+      ) : null}
+    </>
   )
 }
 
