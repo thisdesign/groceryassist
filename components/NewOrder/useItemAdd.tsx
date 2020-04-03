@@ -48,6 +48,18 @@ const useItemAdd = () => {
 
   const removeItem = (id: string) => {
     const itemsWithRemoved = state.items.filter(item => item.id !== id)
+    console.log(itemsWithRemoved)
+  }
+
+  /**
+   * updateItem
+   */
+
+  const updateItem = (id: string, text: string) => {
+    const updatedItems = state.items.map(item =>
+      item.id === id ? { ...item, text } : item
+    )
+    pushToState({ items: updatedItems })
   }
 
   /**
@@ -90,7 +102,8 @@ const useItemAdd = () => {
     handleNewItem,
     removeItem,
     setIsFocused,
-    isFocused
+    isFocused,
+    updateItem
   }
 }
 

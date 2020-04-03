@@ -1,27 +1,17 @@
 import styled, { css } from "styled-components"
 import { UIWrapper } from "components"
 
-const GroceryWrap = styled.div`
-  /* max-width: 35rem; */
-  /* margin: 0 auto; */
-`
-
-const White = styled.div`
-  border-radius: 0.5rem;
-  background: white;
-  /* border: 1px solid var(--color-grey-2); */
-  margin-top: var(--size-2);
-  padding: 1px;
-`
-
 const lineitemstyle = css`
   padding: var(--size-2) 0;
   font-size: var(--size-2);
-  border-bottom: 1px solid var(--color-grey-2);
 `
 
+/**
+ * Item
+ */
+
 const ItemWrapper = styled.div`
-  ${lineitemstyle}
+  border-bottom: 1px solid var(--color-grey-2);
 
   h4 {
     margin-bottom: 0.8rem;
@@ -36,7 +26,30 @@ const ItemWrapper = styled.div`
     letter-spacing: 0.02em;
     padding-top: 0.25em;
   }
+
+  input {
+    ${lineitemstyle}
+    font-size: inherit;
+    border: inherit;
+    padding: none;
+    width: 100%;
+    outline: none;
+  }
 `
+
+const ItemInner = styled(UIWrapper)`
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+`
+
+const LineItem = {
+  Inner: ItemInner,
+  Wrapper: ItemWrapper
+}
+/**
+ *
+ */
 
 const ButtonsWrapper = styled.div`
   opacity: 0;
@@ -45,6 +58,7 @@ const ButtonsWrapper = styled.div`
 
 const NewItemInputWrapper = styled.div<{ isFocused: boolean }>`
   ${lineitemstyle};
+  border-bottom: 1px solid var(--color-grey-2);
   transition: 200ms box-shadow ease, 200ms background-color ease;
   background-color: white;
   margin-bottom: 3rem;
@@ -74,7 +88,7 @@ const NewItemGrid = styled(UIWrapper)`
   grid-gap: 1rem;
 `
 
-const Input = styled.input`
+const AddItemInput = styled.input`
   font-size: inherit;
   font-weight: normal;
   width: 100%;
@@ -118,13 +132,12 @@ const NextWrapper = styled(UIWrapper)<{ isEnabled: boolean }>`
 `
 
 export default {
-  GroceryWrap,
-  White,
   Emptystate,
   NewItemInputWrapper,
-  Input,
+  AddItemInput,
   NewItemGrid,
   ItemWrapper,
   ButtonsWrapper,
-  NextWrapper
+  NextWrapper,
+  LineItem
 }

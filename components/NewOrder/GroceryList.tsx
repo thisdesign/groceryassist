@@ -1,5 +1,11 @@
 /* eslint-disable react/no-array-index-key */
-import React, { createContext, useState, useContext } from "react"
+import React, {
+  useRef,
+  createContext,
+  useState,
+  useContext,
+  useEffect
+} from "react"
 import { UIButton, TextArea, Paragraph, UIWrapper } from "components"
 import { Item } from "types"
 import S from "./GroceryList.Styled"
@@ -33,12 +39,7 @@ const ListUI = () => {
       {isFocused || state.items.length ? (
         <>
           {state.items.map((item, i) => (
-            <GroceryLineItem
-              key={`${item.text}${i}`}
-              text={item.text}
-              notes={item.notes}
-              id={item.id}
-            />
+            <GroceryLineItem data={item} key={`${item.text}${i}`} />
           ))}
           <NewItemInput />
           <NextButton />
@@ -73,7 +74,7 @@ const NewItemInput = () => {
     <S.NewItemInputWrapper isFocused={isFocused}>
       <S.NewItemGrid>
         <div>
-          <S.Input
+          <S.AddItemInput
             onFocus={() => setIsFocused(true)}
             placeholder="Add item..."
             ref={newItemFieldRef}
@@ -96,16 +97,33 @@ const NewItemInput = () => {
   )
 }
 
-const GroceryLineItem: React.FC<Item> = ({ text, notes, id }) => {
-  // const { removeItem } = useItemAdd()
+const GroceryLineItem: React.FC<{ data: Item }> = ({ data }) => {
+  const { removeItem, updateItem } = useItemAdd()
+  const inputRef = useRef<HTMLInputElement>(null)
+
+  const handleRemove = () => removeItem(data.id)
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = e.target.value
+    console.log(e.target)
+
+    updateItem(data.id, val)
+  }
 
   return (
-    <S.ItemWrapper>
-      <UIWrapper>
-        <h3>{text}</h3>
-        {notes && <h4>&quot;{notes}&quot;</h4>}
-      </UIWrapper>
-    </S.ItemWrapper>
+    <S.LineItem.Wrapper>
+      <S.LineItem.Inner>
+        <div>
+          <input value={data.text} onChange={handleChange} ref={inputRef} />
+          {data.notes && <h4>&quot;{data.notes}&quot;</h4>}
+        </div>
+        <div>
+          <h5>
+            <span>Edit</span> • <span onClick={handleRemove}>remove</span>
+          </h5>
+        </div>
+      </S.LineItem.Inner>
+    </S.LineItem.Wrapper>
   )
 }
 
