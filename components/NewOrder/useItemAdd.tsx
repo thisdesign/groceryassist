@@ -1,4 +1,4 @@
-import { useRef, useEffect, useContext } from "react"
+import { useRef, useEffect, useContext, useState } from "react"
 import { v4 as uuid } from "uuid"
 import { NewOrderCtx } from "./NewOrderProvider"
 
@@ -6,6 +6,7 @@ const useItemAdd = () => {
   const { state, pushToState } = useContext(NewOrderCtx)
   const newItemFieldRef = useRef<HTMLInputElement>()
   const moreDetailsFieldRef = useRef<HTMLTextAreaElement>()
+  const [isFocused, setIsFocused] = useState<boolean>(false)
 
   /**
    * New Item
@@ -59,14 +60,26 @@ const useItemAdd = () => {
       }
     }
 
-    return null
-  }, [newItemFieldRef, state.items])
+    return () => null
+  }, [isFocused, newItemFieldRef, state.items])
+
+  /**
+   * Focus on isFocused
+   */
+
+  useEffect(() => {
+    if (isFocused && newItemFieldRef.current) {
+      newItemFieldRef.current.focus()
+    }
+  }, [isFocused])
 
   return {
     newItemFieldRef,
     moreDetailsFieldRef,
     handleNewItem,
-    removeItem
+    removeItem,
+    isFocused,
+    setIsFocused
   }
 }
 
