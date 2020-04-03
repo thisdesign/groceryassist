@@ -1,17 +1,35 @@
 /* eslint-disable react/no-array-index-key */
-import React, { useState, useContext } from "react"
+import React, { createContext, useState, useContext } from "react"
 import { UIButton, TextArea, Paragraph, UIWrapper } from "components"
 import { Item } from "types"
 import S from "./GroceryList.Styled"
 import useItemAdd from "./useItemAdd"
 import { NewOrderCtx } from "./NewOrderProvider"
 
+export const GroceryListCtx = createContext<{
+  isFocused: boolean
+  setIsFocused: React.Dispatch<React.SetStateAction<boolean>>
+}>({
+  isFocused: false,
+  setIsFocused: () => null
+})
+
 const GroceryList: React.FC = () => {
-  const { state } = useContext(NewOrderCtx)
-  const { removeItem, isFocused, GroceryListCtx } = useItemAdd()
+  const [isFocused, setIsFocused] = useState<boolean>(false)
 
   return (
-    <GroceryListCtx.Provider value={{ isFocused }}>
+    <GroceryListCtx.Provider value={{ isFocused, setIsFocused }}>
+      <ListUI />
+    </GroceryListCtx.Provider>
+  )
+}
+
+const ListUI = () => {
+  const { state } = useContext(NewOrderCtx)
+  const { removeItem, isFocused } = useItemAdd()
+
+  return (
+    <>
       {isFocused || state.items.length ? (
         <>
           {state.items.map((item, i) => (
@@ -29,13 +47,12 @@ const GroceryList: React.FC = () => {
       ) : (
         <EmptyState />
       )}
-    </GroceryListCtx.Provider>
+    </>
   )
 }
 
 const EmptyState = () => {
   const { setIsFocused } = useItemAdd()
-
   return (
     <S.Emptystate>
       <Paragraph>No items yet</Paragraph>
@@ -61,9 +78,9 @@ const NewItemInput = () => {
   const {
     newItemFieldRef,
     moreDetailsFieldRef,
-    handleNewItem,
     isFocused,
-    setIsFocused
+    setIsFocused,
+    handleNewItem
   } = useItemAdd()
 
   return (

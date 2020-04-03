@@ -1,18 +1,14 @@
 import { useRef, useEffect, useContext, createContext, useState } from "react"
 import { v4 as uuid } from "uuid"
 import { NewOrderCtx } from "./NewOrderProvider"
-
-const GroceryListCtx = createContext<{
-  isFocused: boolean
-}>({
-  isFocused: false
-})
+import { GroceryListCtx } from "./GroceryList"
 
 const useItemAdd = () => {
+  const { setIsFocused, isFocused } = useContext(GroceryListCtx)
+
   const { state, pushToState } = useContext(NewOrderCtx)
   const newItemFieldRef = useRef<HTMLInputElement>()
   const moreDetailsFieldRef = useRef<HTMLTextAreaElement>()
-  const [isFocused, setIsFocused] = useState<boolean>(false)
 
   /**
    * Scroll to bottom
@@ -93,9 +89,8 @@ const useItemAdd = () => {
     moreDetailsFieldRef,
     handleNewItem,
     removeItem,
-    isFocused,
     setIsFocused,
-    GroceryListCtx
+    isFocused
   }
 }
 
