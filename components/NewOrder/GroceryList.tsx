@@ -39,7 +39,7 @@ const ListUI = () => {
       {isFocused || state.items.length ? (
         <>
           {state.items.map((item, i) => (
-            <GroceryLineItem data={item} key={`${item.text}${i}`} />
+            <GroceryLineItem data={item} key={item.id} />
           ))}
           <NewItemInput />
           <NextButton />
@@ -105,16 +105,27 @@ const GroceryLineItem: React.FC<{ data: Item }> = ({ data }) => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value
-    console.log(e.target)
-
     updateItem(data.id, val)
+  }
+
+  const blurOnEnter = (
+    e: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    if (e.keyCode === 13) {
+      e.currentTarget.blur()
+    }
   }
 
   return (
     <S.LineItem.Wrapper>
       <S.LineItem.Inner>
         <div>
-          <input value={data.text} onChange={handleChange} ref={inputRef} />
+          <input
+            value={data.text}
+            onKeyDown={blurOnEnter}
+            onChange={handleChange}
+            ref={inputRef}
+          />
           {data.notes && <h4>&quot;{data.notes}&quot;</h4>}
         </div>
         <div>
