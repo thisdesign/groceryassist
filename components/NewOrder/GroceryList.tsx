@@ -38,7 +38,6 @@ const ListUI = () => {
               text={item.text}
               notes={item.notes}
               id={item.id}
-              removeItem={removeItem}
             />
           ))}
           <NewItemInput />
@@ -58,19 +57,6 @@ const EmptyState = () => {
       <Paragraph>No items yet</Paragraph>
       <div onClick={() => setIsFocused(true)}>+ Add item&nbsp;</div>
     </S.Emptystate>
-  )
-}
-
-const GroceryLineItem: React.FC<{
-  removeItem: (id: string) => void
-} & Item> = ({ removeItem, text, notes, id }) => {
-  return (
-    <S.ItemWrapper>
-      <UIWrapper>
-        <h3>{text}</h3>
-        {notes && <h4>&quot;{notes}&quot;</h4>}
-      </UIWrapper>
-    </S.ItemWrapper>
   )
 }
 
@@ -107,6 +93,19 @@ const NewItemInput = () => {
         </S.ButtonsWrapper>
       </S.NewItemGrid>
     </S.NewItemInputWrapper>
+  )
+}
+
+const GroceryLineItem: React.FC<Item> = ({ text, notes, id }) => {
+  // const { removeItem } = useItemAdd()
+
+  return (
+    <S.ItemWrapper>
+      <UIWrapper>
+        <h3>{text}</h3>
+        {notes && <h4>&quot;{notes}&quot;</h4>}
+      </UIWrapper>
+    </S.ItemWrapper>
   )
 }
 

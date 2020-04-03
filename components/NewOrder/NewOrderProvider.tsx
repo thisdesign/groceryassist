@@ -4,6 +4,7 @@ import React, { useState, createContext } from "react"
 import { Item } from "types"
 import Cookie from "js-cookie"
 import Router from "next/router"
+import { PLACEHOLDER_ITEMS } from "../../constants"
 
 export type PageState = {
   first: string
@@ -24,10 +25,10 @@ const INITIAL_STATE = {
   first: "",
   last: "",
   address: "",
-  phone: "6168227256",
-  age: 53,
+  phone: "",
+  age: 0,
   additionalNotes: null,
-  items: []
+  items: PLACEHOLDER_ITEMS
 }
 
 export const NewOrderCtx = createContext<Ctx>({
