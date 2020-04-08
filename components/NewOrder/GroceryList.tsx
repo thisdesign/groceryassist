@@ -148,7 +148,7 @@ const NextButton = () => {
       <Paragraph>
         Once your shopping list is complete,
         <br />
-        information for the delivery
+        add information for the delivery
       </Paragraph>
       <UIButton onClick={handleCompleteButton}>Next</UIButton>
     </S.NextWrapper>
