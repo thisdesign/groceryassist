@@ -1,8 +1,12 @@
 import React from "react"
-import { NewOrder } from "components"
+import { NewOrder, Page } from "components"
 
 const New = () => {
-  return <NewOrder />
+  return (
+    <Page title="New Order">
+      <NewOrder />
+    </Page>
+  )
 }
 
 export default New

@@ -27,6 +27,7 @@ import RadioCircle from "./RadioCircle/RadioCircle"
 import Homepage from "./Homepage/Homepage"
 import OrderConnect from "./OrderConnect/OrderConnect"
 import OrderInfoCapture from "./OrderInfoCapture/OrderInfoCapture"
+import Page from "./Page/Page"
 
 export {
   OrderDetail,
@@ -59,5 +60,6 @@ export {
   AppFrame,
   RadioCircle,
   OrderConnect,
-  OrderInfoCapture
+  OrderInfoCapture,
+  Page,
 }

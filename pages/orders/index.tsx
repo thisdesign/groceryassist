@@ -2,7 +2,7 @@ import { NextPage, GetServerSideProps } from "next"
 import Cookies from "js-cookie"
 import cookie from "cookie"
 import Router from "next/router"
-import { OrderList, PhoneCapture, AddressCapture } from "../../components"
+import { OrderList, PhoneCapture, AddressCapture, Page } from "../../components"
 import { OrderRes, LocationRes } from "../../types"
 import "isomorphic-unfetch"
 import { getOrders, getLocationByAddress } from "../../middleware"
@@ -16,23 +16,29 @@ const Listings: NextPage<{
   location: LocationRes
 }> = ({ orders, location }) => {
   if (location) {
-    return <OrderList orders={orders} location={location} />
+    return (
+      <Page title="Orders">
+        <OrderList orders={orders} location={location} />
+      </Page>
+    )
   }
 
   return (
-    <AddressCapture
-      onSubmit={address => {
-        Cookies.set("_address", address)
-        goToOrdersPage(address)
-      }}
-    />
+    <Page title="Enter Address">
+      <AddressCapture
+        onSubmit={(address) => {
+          Cookies.set("_address", address)
+          goToOrdersPage(address)
+        }}
+      />
+    </Page>
   )
 }
 
 export const getServerSideProps: GetServerSideProps = async ({
   res,
   req,
-  query
+  query,
 }) => {
   let orders = null
   let location: LocationRes = null
@@ -48,15 +54,15 @@ export const getServerSideProps: GetServerSideProps = async ({
 
     orders = await getOrders({
       limit: 0,
-      coords: [location.lat, location.lng]
+      coords: [location.lat, location.lng],
     })
   }
 
   return {
     props: {
       orders,
-      location
-    }
+      location,
+    },
   }
 }
 

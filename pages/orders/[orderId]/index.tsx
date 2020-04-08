@@ -1,21 +1,25 @@
-import React from "react";
-import { NextPage } from "next";
-import Error from "next/error";
+import React from "react"
+import { NextPage } from "next"
+import Error from "next/error"
 
-import { OrderDetail } from "../../../components";
-import { OrderDb } from "../../../types";
-import { getOrderById } from "../../../middleware";
+import { OrderDetail, Page } from "components"
+import { OrderDb } from "types"
+import { getOrderById } from "middleware"
 
 const OrderPage: NextPage<{ data: OrderDb }> = ({ data }) => {
   if (data) {
-    return <OrderDetail data={data} />;
+    return (
+      <Page title={`Order for ${data.user.first}`}>
+        <OrderDetail data={data} />
+      </Page>
+    )
   }
-  return <Error statusCode={404} />;
-};
+  return <Error statusCode={404} />
+}
 
 OrderPage.getInitialProps = async ({ query }) => {
-  const orderId = query.orderId.toString();
-  const data: OrderDb = await getOrderById(orderId);
-  return { data };
-};
-export default OrderPage;
+  const orderId = query.orderId.toString()
+  const data: OrderDb = await getOrderById(orderId)
+  return { data }
+}
+export default OrderPage

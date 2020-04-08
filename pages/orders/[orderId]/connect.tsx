@@ -2,10 +2,14 @@ import React from "react"
 import { NextPage } from "next"
 import { getOrderById } from "middleware"
 import { OrderDb } from "types"
-import { OrderConnect } from "components"
+import { OrderConnect, Page } from "components"
 
 const ConnectPage: NextPage<{ data: OrderDb }> = ({ data }) => {
-  return <OrderConnect data={data} />
+  return (
+    <Page title={`Order for ${data.user.first}`}>
+      <OrderConnect data={data} />
+    </Page>
+  )
 }
 
 ConnectPage.getInitialProps = async ({ query }) => {

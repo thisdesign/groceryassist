@@ -3,7 +3,7 @@ import { NextPage } from "next"
 import { getOrderById, completeOrder } from "middleware"
 import { OrderDb } from "types"
 import Router from "next/router"
-import { UIButton, LargeHeading } from "components"
+import { UIButton, LargeHeading, Page } from "components"
 
 const ConnectPage: NextPage<{ data: OrderDb }> = ({ data }) => {
   const handleCompleteBtn = () => {
@@ -11,13 +11,13 @@ const ConnectPage: NextPage<{ data: OrderDb }> = ({ data }) => {
       .then(() => {
         Router.push(`/orders/${data._id}/complete`)
       })
-      .catch(err => console.error(err))
+      .catch((err) => console.error(err))
   }
 
   const { city, state, address, zip } = data.location
 
   return (
-    <div>
+    <Page title={`Order for ${data.user.first}`}>
       [FPO... Delivery page goes here]
       <hr />
       Deliver to:
@@ -26,7 +26,7 @@ const ConnectPage: NextPage<{ data: OrderDb }> = ({ data }) => {
         {city}, {state}, {zip}
       </LargeHeading>
       <UIButton onClick={handleCompleteBtn}>Mark as complete</UIButton>
-    </div>
+    </Page>
   )
 }
 
