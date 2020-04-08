@@ -146,8 +146,9 @@ const NextButton = () => {
   return (
     <S.NextWrapper isEnabled={!!state.items.length} pad>
       <Paragraph>
-        Once your shopping list is complete, provide information for the
-        delivery
+        Once your shopping list is complete,
+        <br />
+        information for the delivery
       </Paragraph>
       <UIButton onClick={handleCompleteButton}>Next</UIButton>
     </S.NextWrapper>
