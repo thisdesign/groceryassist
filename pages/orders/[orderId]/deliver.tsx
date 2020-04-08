@@ -6,19 +6,9 @@ import Router from "next/router"
 import { DeliverPrompt, Page } from "components"
 
 const ConnectPage: NextPage<{ data: OrderDb }> = ({ data }) => {
-  const handleCompleteBtn = () => {
-    completeOrder(data._id)
-      .then(() => {
-        Router.push(`/orders/${data._id}/complete`)
-      })
-      .catch((err) => console.error(err))
-  }
-
-  const { city, state, address, zip } = data.location
-
   return (
     <Page title={`Order for ${data.user.first}`}>
-      <DeliverPrompt data= />
+      <DeliverPrompt data={data} />
     </Page>
   )
 }
