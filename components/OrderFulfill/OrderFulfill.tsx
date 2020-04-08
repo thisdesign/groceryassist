@@ -7,7 +7,7 @@ import {
   BottomBar,
   LargeHeading,
   UIButton,
-  AppFrame
+  AppFrame,
 } from "components"
 
 import Router from "next/router"
@@ -22,14 +22,14 @@ const Fulfillment: React.FC<{
 }> = ({ data }) => {
   const {
     items,
-    user: { first }
+    user: { first },
   } = data
 
   const [checkItems, setCheckItems] = useState(
-    items.map(item => ({ ...item, checked: false }))
+    items.map((item) => ({ ...item, checked: false }))
   )
 
-  const completeItemCount = checkItems.filter(item => item.checked).length
+  const completeItemCount = checkItems.filter((item) => item.checked).length
 
   const handleItem = (i: number) => {
     const newCheckItems = [...checkItems]
@@ -49,14 +49,16 @@ const Fulfillment: React.FC<{
         }
       >
         {checkItems.map((item, i) => (
-          <S.OrderItem
+          <S.OrderItem.Outer
             isChecked={item.checked}
             key={item.text}
             onClick={() => handleItem(i)}
           >
-            <RadioCircle checked={!!item.checked} />
-            {item.text}
-          </S.OrderItem>
+            <S.OrderItem.Inner>
+              <RadioCircle checked={!!item.checked} />
+              {item.text}
+            </S.OrderItem.Inner>
+          </S.OrderItem.Outer>
         ))}
       </AppFrame>
 
