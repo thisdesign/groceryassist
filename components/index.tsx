@@ -28,6 +28,8 @@ import Homepage from "./Homepage/Homepage"
 import OrderConnect from "./OrderConnect/OrderConnect"
 import OrderInfoCapture from "./OrderInfoCapture/OrderInfoCapture"
 import Page from "./Page/Page"
+import DeliverPrompt from "./DeliverPrompt/DeliverPrompt"
+import LargeMessage from "./LargeMessage/LargeMessage"
 
 export {
   OrderDetail,
@@ -62,4 +64,6 @@ export {
   OrderConnect,
   OrderInfoCapture,
   Page,
+  DeliverPrompt,
+  LargeMessage,
 }

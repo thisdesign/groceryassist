@@ -3,7 +3,7 @@ import { NextPage } from "next"
 import { getOrderById, completeOrder } from "middleware"
 import { OrderDb } from "types"
 import Router from "next/router"
-import { UIButton, LargeHeading, Page } from "components"
+import { DeliverPrompt, Page } from "components"
 
 const ConnectPage: NextPage<{ data: OrderDb }> = ({ data }) => {
   const handleCompleteBtn = () => {
@@ -18,14 +18,7 @@ const ConnectPage: NextPage<{ data: OrderDb }> = ({ data }) => {
 
   return (
     <Page title={`Order for ${data.user.first}`}>
-      [FPO... Delivery page goes here]
-      <hr />
-      Deliver to:
-      <LargeHeading>{address}</LargeHeading>
-      <LargeHeading>
-        {city}, {state}, {zip}
-      </LargeHeading>
-      <UIButton onClick={handleCompleteBtn}>Mark as complete</UIButton>
+      <DeliverPrompt data= />
     </Page>
   )
 }

@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-const PhonePrompt = styled.div`
+const LargeMessage = styled.div`
   height: calc(100vh - var(--nav-height));
   background: var(--color-brand);
   color: var(--color-white);
@@ -10,6 +10,4 @@ const PhonePrompt = styled.div`
   align-items: center;
 `
 
-export default {
-  PhonePrompt
-}
+export default LargeMessage
