@@ -7,7 +7,7 @@ import {
   Paragraph,
   AppFrame,
   LargeHeading,
-  MediumHeading
+  MediumHeading,
 } from "components"
 import { Item, NewOrderState } from "types"
 import { useForm } from "react-hook-form"
@@ -17,17 +17,17 @@ import S from "./OrderInfoCapture.Styled"
 
 const OrderInfo: React.FC<{ data: NewOrderState }> = ({ data }) => {
   const { register, handleSubmit, errors } = useForm()
-  const onSubmit = formData => {
+  const onSubmit = (formData) => {
     const mergedData = {
       ...data,
-      ...formData
+      ...formData,
     }
 
     addOrder(mergedData)
       .then(() => {
         Router.push("/")
       })
-      .catch(err => console.log(err))
+      .catch((err) => console.log(err))
   }
 
   return (
@@ -35,17 +35,14 @@ const OrderInfo: React.FC<{ data: NewOrderState }> = ({ data }) => {
       header={
         <>
           <MediumHeading>Complete Order</MediumHeading>
-          <Paragraph>
-            Fill out some additional details so
-            <br /> we can get your order to you.
-          </Paragraph>
+          <Paragraph>Please fill out the necessary fields.</Paragraph>
         </>
       }
     >
       <form onSubmit={handleSubmit(onSubmit)}>
         <S.Wrap>
           Your contact information
-          <Paragraph>We only list your first name</Paragraph>
+          <Paragraph>Only your first name will be displayed.</Paragraph>
           <S.Grid>
             <TextInput
               style={{ gridColumn: "span 3" }}
@@ -76,8 +73,8 @@ const OrderInfo: React.FC<{ data: NewOrderState }> = ({ data }) => {
               ref={register({ required: true })}
             />
           </S.Grid>
-          Where should we deliver?
-          <Paragraph>You will be paired with nearby volunteers</Paragraph>
+          Delivery Location
+          <Paragraph>You&apos;ll be paired with nearby volunteers</Paragraph>
           <S.Grid>
             <TextInput
               style={{ gridColumn: "span 4" }}
@@ -113,10 +110,17 @@ const OrderInfo: React.FC<{ data: NewOrderState }> = ({ data }) => {
               ref={register({ required: false })}
             />
           </S.Grid>
-          Anything else we should know?
+          <div>
+            Payment Preferences
+            <Paragraph> [payment Preferences go here]</Paragraph>
+            <br />
+            <br />
+            <br />
+          </div>
+          Other Needs
           <Paragraph>
-            Let us know things like food alergies, <br />
-            where to place the order, etc.
+            Please provide any food allergies, dietary restrictions <br /> or
+            specific delivery instructions.
           </Paragraph>
           <S.Grid>
             <TextArea
