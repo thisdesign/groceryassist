@@ -4,7 +4,7 @@ import React, {
   createContext,
   useState,
   useContext,
-  useEffect
+  useEffect,
 } from "react"
 import { UIButton, TextArea, Paragraph, UIWrapper } from "components"
 import { Item } from "types"
@@ -17,7 +17,7 @@ export const GroceryListCtx = createContext<{
   setIsFocused: React.Dispatch<React.SetStateAction<boolean>>
 }>({
   isFocused: false,
-  setIsFocused: () => null
+  setIsFocused: () => null,
 })
 
 const GroceryList: React.FC = () => {
@@ -67,7 +67,7 @@ const NewItemInput = () => {
     moreDetailsFieldRef,
     isFocused,
     setIsFocused,
-    handleNewItem
+    handleNewItem,
   } = useItemAdd()
 
   const [isDetailsEnabled, setDetailsEnabled] = useState<boolean>(false)
@@ -146,8 +146,8 @@ const NextButton = () => {
   return (
     <S.NextWrapper isEnabled={!!state.items.length} pad>
       <Paragraph>
-        Once you are finished, add your info
-        <br /> so we can deliver to you.
+        Once your shopping list is complete, provide information for the
+        delivery
       </Paragraph>
       <UIButton onClick={handleCompleteButton}>Next</UIButton>
     </S.NextWrapper>

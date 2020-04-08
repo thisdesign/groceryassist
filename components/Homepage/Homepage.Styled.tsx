@@ -41,6 +41,9 @@ const ButtonWrapper = styled.div`
   justify-content: center;
   flex-wrap: wrap;
 
+  button {
+    width: 15rem;
+  }
   a {
     display: inline-block;
     margin: 0.25rem;
@@ -50,5 +53,5 @@ const ButtonWrapper = styled.div`
 export default {
   ButtonWrapper,
   Page,
-  Head
+  Head,
 }

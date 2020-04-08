@@ -8,7 +8,7 @@ const Nav: React.FC<{ floating?: boolean }> = ({ floating }) => {
   return (
     <S.Nav floating={floating}>
       <Link href="/">
-        <a>Grocery App</a>
+        <a>Grocery Assist</a>
       </Link>
     </S.Nav>
   )
