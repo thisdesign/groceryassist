@@ -39,9 +39,9 @@ const Map: React.FC<{
     if (mapApiData) {
       const drawRadius = () => {
         return new mapApiData.maps.Circle({
-          strokeColor: "#FF0000",
-          strokeOpacity: 0.5,
-          strokeWeight: 1,
+          strokeColor: "rgb(37, 76, 61)",
+          strokeOpacity: 0.15,
+          strokeWeight: 2,
           fillColor: "#FF0000",
           fillOpacity: 0,
           map: mapApiData.map,

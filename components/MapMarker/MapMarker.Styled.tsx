@@ -6,6 +6,7 @@ const hover = css`
 `
 
 const Marker = styled.div<{ isHovered: boolean }>`
+  position: relative;
   border: 1px solid var(--color-grey-1);
   font-weight: 600;
   font-size: 13px;
@@ -23,6 +24,7 @@ const Marker = styled.div<{ isHovered: boolean }>`
 
   &:hover {
     ${hover}
+    z-index:900;
   }
 
   ${(props) => props.isHovered && hover}
