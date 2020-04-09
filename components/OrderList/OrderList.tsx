@@ -16,7 +16,7 @@ const OrderList: React.FC<{
   return (
     <S.OrderList>
       <S.MapWrapper>
-        <Map center={{ lat: ctrLat, lng: ctrLng }}>
+        <Map center={{ lat: ctrLat, lng: ctrLng }} radius={range}>
           <CurrentLocation lat={ctrLat} lng={ctrLng} />
           {orders.map((item) => {
             const [lng, lat] = item.location.coordinates

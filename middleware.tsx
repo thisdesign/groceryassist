@@ -7,7 +7,7 @@ import {
   Coords,
   LocationRes,
   NewUserReq,
-  NewOrderBody
+  NewOrderBody,
 } from "./types"
 
 const isDev = process.env.NODE_ENV !== "production"
@@ -20,7 +20,7 @@ const apiRoute = isDev
  */
 
 export const getOrderById = async (id: string): Promise<OrderDb> =>
-  fetch(`${apiRoute}/orders/${id}`).then(res => res.json())
+  fetch(`${apiRoute}/orders/${id}`).then((res) => res.json())
 
 /**
  * List Orders
@@ -30,20 +30,25 @@ type OrderProps = {
   limit?: number
   coords?: Coords
   status?: "open" | "any" | "closed"
+  radius: number
 }
 
 export const getOrders = ({
   limit,
   coords,
-  status = "open"
+  status = "open",
+  radius,
 }: OrderProps): Promise<OrderRes> => {
   const queryString = qs.stringify({
     limit,
     latlng: coords ? coords.join(",") : null,
-    status
+    status,
+    radius,
   })
 
-  return fetch(`${apiRoute}/orders/?${queryString}`).then(res => res.json())
+  console.log(queryString)
+
+  return fetch(`${apiRoute}/orders/?${queryString}`).then((res) => res.json())
 }
 
 /**
@@ -56,12 +61,12 @@ export const addOrder = async (order: NewOrderBody) => {
       method: "POST",
       headers: {
         Accept: "application/json",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(order)
+      body: JSON.stringify(order),
     })
-      .then(res => res.json())
-      .then(res => {
+      .then((res) => res.json())
+      .then((res) => {
         if (res.success) {
           resolve(res)
         }
@@ -73,10 +78,10 @@ export const addOrder = async (order: NewOrderBody) => {
 export const completeOrder = (id: string): Promise<any> => {
   return new Promise((resolve, reject) => {
     return fetch(`${apiRoute}/orders/${id}/complete`, {
-      method: "PUT"
+      method: "PUT",
     })
-      .then(res => res.json())
-      .then(res => {
+      .then((res) => res.json())
+      .then((res) => {
         if (res.success) {
           resolve(res)
         }
@@ -91,7 +96,7 @@ export const completeOrder = (id: string): Promise<any> => {
 
 const geocode = async (querystring: string): Promise<LocationRes> => {
   const url = ` ${apiRoute}/location/?${querystring}}`
-  return fetch(url).then(res => res.json())
+  return fetch(url).then((res) => res.json())
 }
 
 export const getLocationByCoords = async (coords: Coords) =>
@@ -105,8 +110,8 @@ export const getLocationByAddress = async (a: string) => geocode(`address=${a}`)
 
 export const fetchPredictions = (input: string) => {
   return fetch(`${apiRoute}/location/predictions?input=${input}`)
-    .then(res => res.json())
-    .catch(err => console.log(err))
+    .then((res) => res.json())
+    .catch((err) => console.log(err))
 }
 
 /**
@@ -119,12 +124,12 @@ export const createUser = async (inputData: NewUserReq) => {
       method: "POST",
       headers: {
         Accept: "application/json",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(inputData)
+      body: JSON.stringify(inputData),
     })
-      .then(res => res.json())
-      .then(apiRes => {
+      .then((res) => res.json())
+      .then((apiRes) => {
         console.log(apiRes)
         resolve(apiRes)
 

@@ -5,38 +5,17 @@ import S from "./OrderDetail.Styled"
 
 import { Map, UIButton } from ".."
 
-const Marker: React.FC<{ lat: any; lng: any }> = ({ lat, lng }) => (
-  <>
-    <div />
-    <style jsx scoped>
-      {`
-        div {
-          width: 6rem;
-          height: 6rem;
-          transform: translate3d(-50%, -50%, 0);
-          background: rgba(var(--color-brand-rgb), 0.2);
-          border-radius: 50%;
-          border: 2px solid rgba(var(--color-brand-rgb), 0.6);
-          box-shadow: 0 0 10px rgba(var(--color-brand-rgb), 0.3);
-        }
-      `}
-    </style>
-  </>
-)
-
 const OrderDetail: React.FC<{ data: OrderDb }> = ({ data }) => {
   const {
     location: {
-      coordinates: [lng, lat]
-    }
+      coordinates: [lng, lat],
+    },
   } = data
 
   return (
     <div>
       <S.Map>
-        <Map center={{ lat, lng }}>
-          <Marker {...{ lat, lng }} />
-        </Map>
+        <Map center={{ lat, lng }} radius={0.7} />
       </S.Map>
       <Details data={data} />
       {!data.status.fulfilled && (

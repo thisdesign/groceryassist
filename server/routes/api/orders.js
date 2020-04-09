@@ -13,14 +13,14 @@ const CURRENT_VERSION = "0.3"
  * @access    Public
  */
 
-const getStatus = status => {
+const getStatus = (status) => {
   if (status === "open")
     return {
-      "status.fulfilled": [false, undefined]
+      "status.fulfilled": [false, undefined],
     }
   if (status === "closed")
     return {
-      "status.fulfilled": true
+      "status.fulfilled": true,
     }
   return {}
 }
@@ -30,24 +30,25 @@ router.get("/", (req, res) => {
 
   const orderQuery = Order.find({
     _version: CURRENT_VERSION,
-    ...getStatus(status)
+    ...getStatus(status),
   })
 
   if (latlng) {
     const [lat, lng] = latlng.split(",")
+
     orderQuery.where("location").within({
       center: [lng, lat],
-      radius: parseFloat(radius)
+      radius: parseFloat(radius),
     })
   }
 
   orderQuery
     .sort({ date: 1 })
     .limit(parseFloat(limit))
-    .then(orders => {
+    .then((orders) => {
       res.json(orders)
     })
-    .catch(err => {
+    .catch((err) => {
       res.json(err)
     })
 })
@@ -59,12 +60,12 @@ router.get("/", (req, res) => {
  */
 router.get("/open/", (req, res) => {
   Order.find({
-    _version: CURRENT_VERSION
+    _version: CURRENT_VERSION,
   })
-    .then(orders => {
+    .then((orders) => {
       res.json(orders)
     })
-    .catch(err => {
+    .catch((err) => {
       res.json(err)
     })
 })
@@ -76,10 +77,10 @@ router.get("/open/", (req, res) => {
  */
 router.get("/:id", (req, res) => {
   Order.findById(req.params.id)
-    .then(order => {
+    .then((order) => {
       res.json(order)
     })
-    .catch(err => {
+    .catch((err) => {
       res.json({ err })
     })
 })
@@ -99,13 +100,13 @@ router.put("/:id/complete", async (req, res) => {
       res.json({
         success: false,
         msg: "Could not update order.",
-        data: err
+        data: err,
       })
     } else {
       res.json({
         success: true,
         msg: "Successfully updated order.",
-        data: doc
+        data: doc,
       })
     }
   })
@@ -133,11 +134,11 @@ router.post("/", (req, res) => {
       const data = {
         location: {
           coordinates: [lng, lat],
-          ...location
+          ...location,
         },
         user: { phone, first, last },
         ...formInput,
-        _version: CURRENT_VERSION
+        _version: CURRENT_VERSION,
       }
 
       const order = new Order(data)
@@ -146,24 +147,24 @@ router.post("/", (req, res) => {
           res.json({
             success: false,
             msg: "Could not create order.",
-            data: err
+            data: err,
           })
         } else {
           res.json({
             success: true,
             msg: "Order successfuly created",
-            data: doc
+            data: doc,
           })
         }
       })
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err)
 
       res.json({
         success: false,
         msg: "Invalid address.",
-        data: err
+        data: err,
       })
     })
 })

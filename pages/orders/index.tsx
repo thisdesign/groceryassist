@@ -2,7 +2,7 @@ import { NextPage, GetServerSideProps } from "next"
 import Cookies from "js-cookie"
 import cookie from "cookie"
 import Router from "next/router"
-import { OrderList, PhoneCapture, AddressCapture, Page } from "../../components"
+import { OrderList, AddressCapture, Page } from "../../components"
 import { OrderRes, LocationRes } from "../../types"
 import "isomorphic-unfetch"
 import { getOrders, getLocationByAddress } from "../../middleware"
@@ -61,6 +61,7 @@ export const getServerSideProps: GetServerSideProps = async ({
     orders = await getOrders({
       limit: 0,
       coords: [location.lat, location.lng],
+      radius: range,
     })
   }
 

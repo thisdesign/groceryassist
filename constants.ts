@@ -59,4 +59,4 @@ export const IMAGES = {
     "https://images.unsplash.com/photo-1533900298318-6b8da08a523e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
 }
 
-export const RANGES = [5, 10, 20]
+export const RANGES = [2, 5, 10, 20]
