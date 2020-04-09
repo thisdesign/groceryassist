@@ -5,7 +5,7 @@ const CreateSuccess = () => {
   return (
     <div>
       <UIWrapper pad>
-        <LargeHeading>Your order has been created</LargeHeading>
+        <LargeHeading>Your request has been submitted</LargeHeading>
         <div>
           Remember, this service is run on basic human compassion and kindness.
           Please honor the system and be patient. Together, we'll get through
