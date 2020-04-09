@@ -27,9 +27,11 @@ const PrivacyWrapper = styled(UIWrapper)`
     color: var(--color-grey-1);
   }
 
-  h2 {
+  h1 {
     font-size: var(--size-5);
+    margin-bottom: 2em;
   }
+
   li {
     &:before {
       content: "•";
@@ -38,6 +40,12 @@ const PrivacyWrapper = styled(UIWrapper)`
   }
 `
 
+const PrivacyWrapperInner = styled.div`
+  margin-left: auto;
+  max-width: 27rem;
+`
+
 export default {
   PrivacyWrapper,
+  PrivacyWrapperInner,
 }
