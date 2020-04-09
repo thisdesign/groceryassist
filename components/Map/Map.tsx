@@ -11,12 +11,8 @@ const Map: React.FC<{
   radius: number
 }> = ({ children, center, radius }) => {
   const [mapApiData, setMapApiData] = useState(null)
+  const isMapLoaded = !!mapApiData
   const circle = useRef(null)
-
-  /**
-   * get mile radius
-   */
-
   const mileRadius = 1609 * radius
 
   /**
@@ -26,9 +22,14 @@ const Map: React.FC<{
   useEffect(() => {
     if (mapApiData) {
       const { map, maps } = mapApiData
-      map.panTo(new maps.LatLng(center))
+      const latLng = new maps.LatLng(center)
+      map.panTo(latLng)
+
+      if (circle.current) {
+        circle.current.setCenter(latLng)
+      }
     }
-  }, [mapApiData, center])
+  }, [isMapLoaded, center])
 
   /**
    * Draw radius
