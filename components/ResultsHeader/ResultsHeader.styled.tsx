@@ -24,10 +24,9 @@ const Filter = styled.div`
 
 const Dropdown = {
   UIWrap: styled.div`
-    min-width: 4.5rem;
     cursor: pointer;
     position: relative;
-    font-size: var(--size-1);
+    font-size: var(--size-0);
     color: var(--color-grey-1);
     align-self: flex-end;
   `,
@@ -62,7 +61,8 @@ const Dropdown = {
   `,
 
   Carret: styled.div`
-    font-size: var(--size-0);
+    font-size: 0.5rem;
+    margin-left: 0.75em;
   `,
 }
 
