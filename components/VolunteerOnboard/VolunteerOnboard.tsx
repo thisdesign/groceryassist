@@ -9,14 +9,14 @@ import { createUser } from "../../middleware"
 
 const IMAGES = [
   "https://images.unsplash.com/photo-1583247949334-e07ab70681c5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=780&q=60",
-  "https://images.unsplash.com/photo-1533900298318-6b8da08a523e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=780&q=80"
+  "https://images.unsplash.com/photo-1533900298318-6b8da08a523e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=780&q=80",
 ]
 
 const initialState = {
   first: null,
   last: null,
   phone: null,
-  address: null
+  address: null,
 }
 
 const VolunteerOnboard = () => {
@@ -26,7 +26,7 @@ const VolunteerOnboard = () => {
   const handlePhoneInput = (phone: number) => setData({ ...data, phone })
 
   const pushData = (newItem: object) => {
-    createUser({ ...data, ...newItem }).then(apiRes => {
+    createUser({ ...data, ...newItem }).then((apiRes) => {
       console.log(apiRes)
     })
   }
@@ -62,7 +62,7 @@ const AddressScreen: React.FC<{
   const [address, setAddress] = useState<string>(null)
   const { register, handleSubmit } = useForm()
 
-  const onSubmit = data => {
+  const onSubmit = (data) => {
     if (address) {
       pushData({ ...data, address })
     }
@@ -87,7 +87,7 @@ const AddressScreen: React.FC<{
             ref={register({ required: true, maxLength: 100 })}
           />
 
-          <AddressInput onSubmit={addrString => setAddress(addrString)} />
+          <AddressInput onSubmit={(addrString) => setAddress(addrString)} />
           <div>
             <UIButton>See Orders</UIButton>
           </div>

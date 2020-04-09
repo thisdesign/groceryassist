@@ -59,7 +59,7 @@ const UIButton = styled.button<ButtonProps>`
 UIButton.defaultProps = {
   color: "brand",
   inverted: false,
-  textColor: "white"
+  textColor: "white",
 }
 
 export default UIButton

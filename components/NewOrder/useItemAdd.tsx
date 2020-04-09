@@ -30,7 +30,7 @@ const useItemAdd = () => {
       const newItem = {
         id: uuid(),
         text: $itemName.value,
-        notes: $itemNotes.value !== "" ? $itemNotes.value : null
+        notes: $itemNotes.value !== "" ? $itemNotes.value : null,
       }
 
       pushToState({ items: [...state.items, newItem] })
@@ -47,7 +47,7 @@ const useItemAdd = () => {
    */
 
   const removeItem = (id: string) => {
-    const itemsWithRemoved = state.items.filter(item => item.id !== id)
+    const itemsWithRemoved = state.items.filter((item) => item.id !== id)
     pushToState({ items: itemsWithRemoved })
   }
 
@@ -56,7 +56,7 @@ const useItemAdd = () => {
    */
 
   const updateItem = (id: string, text: string) => {
-    const updatedItems = state.items.map(item =>
+    const updatedItems = state.items.map((item) =>
       item.id === id ? { ...item, text } : item
     )
     pushToState({ items: updatedItems })
@@ -103,7 +103,7 @@ const useItemAdd = () => {
     removeItem,
     setIsFocused,
     isFocused,
-    updateItem
+    updateItem,
   }
 }
 

@@ -35,7 +35,7 @@ const AddressInput: React.FC<{
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setMenuOpen(true)
     setInputVal(e.target.value)
-    fetchPredictions(e.target.value).then(data =>
+    fetchPredictions(e.target.value).then((data) =>
       setPredictions(data.predictions)
     )
   }

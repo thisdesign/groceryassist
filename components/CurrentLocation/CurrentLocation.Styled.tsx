@@ -27,5 +27,5 @@ const Circle = styled.div`
 `
 
 export default {
-  Circle
+  Circle,
 }

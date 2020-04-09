@@ -20,7 +20,7 @@ const Shim = styled.div`
   height: ${HEIGHT};
 `
 
-const BottomBar: React.FC = props => {
+const BottomBar: React.FC = (props) => {
   return (
     <>
       <BottomBarStyle {...props} />

@@ -25,9 +25,9 @@ const Marker = styled.div<{ isHovered: boolean }>`
     ${hover}
   }
 
-  ${props => props.isHovered && hover}
+  ${(props) => props.isHovered && hover}
 `
 
 export default {
-  Marker
+  Marker,
 }

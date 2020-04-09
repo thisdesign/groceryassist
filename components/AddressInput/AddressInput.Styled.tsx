@@ -39,7 +39,7 @@ const PredictionItem = styled.div<{ isSelected: boolean }>`
   cursor: pointer;
   user-select: none;
 
-  background: ${props => (props.isSelected ? `var(--color-grey-3)` : null)};
+  background: ${(props) => (props.isSelected ? `var(--color-grey-3)` : null)};
 
   h5 {
     margin-bottom: 0.25rem;
@@ -58,5 +58,5 @@ export default {
   PredictionWrapper,
   PredictionItem,
   InputWrapper,
-  PinWrapper
+  PinWrapper,
 }

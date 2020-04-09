@@ -5,16 +5,16 @@ const Outline = styled.div<{ checked: boolean }>`
   width: 1rem;
   height: 1rem;
   border: 1px solid
-    ${props => (props.checked ? `var(--color-brand)` : `var(--color-grey-1)`)};
+    ${(props) => (props.checked ? `var(--color-brand)` : `var(--color-grey-1)`)};
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${props =>
+  background-color: ${(props) =>
     props.checked ? `var(--color-brand)` : "transparent"};
 
   svg {
-    display: ${props => (props.checked ? "block" : "none")};
+    display: ${(props) => (props.checked ? "block" : "none")};
     height: 0.5rem;
 
     path {
@@ -24,5 +24,5 @@ const Outline = styled.div<{ checked: boolean }>`
 `
 
 export default {
-  Outline
+  Outline,
 }

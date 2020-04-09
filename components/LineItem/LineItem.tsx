@@ -14,7 +14,7 @@ const LineItem: NextPage<{
 }> = ({ data, setHoveredId, isHovered, distance }) => {
   const {
     items,
-    user: { last, first }
+    user: { last, first },
   } = data
   const itemCount = items.length
   const isPlural = itemCount > 1

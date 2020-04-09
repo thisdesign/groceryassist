@@ -34,5 +34,5 @@ const OrderList = styled.div`
 
 export default {
   OrderList,
-  MapWrapper
+  MapWrapper,
 }

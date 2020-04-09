@@ -24,5 +24,5 @@ const Error = styled.div`
 export default {
   Label,
   Button,
-  Error
+  Error,
 }

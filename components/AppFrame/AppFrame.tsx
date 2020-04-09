@@ -4,7 +4,7 @@ import {
   UIWrapper,
   BottomBar,
   UIButton,
-  Paragraph
+  Paragraph,
 } from "components"
 import S from "./AppFrame.Styled"
 

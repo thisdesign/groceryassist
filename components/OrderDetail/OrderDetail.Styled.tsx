@@ -46,5 +46,5 @@ export default {
   ListItem,
   ItemWrapper,
   Grid,
-  Map
+  Map,
 }

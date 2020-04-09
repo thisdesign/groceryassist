@@ -11,7 +11,7 @@ const Nav = styled(UIBox)<{ floating: boolean }>`
   justify-content: center;
   flex-direction: column;
 
-  ${props =>
+  ${(props) =>
     props.floating &&
     css`
       border-bottom: none;
@@ -25,5 +25,5 @@ const Nav = styled(UIBox)<{ floating: boolean }>`
 `
 
 export default {
-  Nav
+  Nav,
 }

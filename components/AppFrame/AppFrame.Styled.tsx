@@ -18,5 +18,5 @@ const Body = styled.div`
 export default {
   Header,
   Wrapper,
-  Body
+  Body,
 }

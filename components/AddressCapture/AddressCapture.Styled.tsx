@@ -6,5 +6,5 @@ const FormItems = styled.div`
 `
 
 export default {
-  FormItems
+  FormItems,
 }

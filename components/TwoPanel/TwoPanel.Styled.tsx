@@ -32,7 +32,7 @@ const TwoPanel = styled.div`
 `
 
 const Image = styled.div<{ image: string }>`
-  background-image: url("${props => props.image}");
+  background-image: url("${(props) => props.image}");
   background-color: var(--color-grey-3);
   background-position: center;
   background-size: cover;
@@ -43,5 +43,5 @@ export default {
   Inner,
   Wrapper,
   TwoPanel,
-  Image
+  Image,
 }

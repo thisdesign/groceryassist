@@ -42,7 +42,7 @@ const ItemInner = styled(UIWrapper)`
 
 const LineItem = {
   Inner: ItemInner,
-  Wrapper: ItemWrapper
+  Wrapper: ItemWrapper,
 }
 
 /**
@@ -68,7 +68,7 @@ const NewItemInputWrapper = styled.div<{ isFocused: boolean }>`
     padding-top: 0.5em;
   }
 
-  ${props =>
+  ${(props) =>
     props.isFocused &&
     css`
       /* background-color: var(--color-grey-3); */
@@ -116,7 +116,7 @@ const NewItemTextArea = styled.textarea<{ isEnabled: boolean }>`
   padding-top: 0.25rem;
   resize: none;
 
-  opacity: ${props => (props.isEnabled ? 1 : 0)};
+  opacity: ${(props) => (props.isEnabled ? 1 : 0)};
   transition: 200ms opacity ease;
 
   ::placeholder {
@@ -130,7 +130,7 @@ const NewItem = {
   Grid: NewItemGrid,
   Input: AddItemInput,
   ButtonWrap: ButtonsWrapper,
-  TextArea: NewItemTextArea
+  TextArea: NewItemTextArea,
 }
 
 const Emptystate = styled.div`
@@ -150,7 +150,7 @@ const Emptystate = styled.div`
 `
 
 const NextWrapper = styled(UIWrapper)<{ isEnabled: boolean }>`
-  opacity: ${props => (props.isEnabled ? 1 : 0)};
+  opacity: ${(props) => (props.isEnabled ? 1 : 0)};
   transition: 500ms opacity ease;
   display: flex;
   flex-direction: column;
@@ -170,5 +170,5 @@ export default {
   ItemWrapper,
   ButtonsWrapper,
   NextWrapper,
-  LineItem
+  LineItem,
 }

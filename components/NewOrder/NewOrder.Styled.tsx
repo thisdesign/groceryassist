@@ -14,5 +14,5 @@ const Bg = styled.div`
 
 export default {
   Bg,
-  Grid
+  Grid,
 }

@@ -6,7 +6,7 @@ import { mq } from "./index"
 const scale: number[] = modularScale({
   scale: 1.2,
   stepsDown: 2,
-  length: 15
+  length: 15,
 })
 
 const style = css`

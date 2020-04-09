@@ -28,5 +28,5 @@ const InfoGrid = styled(FormWrapper)`
 
 export default {
   InfoGrid,
-  FormWrapper
+  FormWrapper,
 }

@@ -20,5 +20,5 @@ const Grid = styled.div`
 
 export default {
   Grid,
-  Wrap
+  Wrap,
 }

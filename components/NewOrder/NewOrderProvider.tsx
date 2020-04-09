@@ -19,13 +19,13 @@ const INITIAL_STATE = {
   phone: "",
   age: 0,
   additionalNotes: null,
-  items: []
+  items: [],
 }
 
 export const NewOrderCtx = createContext<Ctx>({
   state: INITIAL_STATE,
   handleCompleteButton: () => null,
-  pushToState: () => null
+  pushToState: () => null,
 })
 
 const NewOrderProvider: React.FC = ({ children }) => {
@@ -45,7 +45,7 @@ const NewOrderProvider: React.FC = ({ children }) => {
       value={{
         pushToState,
         handleCompleteButton,
-        state: pageState
+        state: pageState,
       }}
     >
       {children}
