@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import GoogleMapReact from "google-map-react"
 
 const GOOGLE_MAP_API_KEY = "AIzaSyAezbHQ150lx33Q0me17ROGTboEyd-7K5o"
@@ -11,19 +11,17 @@ const Map: React.FC<{
   radius: number
 }> = ({ children, center, radius }) => {
   const [mapApiData, setMapApiData] = useState(null)
+  const circle = useRef(null)
 
-  const drawRadius = () => {
-    return new mapApiData.maps.Circle({
-      strokeColor: "#FF0000",
-      strokeOpacity: 0.5,
-      strokeWeight: 1,
-      fillColor: "#FF0000",
-      fillOpacity: 0,
-      map: mapApiData.map,
-      center,
-      radius: 1609 * radius,
-    })
-  }
+  /**
+   * get mile radius
+   */
+
+  const mileRadius = 1609 * radius
+
+  /**
+   * update pan
+   */
 
   useEffect(() => {
     if (mapApiData) {
@@ -32,13 +30,42 @@ const Map: React.FC<{
     }
   }, [mapApiData, center])
 
+  /**
+   * Draw radius
+   */
+
+  useEffect(() => {
+    if (mapApiData) {
+      const drawRadius = () => {
+        return new mapApiData.maps.Circle({
+          strokeColor: "#FF0000",
+          strokeOpacity: 0.5,
+          strokeWeight: 1,
+          fillColor: "#FF0000",
+          fillOpacity: 0,
+          map: mapApiData.map,
+          center,
+          radius: mileRadius,
+        })
+      }
+
+      circle.current = drawRadius()
+    }
+  }, [mapApiData])
+
+  /**
+   * Update zoom
+   */
+
   useEffect(() => {
     const updateZoom = () => {
       if (mapApiData) {
-        // TODO: Dont' draw a new one every time
-        const mapRadius = drawRadius()
         const { map } = mapApiData
-        map.fitBounds(mapRadius.getBounds())
+
+        // update radius
+        circle.current.setRadius(mileRadius)
+        // update radius
+        map.fitBounds(circle.current.getBounds())
       }
     }
 
@@ -53,11 +80,15 @@ const Map: React.FC<{
 
   return (
     <GoogleMapReact
-      bootstrapURLKeys={{ key: GOOGLE_MAP_API_KEY }}
+      bootstrapURLKeys={{
+        key: GOOGLE_MAP_API_KEY,
+      }}
       defaultCenter={center}
       defaultZoom={12}
       onGoogleApiLoaded={(data) => setMapApiData(data)}
-      options={{ fullscreenControl: false }}
+      options={{
+        fullscreenControl: false,
+      }}
     >
       {children}
     </GoogleMapReact>
