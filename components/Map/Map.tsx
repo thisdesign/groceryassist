@@ -29,7 +29,7 @@ const Map: React.FC<{
         circle.current.setCenter(latLng)
       }
     }
-  }, [isMapLoaded, center])
+  }, [center.lat, center.lng])
 
   /**
    * Draw radius
@@ -60,7 +60,7 @@ const Map: React.FC<{
 
   useEffect(() => {
     const updateZoom = () => {
-      if (mapApiData) {
+      if (isMapLoaded) {
         const { map } = mapApiData
 
         // update radius
@@ -77,7 +77,7 @@ const Map: React.FC<{
     return () => {
       window.removeEventListener("resize", updateZoom)
     }
-  }, [mapApiData, radius])
+  }, [isMapLoaded, radius])
 
   return (
     <GoogleMapReact
@@ -90,6 +90,7 @@ const Map: React.FC<{
       options={{
         fullscreenControl: false,
       }}
+      yesIWantToUseGoogleMapApiInternals
     >
       {children}
     </GoogleMapReact>
