@@ -50,8 +50,22 @@ const ButtonWrapper = styled.div`
   }
 `
 
+const PrivacyWrap = styled.div`
+  max-width: 13em;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: var(--size-1);
+  font-size: var(--size-1);
+  opacity: 0.75;
+
+  a {
+    text-decoration: underline;
+  }
+`
+
 export default {
   ButtonWrapper,
   Page,
   Head,
+  PrivacyWrap,
 }

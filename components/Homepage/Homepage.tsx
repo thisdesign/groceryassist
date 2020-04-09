@@ -12,7 +12,6 @@ const Homepage = () => {
           GroceryAssist is a non-profit delivery service dedicated to helping
           those vulnerable to the COVID-19 virus.
         </S.Head>
-
         <S.ButtonWrapper>
           <Link href="/orders">
             <a>
@@ -31,6 +30,13 @@ const Homepage = () => {
             </a>
           </Link>
         </S.ButtonWrapper>
+
+        <S.PrivacyWrap>
+          By uising this service, you agree to the{" "}
+          <Link href="/privacy">
+            <a>privacy policy</a>
+          </Link>
+        </S.PrivacyWrap>
       </UIWrapper>
     </S.Page>
   )
