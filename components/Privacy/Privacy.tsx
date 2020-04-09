@@ -5,6 +5,7 @@ const Privacy = () => {
   return (
     <S.PrivacyWrapper>
       <h1 id="privacy-policy">Privacy Policy</h1>
+
       <S.PrivacyWrapperInner>
         <p>
           Protecting your private information is our priority. This Statement of

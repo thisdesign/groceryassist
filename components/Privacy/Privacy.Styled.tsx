@@ -30,6 +30,8 @@ const PrivacyWrapper = styled(UIWrapper)`
   h1 {
     font-size: var(--size-5);
     margin-bottom: 2em;
+    border-bottom: 1px solid var(--color-grey-2);
+    padding-bottom: var(--size-8);
   }
 
   li {
