@@ -31,6 +31,7 @@ import Page from "./Page/Page"
 import DeliverPrompt from "./DeliverPrompt/DeliverPrompt"
 import LargeMessage from "./LargeMessage/LargeMessage"
 import Privacy from "./Privacy/Privacy"
+import CreateSuccess from "./CreateSuccess/CreateSuccess"
 
 export {
   OrderDetail,
@@ -68,4 +69,5 @@ export {
   DeliverPrompt,
   LargeMessage,
   Privacy,
+  CreateSuccess,
 }

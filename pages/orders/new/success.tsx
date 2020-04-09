@@ -1,9 +1,13 @@
 import React from "react"
 import { NextPage } from "next"
-import { Page } from "components"
+import { CreateSuccess, Page } from "components"
 
 const Success: NextPage = () => {
-  return <Page title="Order Created">Your order has been created</Page>
+  return (
+    <Page title="Order Created">
+      <CreateSuccess />
+    </Page>
+  )
 }
 
 export default Success
