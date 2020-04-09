@@ -6,6 +6,7 @@ const getAddressData = require("../../util/getAddressData")
 const router = express.Router()
 
 const CURRENT_VERSION = "0.3"
+const RADIUS_OF_EARTH_IN_MILES = 3963.2
 
 /**
  * @route     GET api/orders
@@ -25,22 +26,30 @@ const getStatus = (status) => {
   return {}
 }
 
+const getLocationQuery = (latlng, radius) => {
+  if (latlng) {
+    const [lat, lng] = latlng.split(",")
+
+    return {
+      location: {
+        $geoWithin: {
+          $centerSphere: [[lng, lat], radius / RADIUS_OF_EARTH_IN_MILES],
+        },
+      },
+    }
+  }
+
+  return {}
+}
+
 router.get("/", (req, res) => {
   const { radius = 10, latlng, limit = 0, status = "open" } = req.query
 
   const orderQuery = Order.find({
     _version: CURRENT_VERSION,
     ...getStatus(status),
+    ...getLocationQuery(latlng, radius),
   })
-
-  if (latlng) {
-    const [lat, lng] = latlng.split(",")
-
-    orderQuery.where("location").within({
-      center: [lng, lat],
-      radius: parseFloat(radius),
-    })
-  }
 
   orderQuery
     .sort({ date: 1 })
