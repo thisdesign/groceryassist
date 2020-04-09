@@ -4,11 +4,13 @@ import spaceToPlus from "util/spaceToPlus"
 import { OrderRes, LocationRes } from "../../types"
 import { AddressInput } from ".."
 import S from "./ResultsHeader.styled"
+import { RANGES } from "../../constants"
 
 const ResultsHeader: React.FC<{
   data: OrderRes
   location: LocationRes
-}> = ({ data, location }) => {
+  range: number
+}> = ({ data, location, range }) => {
   const getLocationName = (): string => {
     const { neighborhood, city, state } = location
 
@@ -32,15 +34,13 @@ const ResultsHeader: React.FC<{
 
       <S.Filter>
         <S.Title>{data.length} open orders</S.Title>
-        <Dropdown />
+        <Dropdown range={range} />
       </S.Filter>
     </S.ResultsHeader>
   )
 }
 
-const RANGES = [5, 10, 20]
-
-const Dropdown = () => {
+const Dropdown: React.FC<{ range: number }> = ({ range }) => {
   const [isOpen, setIsOpen] = useState(false)
   const [activeIndex, setActiveIndex] = useState(0)
 
@@ -60,7 +60,7 @@ const Dropdown = () => {
   return (
     <S.Dropdown.UIWrap>
       <S.Dropdown.Display onClick={() => setIsOpen(true)}>
-        {RANGES[activeIndex]} mi
+        {range} mi
         <S.Dropdown.Carret>▼</S.Dropdown.Carret>
       </S.Dropdown.Display>
       <S.Dropdown.Window isOpen={isOpen}>

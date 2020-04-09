@@ -8,7 +8,8 @@ import getDistBetweenCoords from "../../util/getDistBetweenCords"
 const OrderList: React.FC<{
   orders: OrderRes
   location: LocationRes
-}> = ({ orders, location }) => {
+  range: number
+}> = ({ orders, location, range }) => {
   const [hoveredId, setHoveredId] = useState<string>(null)
   const [ctrLat, ctrLng]: Coords = [location.lat, location.lng]
 
@@ -17,7 +18,7 @@ const OrderList: React.FC<{
       <S.MapWrapper>
         <Map center={{ lat: ctrLat, lng: ctrLng }}>
           <CurrentLocation lat={ctrLat} lng={ctrLng} />
-          {orders.map(item => {
+          {orders.map((item) => {
             const [lng, lat] = item.location.coordinates
 
             return (
@@ -34,8 +35,8 @@ const OrderList: React.FC<{
         </Map>
       </S.MapWrapper>
       <div>
-        <ResultsHeader data={orders} location={location} />
-        {orders.map(order => (
+        <ResultsHeader data={orders} location={location} range={range} />
+        {orders.map((order) => (
           <LineItem
             isHovered={order._id === hoveredId}
             data={order}

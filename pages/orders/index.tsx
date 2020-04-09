@@ -7,6 +7,7 @@ import { OrderRes, LocationRes } from "../../types"
 import "isomorphic-unfetch"
 import { getOrders, getLocationByAddress } from "../../middleware"
 import spaceToPlus from "../../util/spaceToPlus"
+import { RANGES } from "../../constants"
 
 const goToOrdersPage = (address: string) =>
   Router.push(`/orders?a=${spaceToPlus(address)}`)
@@ -14,11 +15,12 @@ const goToOrdersPage = (address: string) =>
 const Listings: NextPage<{
   orders: OrderRes
   location: LocationRes
-}> = ({ orders, location }) => {
+  range: number
+}> = ({ orders, location, range }) => {
   if (location) {
     return (
       <Page title="Orders">
-        <OrderList orders={orders} location={location} />
+        <OrderList orders={orders} location={location} range={range} />
       </Page>
     )
   }
@@ -36,16 +38,20 @@ const Listings: NextPage<{
 }
 
 export const getServerSideProps: GetServerSideProps = async ({
-  res,
   req,
   query,
 }) => {
+  let range: number = RANGES[0]
   let orders = null
   let location: LocationRes = null
   let addressCookie = null
 
   if (req.headers.cookie) {
     addressCookie = cookie.parse(req.headers.cookie)._address
+  }
+
+  if (query.range) {
+    range = parseFloat(query.range.toString())
   }
 
   if (query.a || addressCookie) {
@@ -62,6 +68,7 @@ export const getServerSideProps: GetServerSideProps = async ({
     props: {
       orders,
       location,
+      range,
     },
   }
 }
