@@ -41,7 +41,7 @@ export const getServerSideProps: GetServerSideProps = async ({
   req,
   query,
 }) => {
-  let range: number = RANGES[0]
+  let range: number = RANGES[1]
   let orders = null
   let location: LocationRes = null
   let addressCookie = null
