@@ -24,17 +24,17 @@ const TYPESCRIPT_RULES = {
     1,
     {
       multiline: {
-        delimiter: "none"
-      }
-    }
-  ]
+        delimiter: "none",
+      },
+    },
+  ],
 }
 
 const NEXTJS_RULES = {
   // NextJs doesn't require React to be in scope
   "react/react-in-jsx-scope": 0,
   // <a> is required in <Link/> without herf
-  "jsx-a11y/anchor-is-valid": 0
+  "jsx-a11y/anchor-is-valid": 0,
 }
 
 module.exports = {
@@ -66,26 +66,26 @@ module.exports = {
     "jsx-a11y/click-events-have-key-events": 0,
 
     ...NEXTJS_RULES,
-    ...TYPESCRIPT_RULES
+    ...TYPESCRIPT_RULES,
   },
 
   settings: {
     "import/extensions": [".js", ".jsx", ".ts", ".tsx"],
 
     "import/parsers": {
-      "@typescript-eslint/parser": [".ts", ".tsx"]
+      "@typescript-eslint/parser": [".ts", ".tsx"],
     },
 
     "import/resolver": {
       node: {
         paths: ["."],
-        extensions: [".js", ".jsx", ".ts", ".tsx"]
-      }
-    }
+        extensions: [".js", ".jsx", ".ts", ".tsx"],
+      },
+    },
   },
 
   env: {
     browser: true,
-    node: true
-  }
+    node: true,
+  },
 }
